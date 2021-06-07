@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Roboto&display=swap');
+
+.hero-container{
+
+    display: flex ;
+    padding: 0;
+    margin-bottom: 0;
+    width: 100%;
+    background-color: #eaf5ff;
+    justify-content: space-evenly
+}
+
+h1, p, button{
+    font-family: "Kanit", sans-serif;
+}
+
+h1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 46px;
+    color: #539BE0;
+    width: 35%;
+}
+
+p{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: #616161;
+    line-height: 36px;
+    width: 35%;
+    
+}
+div .row-desc-1{
+    left: 150px;
+    background-color: cyan;
+}
+
+.row-desc-3 button{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 180%;
+}
+
+
+
+.btn-1{
+    width: 200px;
+    height: 50px;
+    left: 150px;
+    top: 537px;
+    background-color: #FF9B9B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+}
+
+.btn-2{
+    width: 200px;
+    height: 50px;
+    left: 370px;
+    top: 537px;
+    background-color: #c4c4c4;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+    margin-left: 20px;
+}
+
+.column-pic img{
+    /* position: ; */
+    width: 578px;
+    height: 373px;
+    background-color: coral;
+}
+
