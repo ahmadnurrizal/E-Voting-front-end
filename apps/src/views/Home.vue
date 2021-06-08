@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <Navbar />
-    <div id="hero-section">
-      <Hero />
-    </div>
+    <Hero />
+    <Poll />
+    <About-poll />
   </div>
 </template>
 
@@ -11,13 +11,16 @@
 // @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
 import Hero from "@/components/Herosection.vue";
+import Poll from "@/components/Poll.vue";
+import AboutPoll from '../components/About-poll.vue';
 
 
 
 export default {
   name: 'Home',
   components: {
-    Navbar,Hero
+    Navbar,Hero,Poll,
+    AboutPoll
     
   }
 }
