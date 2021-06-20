@@ -1,92 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Roboto&display=swap");
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
 }
 
-.hero-container{
-    display: flex ;
-    width: 100%;
-    background-color: #eaf5ff;
-    align-items: center;
+.hero-container {
+   width: 100%;
+   background-color: #eaf5ff;
 }
 
-.column-desc{
-    width: 50%;
-    margin-left: 150px;
-
+.wbg {
+   background-image: url(../img/vector/hero-wave.svg);
+   background-size: cover;
+   display: flex;
+   align-items: center;
+   padding-bottom: 135px;
 }
 
-h1, p, button{
-    font-family: "Kanit", sans-serif;
+.column-desc {
+   width: 50%;
+   margin-left: 150px;
+   padding-right: 18px;
 }
 
-.row-desc-1{
-    margin-bottom: 30px;
+h1,
+p,
+button {
+   font-family: "Kanit", sans-serif;
 }
 
-h1{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 130%;
-    color: #1E6599;
-
+.row-desc-1 {
+   margin-top: 146px;
+   margin-bottom: 30px;
 }
 
-.row-desc-2{
-    margin-bottom: 30px;
+h1 {
+   font-weight: 600;
+   font-style: normal;
+   text-align: left;
+   font-size: 48px;
+   line-height: 62.4px;
+   color: #155a8c;
 }
 
-p{
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    color: #539BE0;
-    line-height: 180%;
+.row-desc-2 {
+   margin-bottom: 30px;
+   margin-right: -18px;
 }
 
-.row-desc-3{
-    margin-bottom: 30px;
+p {
+   font-family: "Roboto", sans-serif;
+   font-size: 18px;
+   font-weight: 400;
+   font-style: normal;
+   line-height: 32.4px;
+   color: #1e6599;
+   vertical-align: top;
+   text-align: left;
 }
 
-.row-desc-3 button{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 180%;
+.row-desc-3 {
+   margin-bottom: 30px;
 }
 
-
-
-.btn-1{
-    width: 200px;
-    height: 50px;
-    background-color: #FF9B9B;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 25px;
+.row-desc-3 button {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 180%;
 }
 
-.btn-2{
-    width: 200px;
-    height: 50px;
-    background-color: #c4c4c4;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 25px;
-    margin-left: 20px;
+.btn-1 {
+   width: 200px;
+   height: 50px;
+   background-color: #ff7070;
+   color: #ffffff;
+   border: none;
+   border-radius: 25px;
 }
 
-.column-pic{
-    width: 50%;
-    margin: 120px ;
+.btn-2 {
+   width: 200px;
+   height: 50px;
+   background-color: #c4c4c4;
+   color: #ffffff;
+   border: none;
+   border-radius: 25px;
+   margin-left: 20px;
 }
 
-.column-pic img{ 
-    width: 100%;
+.column-pic {
+   width: 50%;
+   position: relative;
+   margin: 150px;
 }
 
+.column-pic img {
+   width: 100%;
+}

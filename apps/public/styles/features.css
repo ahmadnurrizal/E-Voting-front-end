@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Roboto&display=swap");
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+.ftr-wrap {
+   margin-top: -1px;
+   background-color: #eaf5ff;
+   width: 100%;
+   padding-bottom: 100px;
+}
+
+h1,
+h2 {
+   font-family: "Kanit", sans-serif;
+}
+
+.ftr-title h1 {
+   color: #539be0;
+   font-weight: 600;
+   font-size: 48px;
+   line-height: 62px;
+   text-align: center;
+   margin-bottom: 84px;
+}
+
+.ftr-content {
+   display: flex;
+   justify-content: space-around;
+}
+
+.card {
+   width: 340px;
+   height: 500px;
+   box-shadow: 0 40px 20px rgba(54, 37, 37, 0.2);
+   border-radius: 26px;
+   transition: 0.3s;
+   background-color: #ffffff;
+}
+
+.card img {
+   margin: 72px 78.11px;
+}
+
+.card h2 {
+   text-align: center;
+   color: #ffffff;
+   font-size: 30px;
+   padding-top: 30px;
+   margin-bottom: 20px;
+}
+
+.card p {
+   font-family: "Roboto" sans-serif;
+   color: #ffffff;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 32px;
+   text-align: center;
+   vertical-align: top;
+   margin: 0 50px;
+   padding-bottom: 37px;
+}
+
+.content1 {
+   background-color: #ff8080;
+   border-bottom-left-radius: 26px;
+   border-bottom-right-radius: 26px;
+}
+
+.content2 {
+   background-color: #ffa06b;
+   border-bottom-left-radius: 26px;
+   border-bottom-right-radius: 26px;
+}
+
+.content3 {
+   background-color: #a36bff;
+   border-bottom-left-radius: 26px;
+   border-bottom-right-radius: 26px;
+}

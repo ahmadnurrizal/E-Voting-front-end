@@ -1,122 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
-.container{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background-color: #aed8ff;
-}
-
-li, a, button{
-    font-family: "Kanit", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    text-decoration: none;
-    color: #616161;
-}
-
-.brand{
-    width: 130px;
-}
-
-nav {
-    margin-left: 150px;
-    margin-right: 150px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.nav-links{
-    width: 70%;
-    margin-right: 50px;
-}
-
-.nav-links ul{
-    display: flex;
-    list-style: none;
-}
-
-.nav-links ul li{
-    margin-right: 32px;
-}
-
-.nav-reg{
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.nav-reg li{
-    width: 70px;
-}
-
-
-
-
-.nav-reg button{
-    background-color: #539be0;
-    border: none;
-    border-radius: 25px;
-    color: #ffff;
-    width: 100px;
-    height: 40px;
-    padding: 4px 19px;
-}
-
-
-
-
-
-
-/* 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 
-
-header, button{
-    font-family: 'Kanit', sans-serif;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: normal;
-    color: #616161;
-
+.container {
+   position: fixed;
+   z-index: 9999;
+   width: 100%;
+   box-sizing: border-box;
+   background-image: linear-gradient(rgb(179, 215, 251), rgb(180, 216, 251));
 }
+
+li,
+a,
+button {
+   font-family: "Kanit", sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   text-decoration: none;
+   color: #616161;
+   cursor: pointer;
+}
+
+.brand {
+   width: 130px;
+   margin-right: 32px;
+}
+
 nav {
-    display: flex;
-    background-color: #AED8FF;
-    justify-content: space-between;
-    align-items: center;
+   margin-left: 150px;
+   margin-right: 150px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
 }
 
-.cta {
-    justify-content: right;
-    width: 20%;
+.nav-links {
+   width: 70%;
 }
 
-li a, .cta a {
-    text-decoration: none;
-    color: #616161;
-    padding: 0 10px;
-}
-.nav-links{
-    display: flex;
-    list-style: none;
-    width: 50%;
-    justify-content: right;
+.nav-links ul {
+   display: flex;
+   list-style: none;
 }
 
+.nav-links ul li {
+   margin-right: 32px;
+}
 
+.nav-reg {
+   display: flex;
+   list-style: none;
+   align-items: center;
+}
 
-button{
-    background-color: #539be0;
-    color: #ffff;
-    border: none;
-    border-radius: 25px;
-    padding: 4px 19px;
+.nav-reg li {
+   width: 70px;
+}
 
-} */
+.nav-reg button {
+   background-color: #539be0;
+   border: none;
+   border-radius: 25px;
+   color: #ffff;
+   width: 100px;
+   height: 40px;
+   padding: 4px 19px;
+}
