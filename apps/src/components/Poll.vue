@@ -28,4 +28,4 @@ export default {
 };
 </script>
 
-<style scoped src="../../public/styles/poll.css"></style>
+<style src="../../public/styles/poll.css"></style>

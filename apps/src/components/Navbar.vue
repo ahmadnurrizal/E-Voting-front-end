@@ -1,31 +1,53 @@
 <template>
-   <div class="container">
-      <nav>
-         <div class="brand">
-            <router-link to="/"><img src="../../public/img/logo-brand.svg" alt="FingerVote"/></router-link>
-         </div>
-         <div class="nav-links">
-            <ul>
-               <li><a href="#">Create Poll</a></li>
-               <li><a href="#">About Us</a></li>
-               <li><a href="#">Discover</a></li>
-               <li><a href="#">Contact</a></li>
-            </ul>
-         </div>
-         <div class="nav-reg">
-            <li><a href="">Sign In</a></li>
-            <li>
-               <router-link to="/SignUp"><button>Sign Up</button></router-link>
-            </li>
-         </div>
-      </nav>
-   </div>
+   <nav>
+      <div class="brand">
+         <router-link to="/"><img src="../../public/img/logo-brand.svg" alt="FingerVote"/></router-link>
+      </div>
+      <section>
+         <ul>
+            <li><a href="#">Create Poll</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Discover</a></li>
+            <li><a href="#">Contact</a></li>
+         </ul>
+      </section>
+      <div class="nav-reg">
+         <li class="signin">
+            <router-link to="/SignIn"><span>Sign In</span></router-link>
+         </li>
+         <li>
+            <router-link to="/SignUp"><button>Sign Up</button></router-link>
+         </li>
+      </div>
+      <div class="nav-toggle">
+         <input type="checkbox" @click="menu" />
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+   </nav>
 </template>
 
 <script>
+// const navbar = document.querySelector("nav");
+// window.onscroll = function() {
+//    if (window.pageYOffset > 0) {
+//       navbar.classList.add("scrolled");
+//    } else {
+//       navbar.classList.remove("scrolled");
+//    }
+// };
+
 export default {
    name: "Navbar",
+
+   methods: {
+      menu() {
+         const nav = document.querySelector("section ul");
+         nav.classList.toggle("slide");
+      },
+   },
 };
 </script>
 
-<style src="../../public/styles/navbar.css"></style>
+<style scoped src="../../public/styles/navbar.css"></style>

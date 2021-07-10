@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
 
 * {
-   padding: 0;
    margin: 0;
+   padding: 0;
    box-sizing: border-box;
 }
 
@@ -30,9 +30,7 @@ h2 {
    display: flex;
    justify-content: space-around;
    margin-top: 84px;
-   padding-bottom: 120px;
-   padding-left: 150px;
-   padding-right: 150px;
+   padding: 0 150px 120px 150px;
 }
 
 .card {
@@ -40,7 +38,6 @@ h2 {
    height: 340px;
    box-shadow: 0 25px 20px rgba(54, 37, 37, 0.2);
    border-radius: 26px;
-   transition: 0.3s;
    background-color: #ffffff;
 }
 
@@ -55,10 +52,7 @@ h2 {
 .container-card-1 h2 {
    background-color: #f4a8f1;
    color: #ffffff;
-   padding-top: 31.08px;
-   padding-bottom: 29.34px;
-   padding-right: 121.35px;
-   padding-left: 128.65px;
+   padding: 31.08px 121.35px 29.34px 128.65px;
    border-bottom-left-radius: 26px;
    border-bottom-right-radius: 26px;
 }
@@ -66,10 +60,7 @@ h2 {
 .container-card-2 h2 {
    background-color: #6dd7d0;
    color: #ffffff;
-   padding-top: 31.08px;
-   padding-bottom: 29.34px;
-   padding-right: 127.76px;
-   padding-left: 133.24px;
+   padding: 31.08px 121.35px 29.34px 128.65px;
    border-bottom-left-radius: 26px;
    border-bottom-right-radius: 26px;
 }
@@ -77,10 +68,111 @@ h2 {
 .container-card-3 h2 {
    background-color: #fce04f;
    color: #ffffff;
-   padding-top: 31.08px;
-   padding-bottom: 29.34px;
-   padding-right: 123.43px;
-   padding-left: 129.57px;
+   padding: 31.08px 121.35px 29.34px 128.65px;
    border-bottom-left-radius: 26px;
    border-bottom-right-radius: 26px;
+}
+
+/* responsive for mobile */
+@media (max-width: 586px) {
+   .title h1 {
+      font-size: 37px;
+   }
+
+   .main {
+      margin-top: 15px;
+      padding: 10px;
+      position: relative;
+      justify-content: space-between;
+      overflow-x: auto;
+   }
+
+   .cta {
+      position: relative;
+      height: 148px;
+      width: 148px;
+      padding: 30px;
+      margin: 10px;
+   }
+
+   .card > .rt {
+      position: relative;
+      height: 148px;
+      width: 148px;
+      padding: 30px;
+      margin: 10px;
+   }
+
+   .card {
+      width: 160px;
+      height: 230px;
+      display: inline-block;
+   }
+
+   .container-card-1 h2 {
+      font-size: 18px;
+      padding: 16px 55px;
+   }
+
+   .container-card-2 h2 {
+      font-size: 18px;
+      padding: 16px 55px;
+   }
+
+   .container-card-3 h2 {
+      font-size: 18px;
+      padding: 16px 55px;
+   }
+
+   .img1,
+   .img2 {
+      width: 40px;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 768px) {
+   .title h1 {
+      font-size: 37px;
+   }
+
+   .main {
+      margin-top: 15px;
+      position: relative;
+      overflow-x: auto;
+      justify-content: space-between;
+      padding: 30px;
+   }
+
+   .cta {
+      position: relative;
+      padding: 10px 12px;
+   }
+
+   .card > .rt {
+      position: relative;
+      padding: 12px 12px 17px 12px;
+   }
+
+   .card {
+      width: 240px;
+      height: 290px;
+   }
+
+   .container-card-1 h2 {
+      padding: 26px 79px;
+   }
+
+   .container-card-2 h2 {
+      padding: 26px 79px;
+   }
+
+   .container-card-3 h2 {
+      padding: 26px 79px;
+   }
+
+   .img1,
+   .img2 {
+      width: 50px;
+   }
 }

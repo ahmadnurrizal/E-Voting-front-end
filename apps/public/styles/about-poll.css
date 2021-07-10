@@ -5,16 +5,13 @@
    box-sizing: border-box;
 }
 
-.abt-container {
-   position: relative;
-}
-
 .wbg-abt {
    background-color: #eaf5ff;
    background-image: url("../img/vector/abt-poll-wave.svg");
-   background-size: cover;
+   background-repeat: no-repeat;
+   background-size: 100%;
    padding-top: 130px;
-   padding-bottom: 500px;
+   padding-bottom: 450px;
 }
 
 h1,
@@ -70,6 +67,7 @@ li {
 
 .col-rowlist h2 {
    color: #155a8c;
+   font-size: 30px;
    margin-bottom: 30px;
 }
 
@@ -93,11 +91,13 @@ li {
 }
 
 .col-rowpic {
+   position: relative;
    width: 50%;
 }
 
 .col-rowpic img {
-   margin-left: 115px;
+   position: absolute;
+   padding-left: 120px;
    padding-bottom: 26px;
 }
 
@@ -116,6 +116,10 @@ li {
    font-weight: normal;
    font-size: 18px;
    line-height: 180%;
+}
+
+.abt-links button:hover {
+   color: #1d1515;
 }
 
 .btn-1 {

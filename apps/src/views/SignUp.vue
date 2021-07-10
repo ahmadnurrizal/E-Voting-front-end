@@ -13,19 +13,25 @@
             <div class="content">
                <div class="col-input">
                   <form class="form" action="">
-                     <label for="name">Name</label><span class="br"></span> <input type="text" name="name" placeholder="Full Name" /><span class="br"></span> <label for="email">Email</label><span class="br"></span>
-                     <input type="email" name="email" placeholder="fingerVote@gmail.com" /><span class="br"></span> <label for="password">Password</label><span class="br"></span>
-                     <input type="password" name="password" placeholder="************" /><span class="br"></span> <label for="dob">Date of Birth</label><span class="br"></span> <input type="date" name="dob" placeholder="" /><span
-                        class="br"
-                     ></span>
-                     <label for="gender">Gender</label><span class="br"></span>
-                     <select class="option" name="gender" id="">
+                     <label for="name">Name</label><br />
+                     <input type="text" name="name" placeholder="Full Name" id="name-field" required /><br />
+                     <label for="email">Email</label><br />
+                     <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
+                     <label for="password">Password</label><br />
+                     <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
+                     <label for="dob">Date of Birth</label><br />
+                     <input type="date" name="dob" placeholder="" id="dob-field" required /> <label for="gender">Gender</label><br />
+                     <select class="option" name="gender" id="opt-field">
+                        <option value="" disabled selected hidden style="">Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                      </select>
-                     <span class="br"></span>
+                     <br />
                      <li>
-                        <label style="word-wrap:break-word"><input class="checkbox" type="checkbox" name="" id="" /><span style="color:#EAF5FF">Make sure your data is </span><span style="color: #1E6599">Correct</span></label>
+                        <label style="word-wrap: break-word"
+                           ><input class="checkbox" type="checkbox" name="" id="" required style="margin-right: 10px;" /><span style="color: #eaf5ff;font-family: 'Roboto';font-weight: 300;">Make sure your data is </span
+                           ><span style="color: #1e6599">Correct</span></label
+                        >
                      </li>
                   </form>
                </div>
@@ -33,10 +39,20 @@
                   <img src="../../public/img/signup-main-pic.svg" alt="" />
                </div>
             </div>
-            <div class="submition">
-               <input type="submit" value="Create Account" />
+            <div class="submission">
+               <input
+                  type="submit"
+                  value="Create Account"
+                  style="
+              font-family: 'Kanit', 'normal';
+              color: #eaf5ff;
+              font-size: 18px;
+              font-weight: 400;
+            "
+               />
                <p>
-                  Already have an account? <span><a href="">login</a></span>
+                  Already have an account?
+                  <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</a></span>
                </p>
             </div>
          </div>
@@ -63,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Roboto:wght@300;400&display=swap");
 
 * {
    padding: 0;
@@ -72,6 +88,8 @@ export default {
 }
 
 .top-vec {
+   margin-top: 50px;
+   width: 100%;
    margin-bottom: 100px;
 }
 
@@ -96,18 +114,80 @@ export default {
    display: flex;
 }
 
+/* icon in placeholder */
+#name-field {
+   background: white url(../../public/img/signup-name-icon.svg) left no-repeat;
+   background-position: 11px;
+}
+#email-field {
+   background: white url(../../public/img/signup-email-icon.svg) left no-repeat;
+   background-position: 11px;
+}
+#pw-field {
+   background: white url(../../public/img/signup-pass-icon.svg) left no-repeat;
+   background-position: 11px;
+}
+#dob-field {
+   position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+   background: url(../../public/img/signup-dob-icon.svg) no-repeat;
+   position: absolute;
+   margin-left: -27px;
+}
+
+#opt-field {
+   padding-left: 39px;
+   background: white url(../../public/img/signup-gender-icon.svg) left no-repeat;
+   background-position: 11px;
+   margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+   /* Double-sized Checkboxes */
+   -ms-transform: scale(1.5); /* IE */
+   -moz-transform: scale(1.5); /* FF */
+   -webkit-transform: scale(1.5); /* Safari and Chrome */
+   -o-transform: scale(1.5); /* Opera */
+   transform: scale(1.5);
+   margin-left: 4px;
+}
+
+/* end of placeholder icon css settings */
+
 .wrapper {
    background-color: #eaf5ff;
 }
 
-.wrapper img {
-   padding-top: 50px;
-   width: 100%;
+.submission {
+   text-align: center;
+   padding-top: 27px;
 }
 
-.br {
-   display: block;
-   margin-bottom: 10px;
+.submission p {
+   font-family: "Roboto";
+   font-weight: 300;
+   padding-top: 30px;
+   padding-bottom: 52px;
+   text-align: center;
+   color: #eaf5ff;
+}
+
+.submission input {
+   cursor: pointer;
+   background-color: #56b68f;
+   width: 403px;
+   height: 40px;
+   border: none;
+   border-radius: 20px;
+}
+.submission input:hover {
+   background-color: #44a07b;
+   width: 403px;
+   height: 40px;
+   border: none;
+   border-radius: 20px;
 }
 
 .col-input label {
@@ -117,8 +197,17 @@ export default {
    color: #eaf5ff;
 }
 
+.form label {
+   margin-bottom: 10px;
+}
+
+.form input {
+   margin-bottom: 15px;
+   padding-left: 39px;
+}
+
 .option,
-input:not(.checkbox) {
+.form input:not(.checkbox) {
    border: #858484;
    border-style: solid;
    border-width: 1.5px;
@@ -135,6 +224,17 @@ li {
    font-family: "Roboto", sans-serif;
    font-size: 18px;
    font-weight: 400;
+}
+
+.col-input {
+   padding-left: 30px;
+}
+
+.col-pic img {
+   width: 100%;
+   position: relative;
+   padding-top: 50px;
+   margin-left: 80px;
 }
 
 /* footer */

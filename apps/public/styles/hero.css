@@ -12,11 +12,13 @@
 }
 
 .wbg {
+   position: relative;
    background-image: url(../img/vector/hero-wave.svg);
    background-size: cover;
+   background-repeat: no-repeat;
    display: flex;
    align-items: center;
-   padding-bottom: 135px;
+   padding-bottom: 170px;
 }
 
 .column-desc {
@@ -63,6 +65,7 @@ p {
 
 .row-desc-3 {
    margin-bottom: 30px;
+   display: flex;
 }
 
 .row-desc-3 button {
@@ -99,4 +102,124 @@ p {
 
 .column-pic img {
    width: 100%;
+}
+
+/* responsive setup for mobile */
+@media (max-width: 586px) {
+   .wbg {
+      position: relative;
+      flex-direction: column;
+   }
+
+   .column-desc {
+      width: 100%;
+      order: 2;
+      margin: auto;
+      padding-left: 10px;
+   }
+
+   .column-pic {
+      margin-top: 100px;
+      margin-bottom: 20px;
+   }
+
+   h1 {
+      text-align: center;
+      font-size: 29px;
+      line-height: 100%;
+   }
+
+   p {
+      text-align: center;
+      font-size: 15px;
+   }
+
+   a {
+      font-size: 16px;
+   }
+
+   .row-desc-1 {
+      margin-top: 0;
+   }
+
+   .row-desc-2 {
+      margin: 20px 8px;
+   }
+
+   .row-desc-3 {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 120px;
+   }
+
+   .btn-1 {
+      width: 70vw;
+      height: 40px;
+   }
+
+   .btn-2 {
+      width: 70vw;
+      height: 40px;
+      margin: 0;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 768px) {
+   .wbg {
+      top: 65px;
+      margin-bottom: 20px;
+   }
+
+   .hero-container {
+      padding-bottom: 60px;
+   }
+
+   h1 {
+      font-size: 37px;
+      line-height: 90%;
+   }
+
+   p {
+      font-size: 15px;
+      letter-spacing: 0px;
+   }
+
+   .column-desc {
+      margin-left: 30px;
+   }
+
+   .row-desc-1 {
+      margin-top: 50px;
+   }
+
+   .column-pic {
+      top: -20px;
+      margin: 0 20px;
+   }
+
+   .row-desc-3 {
+      position: absolute;
+      padding: 0 94px;
+   }
+
+   .row-desc-3 button {
+      font-size: 15px;
+   }
+
+   .btn-1 {
+      width: 30vw;
+      height: 35px;
+   }
+
+   .btn-2 {
+      width: 30vw;
+      height: 35px;
+      margin-left: 20px;
+   }
+}
+
+/* responsive for desktop */
+@media (min-width: 769px) {
 }

@@ -28,4 +28,4 @@ export default {
 };
 </script>
 
-<style src="../../public/styles/hero.css"></style>
+<style scoped src="../../public/styles/hero.css"></style>
