@@ -46,6 +46,14 @@ export default {
          const nav = document.querySelector("section ul");
          nav.classList.toggle("slide");
       },
+
+      // ignoreClick(event) {
+      //    var hide = document.getElementById("toggleMenu");
+      //    var clickInside = hide.contains(event.target);
+      //    if (!clickInside) {
+      //       hide.classList.toggle("slide");
+      //    }
+      // },
    },
 };
 </script>

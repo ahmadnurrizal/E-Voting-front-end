@@ -143,10 +143,6 @@ section ul li {
       background-image: linear-gradient(rgb(179, 215, 251), rgb(185, 219, 252));
    }
 
-   nav > .brand {
-      order: 2;
-   }
-
    .nav-toggle {
       position: absolute;
       top: 20px;
@@ -173,8 +169,9 @@ section ul li {
    }
 
    .brand {
-      margin-right: 55px;
-      align-items: center;
+      order: 2;
+
+      margin: 0 80px;
    }
    .brand img {
       top: 5px;
@@ -182,6 +179,8 @@ section ul li {
    }
 
    .nav-reg {
+      width: 90px;
+      padding-right: 8px;
       order: 3;
       position: absolute;
       right: 0px;
@@ -190,7 +189,7 @@ section ul li {
    }
 
    .nav-reg .signin {
-      width: 35px;
+      margin-right: 2px;
    }
 
    .nav-reg span {
@@ -206,7 +205,7 @@ section ul li {
 }
 
 /* responsive for tablet */
-@media (min-width: 587px) and (max-width: 768px) {
+@media (min-width: 587px) and (max-width: 1156px) {
    li a,
    span,
    button {
@@ -238,5 +237,5 @@ section ul li {
 }
 
 /* responsive for desktop */
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 }

@@ -7,7 +7,7 @@
 }
 
 .hero-container {
-   width: 100%;
+   width: cover;
    background-color: #eaf5ff;
 }
 
@@ -18,13 +18,14 @@
    background-repeat: no-repeat;
    display: flex;
    align-items: center;
-   padding-bottom: 170px;
+   padding: 150px 150px 280px;
 }
 
 .column-desc {
    width: 50%;
-   margin-left: 150px;
+   /* margin-left: 150px; */
    padding-right: 18px;
+   margin-right: 20px;
 }
 
 h1,
@@ -34,7 +35,7 @@ button {
 }
 
 .row-desc-1 {
-   margin-top: 146px;
+   /* margin-top: 146px; */
    margin-bottom: 30px;
 }
 
@@ -97,7 +98,7 @@ p {
 .column-pic {
    width: 50%;
    position: relative;
-   margin: 150px;
+   /* margin: 150px; */
 }
 
 .column-pic img {
@@ -109,6 +110,7 @@ p {
    .wbg {
       position: relative;
       flex-direction: column;
+      padding: 30px 40px 100px;
    }
 
    .column-desc {
@@ -119,6 +121,7 @@ p {
    }
 
    .column-pic {
+      width: 80%;
       margin-top: 100px;
       margin-bottom: 20px;
    }
@@ -166,10 +169,11 @@ p {
 }
 
 /* responsive for tablet */
-@media (min-width: 587px) and (max-width: 768px) {
+@media (min-width: 587px) and (max-width: 1156px) {
    .wbg {
       top: 65px;
       margin-bottom: 20px;
+      padding: 20px 20px 240px;
    }
 
    .hero-container {
@@ -195,13 +199,13 @@ p {
    }
 
    .column-pic {
-      top: -20px;
-      margin: 0 20px;
+      width: 40%;
+      margin: 10px 20px;
    }
 
    .row-desc-3 {
       position: absolute;
-      padding: 0 94px;
+      padding: 50px 94px;
    }
 
    .row-desc-3 button {
@@ -220,6 +224,6 @@ p {
    }
 }
 
-/* responsive for desktop */
-@media (min-width: 769px) {
+/* responsive for desktop < 1156px of width */
+@media (min-width: 769px) and (max-width: 1156px) {
 }

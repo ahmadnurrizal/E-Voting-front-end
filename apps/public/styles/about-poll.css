@@ -6,12 +6,13 @@
 }
 
 .wbg-abt {
+   position: relative;
    background-color: #eaf5ff;
    background-image: url("../img/vector/abt-poll-wave.svg");
    background-repeat: no-repeat;
-   background-size: 100%;
-   padding-top: 130px;
-   padding-bottom: 450px;
+   background-size: cover;
+   background-repeat: no-repeat;
+   padding: 130px 120px 250px;
 }
 
 h1,
@@ -28,13 +29,14 @@ li {
 
 .abt-title h1 {
    color: #1e6599;
+   font-size: 48px;
    text-align: center;
    margin-bottom: 84px;
 }
 
 .abt-main {
-   width: 664px;
-   height: 430px;
+   width: 864px;
+   height: 630px;
    background-color: #eaf5ff;
    border: none;
    border-radius: 30px;
@@ -62,7 +64,7 @@ li {
 }
 
 .col-rowlist {
-   width: 50%;
+   width: 30%;
 }
 
 .col-rowlist h2 {
@@ -92,13 +94,13 @@ li {
 
 .col-rowpic {
    position: relative;
-   width: 50%;
+   width: 70%;
 }
 
 .col-rowpic img {
    position: absolute;
-   padding-left: 120px;
-   padding-bottom: 26px;
+   top: 120px;
+   right: 30px;
 }
 
 .abt-links {
@@ -139,4 +141,100 @@ li {
    border: none;
    border-radius: 25px;
    margin-left: 20px;
+}
+
+/* responsive for mobile */
+@media (max-width: 586px) {
+   .wbg-abt {
+      padding: 140px 0;
+   }
+
+   .abt-title h1 {
+      font-size: 37px;
+      margin-bottom: 30px;
+   }
+
+   .abt-main {
+      position: relative;
+      width: 88vw;
+      height: 470px;
+      padding: 15px;
+      margin: auto;
+   }
+
+   .col-rowlist h2,
+   .row-title h2 {
+      font-size: 20px;
+   }
+
+   .row-p p,
+   .col-rowlist li {
+      font-size: 15px;
+   }
+
+   .col-rowlist {
+      width: 100%;
+   }
+
+   .col-rowpic img {
+      top: 60px;
+      right: 15px;
+      width: 90%;
+   }
+
+   .abt-links button {
+      font-size: 15px;
+      padding: auto;
+   }
+
+   .btn-1 {
+      width: 35vw;
+      height: 40px;
+   }
+
+   .btn-2 {
+      width: 35vw;
+      height: 40px;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 1156px) {
+   .wbg-abt {
+      padding: 140px 0;
+   }
+
+   .abt-title h1 {
+      font-size: 37px;
+      margin-bottom: 20px;
+   }
+
+   .abt-main {
+      position: relative;
+      width: 88vw;
+      height: 500px;
+      padding: 30px;
+   }
+
+   .col-rowpic {
+      position: relative;
+   }
+
+   .col-rowpic img {
+      position: absolute;
+      top: 30px;
+   }
+
+   .col-rowlist h2,
+   .row-title h2 {
+      font-size: 27px;
+   }
+
+   .row-p p,
+   .col-rowlist li {
+      font-size: 17px;
+   }
+}
+
+@media (min-width: 769px) {
 }

@@ -3,9 +3,9 @@
       <Navbar />
       <Hero />
       <Poll />
-      <!-- <About-poll />
+      <About-poll />
       <Features />
-      <Footer /> -->
+      <Footer />
    </div>
 </template>
 
