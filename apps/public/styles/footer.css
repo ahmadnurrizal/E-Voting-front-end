@@ -26,6 +26,7 @@ li a {
    background-color: #eaf5ff;
    background-image: url("../img/vector/footer-wave.svg");
    background-size: cover;
+   background-repeat: no-repeat;
 }
 
 .footer {

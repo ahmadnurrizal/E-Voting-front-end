@@ -2,7 +2,7 @@
    <div class="wrapper">
       <!-- navbar -->
       <Navbar />
-      <img class="top-vec" src="../../public/img/vector/signup-wave.svg" alt="" />
+      <div class="vector"><div class="bg"></div></div>
 
       <!-- main sign up -->
       <div class="main">
@@ -40,28 +40,15 @@
                </div>
             </div>
             <div class="submission">
-               <input
-                  type="submit"
-                  value="Create Account"
-                  style="
-              font-family: 'Kanit', 'normal';
-              color: #eaf5ff;
-              font-size: 18px;
-              font-weight: 400;
-            "
-               />
+               <input type="submit" value="Create Account" />
                <p>
                   Already have an account?
                   <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</a></span>
                </p>
             </div>
          </div>
-         <div class="footer">
-            <Footer />
-         </div>
       </div>
-
-      <!-- footer -->
+      <Footer />
    </div>
 </template>
 
@@ -87,10 +74,16 @@ export default {
    box-sizing: border-box;
 }
 
-.top-vec {
-   margin-top: 50px;
-   width: 100%;
-   margin-bottom: 100px;
+.vector {
+   padding-top: 60px;
+}
+
+.bg {
+   padding-top: 200px;
+   padding-bottom: 170px;
+   background-image: url("../../public/img/vector/signup-wave.svg");
+   background-size: cover;
+   background-repeat: no-repeat;
 }
 
 .title-card h1 {
@@ -98,6 +91,11 @@ export default {
    padding-bottom: 35px;
    text-align: center;
    color: #eaf5ff;
+}
+
+.main {
+   margin-top: 100px;
+   margin-bottom: 100px;
 }
 
 .card {
@@ -158,6 +156,10 @@ input[type="checkbox"] {
 
 .wrapper {
    background-color: #eaf5ff;
+}
+
+.main {
+   margin-bottom: 100px;
 }
 
 .submission {
@@ -237,8 +239,119 @@ li {
    margin-left: 80px;
 }
 
-/* footer */
-.footer {
-   margin-top: 100px;
+.submission input[type="submit"] {
+   font-family: "Kanit", "normal";
+   color: #eaf5ff;
+   font-size: 18px;
+   font-weight: 400;
+}
+
+/* responsive for mobile */
+@media (max-width: 586px) {
+   .vector {
+      padding-top: 60px;
+   }
+
+   .bg {
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+
+   /* main content */
+   .main {
+      padding: 50px 0px;
+      margin: 20px auto;
+   }
+
+   .title-card h1 {
+      font-size: 27px;
+   }
+
+   .card {
+      width: 80vw;
+      height: 700px;
+      padding: 0px 1px 8px;
+   }
+
+   .form label {
+      font-size: 18px;
+   }
+
+   .option,
+   .form input:not(.checkbox) {
+      width: 65vw;
+      height: 35px;
+   }
+
+   /* checkbox scale */
+   input[type="checkbox"] {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(1); /* IE */
+      -moz-transform: scale(1); /* FF */
+      -webkit-transform: scale(1); /* Safari and Chrome */
+      -o-transform: scale(1); /* Opera */
+      transform: scale(1);
+      margin-left: 4px;
+   }
+
+   .col-pic img {
+      display: none;
+   }
+
+   .submission input,
+   .submission input:hover {
+      width: 50vw;
+      height: 35px;
+   }
+
+   .submission input[type="submit"] {
+      font-size: 13px;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 1156px) {
+   .vector {
+      padding-top: 60px;
+   }
+
+   .bg {
+      padding-top: 125px;
+      padding-bottom: 80px;
+   }
+
+   .main {
+      padding: 40px 20px;
+      margin: 20px auto;
+   }
+
+   .card {
+      width: 670px;
+      height: 690px;
+      padding: 0 20px 10px;
+   }
+
+   .option,
+   .form input:not(.checkbox) {
+      width: 300px;
+      height: 30px;
+   }
+
+   .col-input {
+      padding-left: 0;
+   }
+
+   .col-pic {
+      padding: 30px 0 10px;
+   }
+
+   .col-pic img {
+      padding: 0;
+      margin-left: 10px;
+   }
+
+   .form label {
+      font-size: 18px;
+   }
 }
 </style>

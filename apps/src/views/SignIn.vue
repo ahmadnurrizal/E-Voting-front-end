@@ -2,7 +2,7 @@
    <div class="wrap">
       <!-- navbar -->
       <Navbar />
-      <img class="top-vec" src="../../public/img/vector/signup-wave.svg" alt="" />
+      <div class="top-vec"><div class="vec"></div></div>
 
       <!-- main sign in -->
       <div class="main">
@@ -26,26 +26,15 @@
                </div>
             </div>
             <div class="submission">
-               <input
-                  type="submit"
-                  value="Log In"
-                  style="
-              font-family: 'Kanit', 'normal';
-              color: #eaf5ff;
-              font-size: 18px;
-              font-weight: 400;
-            "
-               />
+               <input type="submit" value="Log In" />
                <p>
                   Don't have an account yet?
                   <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">Sign Up</a></span>
                </p>
             </div>
          </div>
-         <div class="footer">
-            <Footer />
-         </div>
       </div>
+      <Footer />
    </div>
 </template>
 
@@ -76,9 +65,15 @@ export default {
 }
 
 .top-vec {
-   margin-top: 50px;
-   width: 100%;
-   margin-bottom: 100px;
+   padding-top: 60px;
+}
+
+.vec {
+   padding-top: 200px;
+   padding-bottom: 170px;
+   background-image: url("../../public/img/vector/signup-wave.svg");
+   background-size: cover;
+   background-repeat: no-repeat;
 }
 .tittle {
    padding-top: 30px;
@@ -89,6 +84,7 @@ p {
    color: #eaf5ff;
    text-align: center;
 }
+/* main content */
 .card {
    width: 755px;
    height: 548px;
@@ -98,7 +94,12 @@ p {
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
    margin: auto;
 }
-/* main content */
+
+.main {
+   margin-top: 100px;
+   margin-bottom: 100px;
+}
+
 .content {
    display: flex;
    justify-content: center;
@@ -176,6 +177,13 @@ p {
    color: #eaf5ff;
 }
 
+.submission input[type="submit"] {
+   font-family: "Kanit", "normal";
+   color: #eaf5ff;
+   font-size: 18px;
+   font-weight: 400;
+}
+
 .submission input {
    cursor: pointer;
    background-color: #56b68f;
@@ -193,8 +201,110 @@ p {
 }
 /* endof section */
 
-/* footer */
-.footer {
-   margin-top: 100px;
+/* responsive for mobile */
+@media (max-width: 586px) {
+   .top-vec {
+      padding-top: 60px;
+   }
+
+   .vec {
+      padding-top: 70px;
+      padding-bottom: 80px;
+   }
+
+   /* main content */
+   .main {
+      padding: 50px 10px;
+      margin: 20px auto;
+   }
+
+   .card {
+      width: 340px;
+      height: 400px;
+      padding: 0px 10px 8px;
+   }
+
+   .tittle h1 {
+      font-size: 27px;
+   }
+
+   .tittle p {
+      font-size: 13px;
+   }
+
+   .form p a {
+      font-size: 15px;
+   }
+
+   .form input {
+      width: 240px;
+      height: 25px;
+      margin-bottom: 7px;
+   }
+
+   .form label {
+      font-size: 18px;
+   }
+
+   .col-pic img {
+      display: none;
+   }
+
+   .submission input,
+   .submission input:hover {
+      width: 200px;
+      height: 26px;
+   }
+
+   .submission p {
+      font-size: 15px;
+   }
+
+   .submission input[type="submit"] {
+      font-size: 13px;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 1156px) {
+   .top-vec {
+      padding-top: 60px;
+   }
+
+   .vec {
+      padding-top: 125px;
+      padding-bottom: 80px;
+   }
+
+   .main {
+      padding: 50px 10px;
+      margin: 20px auto;
+   }
+
+   .card {
+      width: 570px;
+      height: 490px;
+      padding: 0 20px 10px;
+   }
+
+   .form input {
+      width: 300px;
+      height: 30px;
+   }
+
+   .col-pic {
+      padding: 0 20px;
+   }
+
+   .col-pic img {
+      width: 100%;
+      margin: 0;
+   }
+
+   .submission input,
+   .submission input:hover {
+      width: 250px;
+      height: 30px;
+   }
 }
 </style>
