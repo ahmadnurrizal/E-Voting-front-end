@@ -173,7 +173,7 @@ p {
    .wbg {
       top: 65px;
       margin-bottom: 20px;
-      padding: 20px 20px 240px;
+      padding: 20px 0px 240px;
    }
 
    .hero-container {
