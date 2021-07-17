@@ -5,7 +5,7 @@
       </div>
       <section>
          <ul>
-            <li><a href="#">Create Poll</a></li>
+            <li><router-link to="/CreatePoll">Create Poll</router-link></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Discover</a></li>
             <li><a href="#">Contact</a></li>
