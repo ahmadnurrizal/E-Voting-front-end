@@ -11,40 +11,38 @@
                <h1>Create an Account</h1>
             </div>
             <div class="content">
-               <div class="col-input">
-                  <form class="form" action="">
-                     <label for="name">Name</label><br />
-                     <input type="text" name="name" placeholder="Full Name" id="name-field" required /><br />
-                     <label for="email">Email</label><br />
-                     <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
-                     <label for="password">Password</label><br />
-                     <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
-                     <label for="dob">Date of Birth</label><br />
-                     <input type="date" name="dob" placeholder="" id="dob-field" required /> <label for="gender">Gender</label><br />
-                     <select class="option" name="gender" id="opt-field">
-                        <option value="" disabled selected hidden style="">Select</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                     </select>
-                     <br />
-                     <li>
-                        <label style="word-wrap: break-word"
-                           ><input class="checkbox" type="checkbox" name="" id="" required style="margin-right: 10px;" /><span style="color: #eaf5ff;font-family: 'Roboto';font-weight: 300;">Make sure your data is </span
-                           ><span style="color: #1e6599">Correct</span></label
-                        >
-                     </li>
-                  </form>
-               </div>
+               <form @submit.prevent="submitData">
+                  <label for="name">Name</label><br />
+                  <input type="text" name="name" placeholder="Full Name" id="name-field" required /><br />
+                  <label for="email">Email</label><br />
+                  <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
+                  <label for="password">Password</label><br />
+                  <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
+                  <label for="dob">Date of Birth</label><br />
+                  <input type="date" name="dob" placeholder="" id="dob-field" required /> <label for="gender">Gender</label><br />
+                  <select class="option" name="gender" id="opt-field">
+                     <option value="" disabled selected hidden style="">Select</option>
+                     <option value="male">Male</option>
+                     <option value="female">Female</option>
+                  </select>
+                  <br />
+                  <li>
+                     <label style="word-wrap: break-word"
+                        ><input class="checkbox" type="checkbox" name="" id="" required style="margin-right: 10px;" /><span style="color: #eaf5ff;font-family: 'Roboto';font-weight: 300;">Make sure your data is </span
+                        ><span style="color: #1e6599">Correct</span></label
+                     >
+                  </li>
+                  <div class="submission">
+                     <input class="submit" type="submit" value="Create Account" />
+                     <p>
+                        Already have an account?
+                        <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</a></span>
+                     </p>
+                  </div>
+               </form>
                <div class="col-pic">
                   <img src="../../public/img/signup-main-pic.svg" alt="" />
                </div>
-            </div>
-            <div class="submission">
-               <input type="submit" value="Create Account" />
-               <p>
-                  Already have an account?
-                  <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</a></span>
-               </p>
             </div>
          </div>
       </div>
@@ -61,6 +59,11 @@ export default {
    components: {
       Navbar,
       Footer,
+   },
+   methods: {
+      submitData() {
+         console.log("submitted");
+      },
    },
 };
 </script>
@@ -163,6 +166,8 @@ input[type="checkbox"] {
 }
 
 .submission {
+   position: absolute;
+   margin: 0 150px;
    text-align: center;
    padding-top: 27px;
 }
@@ -192,24 +197,21 @@ input[type="checkbox"] {
    border-radius: 20px;
 }
 
-.col-input label {
+form label {
    font-family: "Kanit", sans-serif;
    font-weight: 500;
    font-size: 24px;
    color: #eaf5ff;
-}
-
-.form label {
    margin-bottom: 10px;
 }
 
-.form input {
+form input {
    margin-bottom: 15px;
    padding-left: 39px;
 }
 
 .option,
-.form input:not(.checkbox) {
+input:not(.checkbox, .submit) {
    border: #858484;
    border-style: solid;
    border-width: 1.5px;
@@ -222,13 +224,13 @@ li {
    list-style: none;
 }
 
-.col-input li label {
+form li label {
    font-family: "Roboto", sans-serif;
    font-size: 18px;
    font-weight: 400;
 }
 
-.col-input {
+form {
    padding-left: 30px;
 }
 
@@ -244,6 +246,7 @@ li {
    color: #eaf5ff;
    font-size: 18px;
    font-weight: 400;
+   padding: 0 50px;
 }
 
 /* responsive for mobile */
@@ -273,12 +276,12 @@ li {
       padding: 0px 1px 8px;
    }
 
-   .form label {
+   form label {
       font-size: 18px;
    }
 
    .option,
-   .form input:not(.checkbox) {
+   form input:not(.checkbox) {
       width: 65vw;
       height: 35px;
    }
@@ -296,6 +299,10 @@ li {
 
    .col-pic img {
       display: none;
+   }
+
+   .submission {
+      margin: 0;
    }
 
    .submission input,
@@ -332,12 +339,12 @@ li {
    }
 
    .option,
-   .form input:not(.checkbox) {
+   form input:not(.checkbox) {
       width: 300px;
       height: 30px;
    }
 
-   .col-input {
+   form {
       padding-left: 0;
    }
 
@@ -350,7 +357,7 @@ li {
       margin-left: 10px;
    }
 
-   .form label {
+   form label {
       font-size: 18px;
    }
 }
