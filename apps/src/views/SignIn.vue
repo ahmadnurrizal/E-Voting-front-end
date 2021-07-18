@@ -12,25 +12,23 @@
                <p>Please log in to your account</p>
             </div>
             <div class="content">
-               <div class="col-input">
-                  <form class="form" action="">
-                     <label for="email">Email</label><br />
-                     <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
-                     <label for="password">Password</label><br />
-                     <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
-                     <p><a href="">Forgot your password?</a></p>
-                  </form>
-               </div>
+               <form action="">
+                  <label for="email">Email</label><br />
+                  <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
+                  <label for="password">Password</label><br />
+                  <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
+                  <p><a href="">Forgot your password?</a></p>
+                  <div class="submission">
+                     <input type="submit" value="Log In" />
+                     <p>
+                        Don't have an account yet?
+                        <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">Sign Up</a></span>
+                     </p>
+                  </div>
+               </form>
                <div class="col-pic">
                   <img src="../../public/img/signin-main-pic.svg" alt="" />
                </div>
-            </div>
-            <div class="submission">
-               <input type="submit" value="Log In" />
-               <p>
-                  Don't have an account yet?
-                  <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">Sign Up</a></span>
-               </p>
             </div>
          </div>
       </div>
@@ -101,43 +99,38 @@ p {
 }
 
 .content {
+   padding: 0 10px;
    display: flex;
-   justify-content: center;
+   justify-content: space-between;
 }
 
-.col-input {
-   padding-top: 35px;
+form {
+   margin: 35px auto auto 30px;
 }
-.col-input label {
+form label {
    font-family: "Kanit", sans-serif;
    font-weight: 500;
    font-size: 24px;
    color: #eaf5ff;
+   margin-bottom: 10px;
 }
 
-.form input {
+form input {
    border: #858484;
    border-style: solid;
    border-width: 1.5px;
    width: 340px;
    height: 40px;
    border-radius: 5px;
-}
-
-.form label {
-   margin-bottom: 10px;
-}
-
-.form input {
    margin-bottom: 15px;
    padding-left: 39px;
 }
 
-.form p {
+form p {
    text-align: left;
 }
 
-.form p a {
+form p a {
    font-family: "Roboto", sans-serif;
    font-size: 18px;
    line-height: 180%;
@@ -145,10 +138,7 @@ p {
 }
 
 .col-pic img {
-   height: 240px;
-   width: 327px;
-   position: relative;
-   margin-left: 48px;
+   size: 100%;
 }
 
 /* icon in placeholder */
@@ -164,8 +154,10 @@ p {
 
 /* submisson section */
 .submission {
+   position: absolute;
    text-align: center;
    padding-top: 27px;
+   margin: 0 130px;
 }
 
 .submission p {
@@ -187,6 +179,7 @@ p {
 .submission input {
    cursor: pointer;
    background-color: #56b68f;
+   padding: 0 13px;
    width: 403px;
    height: 40px;
    border: none;
@@ -232,22 +225,26 @@ p {
       font-size: 13px;
    }
 
-   .form p a {
+   form p a {
       font-size: 15px;
    }
 
-   .form input {
+   form input {
       width: 240px;
       height: 25px;
       margin-bottom: 7px;
    }
 
-   .form label {
+   form label {
       font-size: 18px;
    }
 
    .col-pic img {
       display: none;
+   }
+
+   .submission {
+      margin: 0 3px;
    }
 
    .submission input,
@@ -287,18 +284,26 @@ p {
       padding: 0 20px 10px;
    }
 
-   .form input {
+   form {
+      padding-right: 8px;
+   }
+
+   form input {
       width: 300px;
       height: 30px;
    }
 
    .col-pic {
-      padding: 0 20px;
+      margin: 0;
+      padding-top: 50px;
    }
 
    .col-pic img {
       width: 100%;
-      margin: 0;
+   }
+
+   .submission {
+      margin: 0 100px;
    }
 
    .submission input,
