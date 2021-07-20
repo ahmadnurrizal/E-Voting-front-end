@@ -26,8 +26,12 @@
          </div>
       </div>
       <div class="abt-links">
-         <li><a href=""></a> <button class="btn-1">Create Poll</button></li>
-         <li><a href=""></a> <button class="btn-2">View Example</button></li>
+         <li>
+            <router-link to="/CreatePoll"> <button class="btn-1">Create Poll</button> </router-link>
+         </li>
+         <li>
+            <router-link to=""> <button class="btn-2">View Example</button></router-link>
+         </li>
       </div>
    </div>
 </template>
