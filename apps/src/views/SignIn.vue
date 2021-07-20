@@ -12,17 +12,17 @@
                <p>Please log in to your account</p>
             </div>
             <div class="content">
-               <form action="">
+               <form @submit.prevent="submitData">
                   <label for="email">Email</label><br />
-                  <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
+                  <input type="email" name="email" v-model="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
                   <label for="password">Password</label><br />
-                  <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
+                  <input type="password" name="password" v-model="password" placeholder="************" id="pw-field" required /><img @click="showPw" src="../../public/img/signup-seen-icon.svg" class="unseen" /><br />
                   <p><a href="">Forgot your password?</a></p>
                   <div class="submission">
                      <input type="submit" value="Log In" />
                      <p>
                         Don't have an account yet?
-                        <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">Sign Up</a></span>
+                        <span><router-link to="/SignUp" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">Sign Up</router-link></span>
                      </p>
                   </div>
                </form>
@@ -40,11 +40,38 @@
 import Navbar from "@/components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 
+import axios from "axios";
+
 export default {
    name: "SignIn",
    components: {
       Navbar,
       Footer,
+   },
+   data() {
+      return {
+         email: "",
+         password: "",
+      };
+   },
+   methods: {
+      async submitData() {
+         const response = await axios.post("api/v1/login", {
+            email: this.email,
+            password: this.password,
+         });
+         localStorage.setItem("token", response.data.token);
+
+         this.$router.push("/");
+      },
+      showPw() {
+         var pswrd = document.getElementById("pw-field");
+         if (pswrd.type === "password") {
+            pswrd.type = "text";
+         } else {
+            pswrd.type = "password";
+         }
+      },
    },
 };
 </script>
@@ -105,6 +132,7 @@ p {
 }
 
 form {
+   position: relative;
    margin: 35px auto auto 30px;
 }
 form label {
@@ -151,6 +179,13 @@ form p a {
    background-position: 11px;
 }
 /* end of placeholder icon css settings */
+
+/* unseen icon */
+.unseen {
+   position: absolute;
+   right: 10px;
+   top: 137px;
+}
 
 /* submisson section */
 .submission {
@@ -212,13 +247,21 @@ form p a {
    }
 
    .card {
-      width: 340px;
+      width: 300px;
       height: 400px;
       padding: 0px 10px 8px;
    }
 
+   .content {
+      padding: 0;
+   }
+
    .tittle h1 {
       font-size: 27px;
+   }
+
+   form {
+      margin: 20px;
    }
 
    .tittle p {
@@ -237,6 +280,13 @@ form p a {
 
    form label {
       font-size: 18px;
+   }
+
+   /* unseen icon */
+   .unseen {
+      position: absolute;
+      right: 9px;
+      top: 90px;
    }
 
    .col-pic img {
@@ -288,9 +338,20 @@ form p a {
       padding-right: 8px;
    }
 
+   form p {
+      font-size: 15px;
+   }
+
    form input {
       width: 300px;
       height: 30px;
+   }
+
+   /* unseen icon */
+   .unseen {
+      position: absolute;
+      right: 14px;
+      top: 122px;
    }
 
    .col-pic {
@@ -310,6 +371,11 @@ form p a {
    .submission input:hover {
       width: 250px;
       height: 30px;
+   }
+
+   .submission p,
+   form p a {
+      font-size: 15px;
    }
 }
 </style>

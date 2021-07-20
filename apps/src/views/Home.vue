@@ -1,6 +1,7 @@
 <template>
    <div class="body">
-      <Navbar />
+      <Navbar v-if="isLogin" />
+      <!-- <Navbar2 v-else="isLogin" /> -->
       <Hero />
       <Poll />
       <About-poll />
@@ -18,6 +19,8 @@ import AboutPoll from "../components/About-poll.vue";
 import Features from "../components/Features.vue";
 import Footer from "../components/Footer.vue";
 
+import axios from "axios";
+
 export default {
    name: "Home",
    components: {
@@ -27,6 +30,21 @@ export default {
       AboutPoll,
       Features,
       Footer,
+   },
+   data() {
+      return {
+         isLogin: false,
+      };
+   },
+   created() {
+      let token = localStorage.getItem("token");
+      if (!token) {
+         console.log("tidak ada token !");
+         this.isLogin = false;
+      } else {
+         console.log("ada token");
+         this.isLogin = true;
+      }
    },
 };
 </script>

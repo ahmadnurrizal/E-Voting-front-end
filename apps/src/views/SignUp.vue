@@ -13,30 +13,33 @@
             <div class="content">
                <form @submit.prevent="submitData">
                   <label for="name">Name</label><br />
-                  <input type="text" name="name" placeholder="Full Name" id="name-field" required /><br />
+                  <input type="text" name="name" v-model="name" placeholder="Full Name" id="name-field" required /><br />
                   <label for="email">Email</label><br />
-                  <input type="email" name="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
+                  <input type="email" name="email" v-model="email" placeholder="fingerVote@gmail.com" id="email-field" required /><br />
                   <label for="password">Password</label><br />
-                  <input type="password" name="password" placeholder="************" id="pw-field" required /><br />
+                  <input type="password" name="password" v-model="password" placeholder="************" id="pw-field" required /><img @click="showPw" src="../../public/img/signup-seen-icon.svg" class="seen" /><br />
+                  <label for="password_confirmation">Password Confrimation</label><br />
+                  <input type="password" name="password_confirmation" v-model="password_confirmation" placeholder="************" id="pw_c-field" required /><img
+                     @click="showPw_c"
+                     src="../../public/img/signup-seen-icon.svg"
+                     class="seen2"
+                  /><br />
                   <label for="dob">Date of Birth</label><br />
-                  <input type="date" name="dob" placeholder="" id="dob-field" required /> <label for="gender">Gender</label><br />
-                  <select class="option" name="gender" id="opt-field">
+                  <input type="date" name="dob" v-model="date_of_birth" placeholder="" id="dob-field" required /> <label for="gender">Gender</label><br />
+                  <select class="option" name="gender" v-model="gender" id="opt-field">
                      <option value="" disabled selected hidden style="">Select</option>
                      <option value="male">Male</option>
                      <option value="female">Female</option>
                   </select>
                   <br />
                   <li>
-                     <label style="word-wrap: break-word"
-                        ><input class="checkbox" type="checkbox" name="" id="" required style="margin-right: 10px;" /><span style="color: #eaf5ff;font-family: 'Roboto';font-weight: 300;">Make sure your data is </span
-                        ><span style="color: #1e6599">Correct</span></label
-                     >
+                     <label style="word-wrap: break-word"><input class="checkbox" type="checkbox" name="" id="" required style="margin-right: 10px;" /><span>Make sure your data is </span><span style="color: #1e6599">Correct</span></label>
                   </li>
                   <div class="submission">
                      <input class="submit" type="submit" value="Create Account" />
                      <p>
                         Already have an account?
-                        <span><a href="" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</a></span>
+                        <span><router-link to="/SignIn" style="color: #1e6599; font-family: 'Roboto'; font-weight: 400">login</router-link></span>
                      </p>
                   </div>
                </form>
@@ -51,6 +54,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import Navbar from "@/components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 
@@ -60,9 +65,54 @@ export default {
       Navbar,
       Footer,
    },
+   data() {
+      return {
+         name: "",
+         email: "",
+         password: "",
+         password_confirmation: "",
+         date_of_birth: "",
+         gender: "",
+      };
+   },
    methods: {
-      submitData() {
-         console.log("submitted");
+      async submitData() {
+         const response = await axios.post("api/v1/register", {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            password_confirmation: this.password_confirmation,
+            date_of_birth: this.date_of_birth,
+            gender: this.gender,
+         });
+
+         // axios.post(url, {
+
+         // })
+         // .then(response => {
+
+         // })
+         // .catch(err => {
+
+         // })
+
+         this.$router.push("/SignIn");
+      },
+      showPw() {
+         var pswrd = document.getElementById("pw-field");
+         if (pswrd.type === "password") {
+            pswrd.type = "text";
+         } else {
+            pswrd.type = "password";
+         }
+      },
+      showPw_c() {
+         var pswrd = document.getElementById("pw_c-field");
+         if (pswrd.type === "password") {
+            pswrd.type = "text";
+         } else {
+            pswrd.type = "password";
+         }
       },
    },
 };
@@ -102,8 +152,9 @@ export default {
 }
 
 .card {
+   position: relative;
    width: 755px;
-   height: 785px;
+   height: 885px;
    border: none;
    border-radius: 10px;
    box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
@@ -128,8 +179,24 @@ export default {
    background: white url(../../public/img/signup-pass-icon.svg) left no-repeat;
    background-position: 11px;
 }
+#pw_c-field {
+   background: white url(../../public/img/signup-pass-icon.svg) left no-repeat;
+   background-position: 11px;
+}
 #dob-field {
    position: relative;
+}
+
+.seen {
+   position: absolute;
+   right: 10px;
+   top: 227px;
+}
+
+.seen2 {
+   position: absolute;
+   right: 10px;
+   top: 316px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -197,6 +264,10 @@ input[type="checkbox"] {
    border-radius: 20px;
 }
 
+form {
+   position: relative;
+}
+
 form label {
    font-family: "Kanit", sans-serif;
    font-weight: 500;
@@ -262,7 +333,7 @@ form {
 
    /* main content */
    .main {
-      padding: 50px 0px;
+      padding: 50px 10px;
       margin: 20px auto;
    }
 
@@ -271,8 +342,8 @@ form {
    }
 
    .card {
-      width: 80vw;
-      height: 700px;
+      width: 300px;
+      height: 750px;
       padding: 0px 1px 8px;
    }
 
@@ -280,10 +351,28 @@ form {
       font-size: 18px;
    }
 
+   form li label {
+      font-size: 15px;
+   }
+
    .option,
-   form input:not(.checkbox) {
-      width: 65vw;
+   input:not(.checkbox, .submit) {
+      position: relative;
+      width: 240px;
       height: 35px;
+   }
+
+   /* seen unseen */
+   .seen {
+      right: 33px;
+      top: 190px;
+   }
+
+   .seen2 {
+      position: absolute;
+      z-index: 1;
+      right: 32px;
+      top: 268px;
    }
 
    /* checkbox scale */
@@ -302,13 +391,24 @@ form {
    }
 
    .submission {
-      margin: 0;
+      margin: 0 15px;
+      padding-top: 15px;
+   }
+
+   .submission input[type="submit"] {
+      padding: 0 5px;
    }
 
    .submission input,
    .submission input:hover {
-      width: 50vw;
+      width: 170px;
       height: 35px;
+   }
+
+   .submission p {
+      font-size: 15px;
+      margin: 25px auto 0;
+      padding: 0;
    }
 
    .submission input[type="submit"] {
@@ -334,7 +434,7 @@ form {
 
    .card {
       width: 670px;
-      height: 690px;
+      height: 760px;
       padding: 0 20px 10px;
    }
 
@@ -348,6 +448,18 @@ form {
       padding-left: 0;
    }
 
+   /* seen unseen */
+   .seen {
+      right: 10px;
+      top: 178px;
+   }
+
+   .seen2 {
+      z-index: 1;
+      right: 10px;
+      top: 248px;
+   }
+
    .col-pic {
       padding: 30px 0 10px;
    }
@@ -359,6 +471,9 @@ form {
 
    form label {
       font-size: 18px;
+   }
+   form li label {
+      font-size: 16px;
    }
 }
 </style>
