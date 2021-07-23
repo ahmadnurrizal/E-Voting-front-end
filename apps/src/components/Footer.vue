@@ -12,8 +12,8 @@
          </ul>
          <ul>
             <h2>Account</h2>
-            <li><a href="">Sign In</a></li>
-            <li><a href="">Sign Up</a></li>
+            <li><router-link to="/SignIn">Sign In</router-link></li>
+            <li><router-link to="/SignUp">Sign Up</router-link></li>
          </ul>
          <ul>
             <h2>Help & Support</h2>
