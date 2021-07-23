@@ -3,12 +3,18 @@ import Home from "../views/Home.vue";
 import Createpoll from "../views/CreatePoll.vue";
 import Signup from "../views/SignUp.vue";
 import Signin from "../views/SignIn.vue";
+import Notlog from "../views/notLog.vue";
 
 const routes = [
    {
       path: "/",
       name: "Home",
       component: Home,
+   },
+   {
+      path: "/Auth",
+      name: "Notlog",
+      component: Notlog,
    },
    {
       path: "/CreatePoll",
