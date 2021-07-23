@@ -5,7 +5,7 @@
       </div>
       <section>
          <ul>
-            <li><router-link to="/CreatePoll">Create Poll</router-link></li>
+            <li><router-link to="/Auth">Create Poll</router-link></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Discover</a></li>
             <li><a href="#">Contact</a></li>
@@ -37,16 +37,13 @@
 //       navbar.classList.remove("scrolled");
 //    }
 // };
-
 export default {
    name: "Navbar",
-
    methods: {
       menu() {
          const nav = document.querySelector("section ul");
          nav.classList.toggle("slide");
       },
-
       // ignoreClick(event) {
       //    var hide = document.getElementById("toggleMenu");
       //    var clickInside = hide.contains(event.target);
