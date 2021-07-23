@@ -1,7 +1,7 @@
 <template>
    <div class="wrapper">
       <!-- navbar -->
-      <Navbar />
+      <NavLog />
       <div class="wave-top"><div class="vec"></div></div>
 
       <!-- main content -->
@@ -74,17 +74,18 @@
             <div class="submission"></div>
          </div>
       </div>
+      <Footer />
    </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+import NavLog from "@/components/NavLog.vue";
 import Footer from "../components/Footer.vue";
 
 export default {
    name: "Createpoll",
    components: {
-      Navbar,
+      NavLog,
       Footer,
    },
 
@@ -140,13 +141,15 @@ export default {
    padding: 80px 20px;
 }
 .card {
-   width: 755px;
+   width: 800px;
    height: 910px;
    border: none;
    border-radius: 10px;
    box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
    margin: 20px;
+   overflow-y: scroll;
+   overflow-x: hidden;
 }
 
 h1,
@@ -171,9 +174,11 @@ label {
    font-size: 18px;
 }
 
+.col-pic img {
+   width: 90%;
+}
+
 form {
-   width: 50%;
-   border: 1px solid red;
    position: relative;
    margin: 0 52px 30px 15px;
 }
@@ -185,10 +190,6 @@ input:not(.checkbox, .submit) {
    width: 340px;
    height: 40px;
    border-radius: 5px;
-}
-
-.col-pic {
-   width: 50%;
 }
 
 textarea {
