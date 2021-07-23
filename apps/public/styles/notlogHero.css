@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Roboto&display=swap");
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+.hero-container {
+   width: cover;
+   background-color: #eaf5ff;
+}
+
+.wbg {
+   position: relative;
+   background-image: url(../img/vector/hero-wave.svg);
+   background-size: cover;
+   background-repeat: no-repeat;
+   display: flex;
+   align-items: center;
+   padding: 150px 150px 280px;
+}
+
+.column-desc {
+   width: 50%;
+   /* margin-left: 150px; */
+   padding-right: 18px;
+   margin-right: 20px;
+}
+
+h1,
+p,
+button {
+   font-family: "Kanit", sans-serif;
+}
+
+.row-desc-1 {
+   /* margin-top: 146px; */
+   margin-bottom: 30px;
+}
+
+h1 {
+   font-weight: 600;
+   font-style: normal;
+   text-align: left;
+   font-size: 48px;
+   line-height: 62.4px;
+   color: #155a8c;
+}
+
+.row-desc-2 {
+   margin-bottom: 30px;
+   margin-right: -18px;
+}
+
+p {
+   font-family: "Roboto", sans-serif;
+   font-size: 18px;
+   font-weight: 400;
+   font-style: normal;
+   line-height: 32.4px;
+   color: #1e6599;
+   vertical-align: top;
+   text-align: left;
+}
+
+.row-desc-3 {
+   margin-bottom: 30px;
+   display: flex;
+}
+
+.row-desc-3 button {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 180%;
+}
+
+.btn-1 {
+   cursor: pointer;
+   width: 200px;
+   height: 50px;
+   background-color: #ff7070;
+   color: #ffffff;
+   border: none;
+   border-radius: 25px;
+}
+
+.btn-2 {
+   cursor: pointer;
+   width: 200px;
+   height: 50px;
+   background-color: #c4c4c4;
+   color: #ffffff;
+   border: none;
+   border-radius: 25px;
+   margin-left: 20px;
+}
+
+.column-pic {
+   width: 50%;
+   position: relative;
+   /* margin: 150px; */
+}
+
+.column-pic img {
+   width: 100%;
+}
+
+/* responsive setup for mobile */
+@media (max-width: 586px) {
+   .wbg {
+      position: relative;
+      flex-direction: column;
+      padding: 30px 40px 100px;
+   }
+
+   .column-desc {
+      width: 100%;
+      order: 2;
+      margin: auto;
+      padding-left: 10px;
+   }
+
+   .column-pic {
+      width: 80%;
+      margin-top: 100px;
+      margin-bottom: 20px;
+   }
+
+   h1 {
+      text-align: center;
+      font-size: 29px;
+      line-height: 100%;
+   }
+
+   p {
+      text-align: center;
+      font-size: 15px;
+   }
+
+   a {
+      font-size: 16px;
+   }
+
+   .row-desc-1 {
+      margin-top: 0;
+   }
+
+   .row-desc-2 {
+      margin: 20px 8px;
+   }
+
+   .row-desc-3 {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 120px;
+   }
+
+   .btn-1 {
+      width: 70vw;
+      height: 40px;
+   }
+
+   .btn-2 {
+      width: 70vw;
+      height: 40px;
+      margin: 0;
+   }
+}
+
+/* responsive for tablet */
+@media (min-width: 587px) and (max-width: 1156px) {
+   .wbg {
+      top: 65px;
+      margin-bottom: 20px;
+      padding: 20px 0px 240px;
+   }
+
+   .hero-container {
+      padding-bottom: 60px;
+   }
+
+   h1 {
+      font-size: 37px;
+      line-height: 90%;
+   }
+
+   p {
+      font-size: 15px;
+      letter-spacing: 0px;
+   }
+
+   .column-desc {
+      margin-left: 30px;
+   }
+
+   .row-desc-1 {
+      margin-top: 50px;
+   }
+
+   .column-pic {
+      width: 40%;
+      margin: 10px 20px;
+   }
+
+   .row-desc-3 {
+      position: absolute;
+      padding: 50px 94px;
+   }
+
+   .row-desc-3 button {
+      font-size: 15px;
+   }
+
+   .btn-1 {
+      width: 30vw;
+      height: 35px;
+   }
+
+   .btn-2 {
+      width: 30vw;
+      height: 35px;
+      margin-left: 20px;
+   }
+}
+
+/* responsive for desktop < 1156px of width */
+@media (min-width: 769px) and (max-width: 1156px) {
+}
