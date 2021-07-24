@@ -4,6 +4,7 @@ import Createpoll from "../views/CreatePoll.vue";
 import Signup from "../views/SignUp.vue";
 import Signin from "../views/SignIn.vue";
 import Notlog from "../views/notLog.vue";
+import Profile from "../views/Profile.vue";
 
 const routes = [
    {
@@ -30,6 +31,11 @@ const routes = [
       path: "/SignUp",
       name: "SignUp",
       component: Signup,
+   },
+   {
+      path: "/Profile",
+      name: "Profile",
+      component: Profile,
    },
 ];
 

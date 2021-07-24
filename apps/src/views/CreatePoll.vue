@@ -46,30 +46,9 @@
                   </div>
                </form>
                <div class="col-pic">
-                  <img src="../../public/img/createpoll-main-pic.svg" alt="" />
-                  <img src="../../public/img/aboutpoll-icon2.svg" alt="" />
+                  <img class="pic1" src="../../public/img/createpoll-main-pic.svg" alt="" />
+                  <img class="pic2" src="../../public/img/aboutpoll-icon2.svg" alt="" />
                </div>
-               <!-- <div class="input">
-                  <form action="">
-                     <label for="Title">Title</label><br />
-                     <input type="text" placeholder="Type your title here..." /><br />
-                     <label for="Description">Description (optional)</label><br />
-                     <input class="resize-desc" type="text" placeholder="Type your description here..." /><br />
-                     <div class="option">
-                        <label for="Answer">Answer Options</label><br />
-                        <input class="input_text" type="text" placeholder="Type an answer here..." /><br />
-                        <label for="file-upload1" class="custom-upload"> Add Photo </label><br />
-                        <input class="input_img" accept=".jpg, .jpeg, .png" id="file-upload1" type="file" />
-                        <input class="input_text" type="text" placeholder="Type an answer here..." /><br />
-                        <label for="file-upload2" class="custom-upload"> Add Photo </label><br />
-                        <input class="input_img" accept=".jpg, .jpeg, .png" id="file-upload2" type="file" />
-                        <input class="input_text " type="text" placeholder="Type an answer here..." /><br />
-                        <label for="file-upload3" class="custom-upload"> Add Photo </label><br />
-                        <input class="input_img" accept=".jpg, .jpeg, .png" id="file-upload3" type="file" />
-                     </div>
-                  </form> -->
-               <!-- </div>
-               <div class="picture"></div> -->
             </div>
             <div class="submission"></div>
          </div>
@@ -149,7 +128,6 @@ export default {
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
    margin: 20px;
    overflow-y: scroll;
-   overflow-x: hidden;
 }
 
 h1,
@@ -175,7 +153,11 @@ label {
 }
 
 .col-pic img {
-   width: 90%;
+   position: absolute;
+}
+.pic2 {
+   margin-top: 400px;
+   margin-left: 90px;
 }
 
 form {
