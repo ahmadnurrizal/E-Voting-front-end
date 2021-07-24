@@ -95,7 +95,6 @@ section ul li {
    opacity: 0.8;
    top: -2px;
    left: -6px;
-   opacity: 0;
    z-index: 2;
    cursor: pointer;
 }
