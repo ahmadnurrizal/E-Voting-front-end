@@ -13,9 +13,23 @@
          </ul>
       </section>
       <div class="nav-reg">
-         <li>
-            <a href="/" @click="logout"><button>Sign Out</button></a>
-         </li>
+         <div class="profilepic">
+            <img src="../../public/img/profile-default.svg" alt="" />
+            <div class="arrow" @click="dropdownToggle">
+               <span class="bar1"></span>
+               <span class="bar2"></span>
+            </div>
+            <!-- <img id="downicon" src="../../public/img/arrow-down.png" class="play" @click="dropdownToggle" /> -->
+         </div>
+         <div class="dropdown">
+            <ul>
+               <li><router-link to="/Profile">Edit Profile</router-link></li>
+               <li><a href="">Dashboard</a></li>
+               <li class="logout">
+                  <a id="out" href="/" @click="logout">Log Out</a>
+               </li>
+            </ul>
+         </div>
       </div>
       <div class="nav-toggle">
          <input type="checkbox" @click="menu" />
@@ -46,6 +60,15 @@ export default {
       menu() {
          const nav = document.querySelector("section ul");
          nav.classList.toggle("slide");
+      },
+      dropdownToggle() {
+         const toggleMenu = document.querySelector(".dropdown");
+         const bar1 = document.querySelector(".bar1");
+         const bar2 = document.querySelector(".bar2");
+
+         toggleMenu.classList.toggle("active");
+         bar1.classList.toggle("change");
+         bar2.classList.toggle("change");
       },
 
       // ignoreClick(event) {

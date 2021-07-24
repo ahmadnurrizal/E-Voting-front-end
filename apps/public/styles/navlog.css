@@ -14,7 +14,6 @@ nav {
    box-sizing: border-box;
    background-image: linear-gradient(rgb(179, 215, 251), rgb(180, 216, 251));
    display: flex;
-   justify-content: space-around;
    align-items: center;
 }
 /* nav.scrolled {
@@ -57,12 +56,117 @@ section ul li {
 }
 
 .nav-reg {
-   display: flex;
-   list-style: none;
-   align-items: center;
+   position: fixed;
+   top: 15px;
+   right: 150px;
 }
 
-.nav-reg li {
+.nav-reg .profilepic {
+   position: relative;
+   display: flex;
+   align-items: center;
+}
+.profilepic {
+   gap: 10px;
+}
+
+.profilepic img {
+   object-fit: cover;
+}
+
+.dropdown {
+   top: 60px;
+   right: 4px;
+   position: absolute;
+   background-color: #ffffff;
+   width: 153px;
+   height: 142px;
+   box-shadow: 6px 8px 10px 5px rgba(54, 37, 37, 0.2);
+   transform: translateY(-20%);
+   transition: all 0.3s;
+   border-bottom-right-radius: 10px;
+   border-bottom-left-radius: 10px;
+   visibility: hidden;
+   opacity: 0;
+}
+
+.dropdown::before {
+   content: "";
+   top: -5px;
+   right: 35px;
+   width: 20px;
+   height: 20px;
+   position: absolute;
+   background: #bde0ff;
+   transform: rotate(45deg);
+}
+
+.dropdown.active {
+   transform: translateY(10%);
+   visibility: visible;
+   opacity: 1;
+}
+
+.arrow {
+   cursor: pointer;
+   top: 6px;
+   position: relative;
+   display: flex;
+   height: 10px;
+   justify-content: space-between;
+}
+
+.arrow span {
+   display: block;
+   width: 10px;
+   height: 2px;
+   background-color: #3976af;
+   border-radius: 3px;
+   transition: all 0.4s;
+}
+
+.arrow .bar1 {
+   transform-origin: bottom right;
+   transform: rotate(40deg);
+}
+
+.arrow .bar2 {
+   transform-origin: bottom left;
+   transform: rotate(-40deg);
+}
+
+.arrow .bar1.change {
+   transform-origin: top right;
+   transform: rotate(-37deg);
+}
+
+.arrow .bar2.change {
+   transform-origin: top left;
+   transform: rotate(37deg);
+}
+
+.dropdown ul {
+   list-style: none;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.dropdown ul li {
+   background: #bde0ff;
+   padding: 10px;
+   margin-bottom: 1px;
+}
+
+#out {
+   color: red;
+}
+
+.logout {
+   border-bottom-right-radius: 10px;
+   border-bottom-left-radius: 10px;
+}
+
+/* .nav-reg li {
    width: 70px;
 }
 
@@ -78,7 +182,7 @@ section ul li {
 }
 .nav-reg button:hover {
    background-color: #3976af;
-}
+} */
 
 /* hamburger icon */
 .nav-toggle {
