@@ -45,7 +45,7 @@ export default {
          isLogin: false,
       };
    },
-   created() {
+   async created() {
       let token = localStorage.getItem("token");
       if (!token) {
          console.log("tidak ada token !");

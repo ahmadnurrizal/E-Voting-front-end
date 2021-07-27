@@ -25,7 +25,7 @@
                            <input type="text" @focus="addEvent" :id="item" />
                            <div class="option-parent">
                               <button>Add photo</button>
-                              <input type="file" />
+                              <input type="file" accept=".jpg, .png, .jpeg" />
                            </div>
                         </div>
                      </li>
@@ -36,10 +36,14 @@
                      ><br />
                      <label style="word-wrap: break-word"><input class="checkbox" type="checkbox" /><span>Only multiple choices</span></label
                      ><br />
-                     <label style="word-wrap: break-word"><input class="checkbox" type="checkbox" /><span>Set deadline</span></label
+                     <label style="word-wrap: break-word"><input class="checkbox" id="cek" type="checkbox" @click="showDeadline" /><span>Set deadline</span></label
                      ><br />
-                     <label style="word-wrap: break-word"><input class="checkbox" type="checkbox" /><span>Add a poster</span></label
+                     <input type="date" style="display: none; width: 320px" required id="deadline" />
+                     <label style="word-wrap: break-word"><input id="cek2" class="checkbox" type="checkbox" @click="showPoster" /><span>Add a poster</span></label
                      ><br />
+                     <input id="inputPoster" type="file" accept=".jpg, .png, .jpeg" />
+                     <button id="poster" style="display: none">Add Poster</button>
+                     <br />
                   </div>
                   <div class="submission">
                      <input class="submit" type="submit" value="Create Poll" />
@@ -50,7 +54,6 @@
                   <img class="pic2" src="../../public/img/aboutpoll-icon2.svg" alt="" />
                </div>
             </div>
-            <div class="submission"></div>
          </div>
       </div>
       <Footer />
@@ -81,6 +84,26 @@ export default {
          if (currId == this.lastIndex.toString()) {
             this.arrInput.push(this.lastIndex + 1);
             this.lastIndex = this.lastIndex + 1;
+         }
+      },
+      showDeadline() {
+         const cek = document.getElementById("cek");
+         const deadline = document.getElementById("deadline");
+
+         if (cek.checked == true) {
+            deadline.style.display = "block";
+         } else {
+            deadline.style.display = "none";
+         }
+      },
+      showPoster() {
+         const cek2 = document.getElementById("cek2");
+         const poster = document.getElementById("poster");
+
+         if (cek2.checked == true) {
+            poster.style.display = "block";
+         } else {
+            poster.style.display = "none";
          }
       },
    },
@@ -120,8 +143,8 @@ export default {
    padding: 80px 20px;
 }
 .card {
-   width: 800px;
-   height: 910px;
+   width: 755px;
+   height: 988px;
    border: none;
    border-radius: 10px;
    box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
@@ -190,6 +213,11 @@ ul {
 }
 
 .option-parent button {
+   padding-right: 10px;
+   font-family: "Kanit", sans-serif;
+   text-align: right;
+   font-size: 10px;
+   color: #539be0;
    pointer-events: none;
    position: absolute;
    top: 5px;
@@ -197,18 +225,70 @@ ul {
    background-color: #bde0ff;
    background-image: url(../../public/img/createpoll-upld-icon.svg);
    background-repeat: no-repeat;
+   background-size: 18px;
    border: none;
    border-radius: 4px;
    width: 83px;
    height: 20px;
 }
 
-input[type="file"] {
+.option-parent input[type="file"] {
    position: absolute;
    width: 85px;
    height: 20px;
    opacity: 0;
    right: 0;
    top: 5px;
+}
+
+#poster {
+   padding-right: 10px;
+   font-family: "Kanit", sans-serif;
+   text-align: right;
+   font-size: 10px;
+   background-color: #bde0ff;
+   color: #539be0;
+   background-image: url(../../public/img/createpoll-upld-icon.svg);
+   background-repeat: no-repeat;
+   background-size: 18px;
+   border: none;
+   border-radius: 4px;
+   width: 83px;
+   height: 20px;
+}
+
+#inputPoster {
+   position: absolute;
+   opacity: 0;
+   left: 0;
+   width: 83px;
+   height: 20px;
+}
+
+.settings {
+   margin-bottom: 30px;
+}
+
+.settings input {
+   margin-right: 8px;
+   cursor: pointer;
+}
+
+.submission {
+   margin: auto 176px;
+   text-align: center;
+   position: absolute;
+}
+
+.submission input[type="submit"] {
+   cursor: pointer;
+   font-family: "Kanit", sans-serif;
+   color: white;
+   font-size: 18px;
+   background-color: #ff7070;
+   width: 403px;
+   height: 40px;
+   border: none;
+   border-radius: 20px;
 }
 </style>
