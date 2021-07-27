@@ -4,7 +4,9 @@ import Createpoll from "../views/CreatePoll.vue";
 import Signup from "../views/SignUp.vue";
 import Signin from "../views/SignIn.vue";
 import Notlog from "../views/notLog.vue";
-import Profile from "../views/Profile.vue";
+import settings from "../views/EditProfile.vue";
+import EditPass from "../views/ChangePass.vue";
+import Delete from "../views/DelAcc.vue";
 
 const routes = [
    {
@@ -33,9 +35,19 @@ const routes = [
       component: Signup,
    },
    {
-      path: "/Profile",
-      name: "Profile",
-      component: Profile,
+      path: "/Settings",
+      name: "settings",
+      component: settings,
+   },
+   {
+      path: "/Settings/Password",
+      name: "EditPass",
+      component: EditPass,
+   },
+   {
+      path: "/Settings/DeleteAccount",
+      name: "DeleteAcc",
+      component: Delete,
    },
 ];
 
