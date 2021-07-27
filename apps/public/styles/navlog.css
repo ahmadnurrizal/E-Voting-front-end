@@ -59,6 +59,7 @@ section ul li {
    position: fixed;
    top: 15px;
    right: 150px;
+   cursor: pointer;
 }
 
 .nav-reg .profilepic {
@@ -108,7 +109,6 @@ section ul li {
 }
 
 .arrow {
-   cursor: pointer;
    top: 6px;
    position: relative;
    display: flex;

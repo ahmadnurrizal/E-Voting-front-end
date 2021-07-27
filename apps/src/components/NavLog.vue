@@ -12,10 +12,10 @@
             <li><a href="#">Dashboard</a></li>
          </ul>
       </section>
-      <div class="nav-reg">
+      <div class="nav-reg" @click="dropdownToggle">
          <div class="profilepic">
             <img src="../../public/img/profile-default.svg" alt="" />
-            <div class="arrow" @click="dropdownToggle">
+            <div class="arrow">
                <span class="bar1"></span>
                <span class="bar2"></span>
             </div>
@@ -23,7 +23,7 @@
          </div>
          <div class="dropdown">
             <ul>
-               <li><router-link to="/Profile">Edit Profile</router-link></li>
+               <li><router-link to="/Settings">Edit Profile</router-link></li>
                <li><a href="">Dashboard</a></li>
                <li class="logout">
                   <a id="out" href="/" @click="logout">Log Out</a>
@@ -52,6 +52,9 @@
 
 export default {
    name: "NavLog",
+   data() {
+      return {};
+   },
 
    methods: {
       logout() {
