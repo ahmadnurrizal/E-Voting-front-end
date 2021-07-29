@@ -25,7 +25,8 @@
                            <input type="text" @focus="addEvent" :id="item" />
                            <div class="option-parent">
                               <button>Add photo</button>
-                              <input type="file" accept=".jpg, .png, .jpeg" />
+                              <input id="posinput" type="file" accept=".jpg, .png, .jpeg" @click="sizeRestrict" />
+                              <span id="msg"></span>
                            </div>
                         </div>
                      </li>
@@ -85,6 +86,20 @@ export default {
             this.arrInput.push(this.lastIndex + 1);
             this.lastIndex = this.lastIndex + 1;
          }
+      },
+      sizeRestrict() {
+         let input = document.getElementById("posinput");
+         let span = document.getElementById("msg");
+
+         let files = input.files;
+         if (files.length > 0) {
+            if (files[0].size > 10 * 1024) {
+               span.innerText = "File size exceeds 10kb";
+
+               return;
+            }
+         }
+         span.innerText = "done";
       },
       showDeadline() {
          const cek = document.getElementById("cek");
@@ -239,6 +254,11 @@ ul {
    opacity: 0;
    right: 0;
    top: 5px;
+}
+
+/* upload message */
+#msg {
+   color: red;
 }
 
 #poster {
