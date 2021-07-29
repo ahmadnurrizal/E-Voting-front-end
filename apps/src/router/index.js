@@ -7,6 +7,11 @@ import Notlog from "../views/notLog.vue";
 import settings from "../views/EditProfile.vue";
 import EditPass from "../views/ChangePass.vue";
 import Delete from "../views/DelAcc.vue";
+import Help from "../views/HelpCenter.vue";
+import Tutorials from "../views/Tutorials.vue";
+import FAQs from "../views/FAQs.vue";
+import Contact from "../views/Contact.vue";
+import About from "../views/AboutUs.vue";
 
 const routes = [
    {
@@ -48,6 +53,31 @@ const routes = [
       path: "/Settings/DeleteAccount",
       name: "DeleteAcc",
       component: Delete,
+   },
+   {
+      path: "/Help",
+      name: "HelpCenter",
+      component: Help,
+   },
+   {
+      path: "/Help/Tutorials",
+      name: "Tutorials",
+      component: Tutorials,
+   },
+   {
+      path: "/Help/FAQs",
+      name: "FAQs",
+      component: FAQs,
+   },
+   {
+      path: "/About",
+      name: "About-Us",
+      component: About,
+   },
+   {
+      path: "/Contact",
+      name: "Contact",
+      component: Contact,
    },
 ];
 
