@@ -6,9 +6,9 @@
       <section>
          <ul>
             <li><router-link to="/CreatePoll">Create Poll</router-link></li>
-            <li><a href="#">About Us</a></li>
+            <li><router-link to="/About">About Us</router-link></li>
             <li><a href="#">Discover</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><router-link to="/Contact">Contact</router-link></li>
             <li><a href="#">Dashboard</a></li>
          </ul>
       </section>

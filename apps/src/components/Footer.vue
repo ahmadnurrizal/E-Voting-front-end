@@ -3,8 +3,8 @@
       <div class="footer">
          <ul>
             <h2>Company</h2>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Contact Us</a></li>
+            <li><router-link to="/About">About Us</router-link></li>
+            <li><router-link to="/Contact">Contact Us</router-link></li>
          </ul>
          <ul>
             <h2>Product</h2>
@@ -17,9 +17,9 @@
          </ul>
          <ul>
             <h2>Help & Support</h2>
-            <li><a href="">Help Center</a></li>
-            <li><a href="">Tutorial</a></li>
-            <li><a href="">FAQs</a></li>
+            <li><router-link to="/Help">Help Center</router-link></li>
+            <li><router-link to="/Help/Tutorials">Tutorials</router-link></li>
+            <li><router-link to="/Help/FAQs">FAQs</router-link></li>
          </ul>
       </div>
       <div class="bottom">
