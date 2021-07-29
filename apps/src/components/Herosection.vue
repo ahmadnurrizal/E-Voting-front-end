@@ -12,7 +12,7 @@
             </div>
             <div class="row-desc-3">
                <router-link to="/CreatePoll"><button class="btn-1">Create Poll</button></router-link>
-               <router-link to=""><button class="btn-2">View Example</button></router-link>
+               <router-link to="/Help/Tutorials"><button class="btn-2">View Example</button></router-link>
             </div>
          </div>
          <div class="column-pic">
