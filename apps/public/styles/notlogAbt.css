@@ -16,7 +16,8 @@
 }
 
 h1,
-h2 {
+h2,
+button {
    font-family: "Kanit", sans-serif;
    font-weight: 600;
 }
@@ -120,10 +121,6 @@ li {
    line-height: 180%;
 }
 
-.abt-links button:hover {
-   color: #1d1515;
-}
-
 .btn-1 {
    cursor: pointer;
    width: 200px;
@@ -132,6 +129,10 @@ li {
    color: #ffffff;
    border: none;
    border-radius: 25px;
+}
+
+.btn-1:hover {
+   background-color: #f55454;
 }
 
 .btn-2 {
@@ -143,6 +144,10 @@ li {
    border: none;
    border-radius: 25px;
    margin-left: 20px;
+}
+
+.btn-2:hover {
+   background-color: #a09696;
 }
 
 /* responsive for mobile */

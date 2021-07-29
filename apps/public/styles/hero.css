@@ -76,6 +76,10 @@ p {
    line-height: 180%;
 }
 
+.row-desc-3 button:hover {
+   color: #1d1515;
+}
+
 .btn-1 {
    cursor: pointer;
    width: 200px;
@@ -84,6 +88,10 @@ p {
    color: #ffffff;
    border: none;
    border-radius: 25px;
+}
+
+.btn-1:hover {
+   background-color: #f55454;
 }
 
 .btn-2 {
@@ -95,6 +103,10 @@ p {
    border: none;
    border-radius: 25px;
    margin-left: 20px;
+}
+
+.btn-2:hover {
+   background-color: #a09696;
 }
 
 .column-pic {
