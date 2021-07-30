@@ -5,9 +5,13 @@
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
          <div class="card">
-            <h1>Tutorials</h1>
+            <div class="title">
+               <h1>Tutorials</h1>
+            </div>
             <div class="body">
-               <sideHelp />
+               <div class="side">
+                  <sideHelp />
+               </div>
                <div class="content">
                   isi Tutorials
                </div>
@@ -76,7 +80,31 @@ export default {
 
 .card {
    width: 948px;
-   height: 980px;
+   height: 2381px;
+   background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+}
+
+h1,
+h2,
+h3,
+p {
+   color: #eaf5ff;
+}
+
+.title {
+   border-bottom: 3px #bde0ff solid;
+   margin: auto 30px;
+}
+
+.title h1 {
+   text-align: left;
+   margin: 30px auto 60px 10px;
+}
+
+.side {
+   border-right: 3px #bde0ff solid;
+   margin-top: 10px;
+   height: 2196px;
 }
 
 .body {

@@ -5,11 +5,20 @@
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
          <div class="card">
-            <h1>help center</h1>
+            <div class="title">
+               <h1>Help Center</h1>
+            </div>
             <div class="body">
-               <sideHelp />
+               <div class="side">
+                  <sideHelp />
+               </div>
                <div class="content">
-                  isi help center
+                  <p class="p1">
+                     Welcome to fingerVote’s help center. On the help center page, On the left side you will find various topics from guides for baginners. We try to cover as many topics as possible from the creation of the first poll to
+                     the documentation of special features of fingerVote polls.
+                  </p>
+                  <p class="p2">If you are new to fingervote, and you are confused about how to create a poll you can read the <span style="color: #1E6599">Tutorials</span> page</p>
+                  <p class="p3">If you still have questions or need help, please contact our community on our <span style="color: #1E6599">Contact Us</span> via email.</p>
                </div>
             </div>
          </div>
@@ -76,10 +85,44 @@ export default {
 
 .card {
    width: 948px;
-   height: 980px;
+   height: 558px;
+   background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+}
+
+h1,
+h2,
+h3,
+p {
+   color: #eaf5ff;
+}
+
+.title {
+   border-bottom: 3px #bde0ff solid;
+   margin: auto 30px;
+}
+
+.title h1 {
+   text-align: left;
+   margin: 30px auto 60px 10px;
+}
+
+.side {
+   border-right: 3px #bde0ff solid;
+   margin-top: 10px;
+   height: 373px;
 }
 
 .body {
    display: flex;
+}
+
+.content {
+   padding: 30px;
+}
+
+.p1,
+.p2,
+.p3 {
+   margin-bottom: 30px;
 }
 </style>

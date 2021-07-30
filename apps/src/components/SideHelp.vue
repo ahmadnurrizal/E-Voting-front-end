@@ -1,9 +1,30 @@
 <template>
    <div class="sidebar">
       <ul>
-         <li><router-link to="/Help">Help Center</router-link></li>
-         <li><router-link to="/Help/Tutorials">Tutorials</router-link></li>
-         <li><router-link to="/Help/FAQs">FAQs</router-link></li>
+         <li>
+            <router-link
+               to="/Help"
+               style="text-decoration: none;
+"
+               ><p>Help Center</p></router-link
+            >
+         </li>
+         <li>
+            <router-link
+               to="/Help/Tutorials"
+               style="text-decoration: none;
+"
+               ><p>Tutorials</p></router-link
+            >
+         </li>
+         <li>
+            <router-link
+               to="/Help/FAQs"
+               style="text-decoration: none;
+"
+               ><p>FAQs</p></router-link
+            >
+         </li>
       </ul>
    </div>
 </template>
@@ -28,6 +49,19 @@ export default {
 }
 
 .sidebar ul {
+   margin: 20px auto auto 30px;
    list-style: none;
 }
+
+p {
+   font-family: "Kanit", sans-serif;
+   font-size: 24px;
+   border: none;
+   background-color: none;
+   color: #eaf5ff;
+}
+
+/* p:hover {
+   color: rgb(75, 68, 68);
+} */
 </style>
