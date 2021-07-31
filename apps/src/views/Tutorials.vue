@@ -13,7 +13,31 @@
                   <sideHelp />
                </div>
                <div class="content">
-                  isi Tutorials
+                  <h2>How To Create Poll ?</h2>
+                  <p>On this tutorials page, we will tell you how to create a poll and how to do a poll</p>
+                  <div class="step">
+                     <h3>Step 1 : Fill out the form</h3>
+                     <img src="" alt="" />
+                     <p>in this step, you can give a title, a description of the poll and give several answer options, you can also add a photo for the answer.</p>
+                  </div>
+                  <div class="step">
+                     <h3>Step 2 : Choose settings</h3>
+                     <img src="" alt="" />
+                     <p>
+                        You can add settings to your poll, you can set your poll to private by selecting "Only via direct link", you can also make your poll multiple choices by selecting "Allow multiple choices", you must add a deadline to
+                        your poll and Finally, you can add a poster to make your poll cooler.
+                     </p>
+                  </div>
+                  <div class="step">
+                     <h3>Step 3 : Share your poll</h3>
+                     <img src="" alt="" />
+                     <p>After your poll has been successfully created, you can share your poll with your friends, you can use a copy link or you can direct a direct link through the application.</p>
+                  </div>
+                  <div class="step">
+                     <h3>Step 4 : View result</h3>
+                     <img src="" alt="" />
+                     <p>After that you can also see the results of the poll you made.</p>
+                  </div>
                </div>
             </div>
          </div>
@@ -42,7 +66,7 @@ export default {
          isLogin: false,
       };
    },
-   async created() {
+   created() {
       let token = localStorage.getItem("token");
       if (!token) {
          this.isLogin = false;
@@ -82,6 +106,10 @@ export default {
    width: 948px;
    height: 2381px;
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+}
+
+.content {
+   padding: 30px;
 }
 
 h1,

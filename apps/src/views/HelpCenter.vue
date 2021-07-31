@@ -17,8 +17,12 @@
                      Welcome to fingerVote’s help center. On the help center page, On the left side you will find various topics from guides for baginners. We try to cover as many topics as possible from the creation of the first poll to
                      the documentation of special features of fingerVote polls.
                   </p>
-                  <p class="p2">If you are new to fingervote, and you are confused about how to create a poll you can read the <span style="color: #1E6599">Tutorials</span> page</p>
-                  <p class="p3">If you still have questions or need help, please contact our community on our <span style="color: #1E6599">Contact Us</span> via email.</p>
+                  <p class="p2">
+                     If you are new to fingervote, and you are confused about how to create a poll you can read the <span><router-link to="/Help/Tutorials" style="color: #1E6599; text-decoration: none;">Tutorials</router-link> </span> page
+                  </p>
+                  <p class="p3">
+                     If you still have questions or need help, please contact our community on our <span><router-link to="/Contact" style="color: #1E6599; text-decoration: none;">Contact Us</router-link> </span> via email.
+                  </p>
                </div>
             </div>
          </div>
@@ -47,7 +51,7 @@ export default {
          isLogin: false,
       };
    },
-   async created() {
+   created() {
       let token = localStorage.getItem("token");
       if (!token) {
          this.isLogin = false;
@@ -123,6 +127,8 @@ p {
 .p1,
 .p2,
 .p3 {
+   font-family: "Roboto", sans-serif;
+   font-size: 18px;
    margin-bottom: 30px;
 }
 </style>

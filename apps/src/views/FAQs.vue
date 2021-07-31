@@ -25,7 +25,10 @@
                   </div>
                   <div class="question">
                      <h3>Can the poll be shared?</h3>
-                     <p>Yes, you and participants can share the poll that you created, for how to share the poll you can see the <span style="color: #1E6599">Tutorials</span> page</p>
+                     <p>
+                        Yes, you and participants can share the poll that you created, for how to share the poll you can see the
+                        <span><router-link to="/Help/Tutorials" style="color: #1E6599; text-decoration: none;">Tutorials</router-link></span> page
+                     </p>
                   </div>
                   <div class="question">
                      <h3>Are we looking for someone else's poll?</h3>
@@ -63,7 +66,7 @@ export default {
          isLogin: false,
       };
    },
-   async created() {
+   created() {
       let token = localStorage.getItem("token");
       if (!token) {
          this.isLogin = false;

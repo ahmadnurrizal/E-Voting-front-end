@@ -50,7 +50,7 @@ export default {
          isLogin: false,
       };
    },
-   async created() {
+   created() {
       let token = localStorage.getItem("token");
       if (!token) {
          this.isLogin = false;
