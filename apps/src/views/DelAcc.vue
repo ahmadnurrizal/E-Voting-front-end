@@ -55,7 +55,11 @@ export default {
       };
    },
    async created() {
-      const response = await axios.get("api/v1/user");
+      const response = await axios.get("api/v1/user", {
+         headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         },
+      });
       this.getdata = response.data;
    },
 };

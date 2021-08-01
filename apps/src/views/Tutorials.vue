@@ -17,12 +17,16 @@
                   <p>On this tutorials page, we will tell you how to create a poll and how to do a poll</p>
                   <div class="step">
                      <h3>Step 1 : Fill out the form</h3>
-                     <img src="" alt="" />
+                     <div class="pic1">
+                        <img src="../../public/img/vector/Tutorials-pic1.svg" alt="" />
+                     </div>
                      <p>in this step, you can give a title, a description of the poll and give several answer options, you can also add a photo for the answer.</p>
                   </div>
                   <div class="step">
                      <h3>Step 2 : Choose settings</h3>
-                     <img src="" alt="" />
+                     <div class="pic2">
+                        <img src="../../public/img/vector/Tutorials-pic2.svg" alt="" />
+                     </div>
                      <p>
                         You can add settings to your poll, you can set your poll to private by selecting "Only via direct link", you can also make your poll multiple choices by selecting "Allow multiple choices", you must add a deadline to
                         your poll and Finally, you can add a poster to make your poll cooler.
@@ -30,12 +34,16 @@
                   </div>
                   <div class="step">
                      <h3>Step 3 : Share your poll</h3>
-                     <img src="" alt="" />
+                     <div class="pic3">
+                        <img src="../../public/img/vector/Tutorials-pic3.svg" alt="" />
+                     </div>
                      <p>After your poll has been successfully created, you can share your poll with your friends, you can use a copy link or you can direct a direct link through the application.</p>
                   </div>
                   <div class="step">
                      <h3>Step 4 : View result</h3>
-                     <img src="" alt="" />
+                     <div class="pic4">
+                        <img src="../../public/img/vector/Tutorials-pic4.svg" alt="" />
+                     </div>
                      <p>After that you can also see the results of the poll you made.</p>
                   </div>
                </div>
@@ -112,11 +120,26 @@ export default {
    padding: 30px;
 }
 
+.content h2 {
+   margin-bottom: 20px;
+   font-size: 30px;
+}
+
+.content p {
+   margin-bottom: 30px;
+}
+
 h1,
 h2,
-h3,
-p {
+h3 {
+   font-family: "Kanit", sans-serif;
    color: #eaf5ff;
+}
+
+p {
+   font-family: "Roboto", sans-serif;
+   color: #eaf5ff;
+   font-size: 18px;
 }
 
 .title {
@@ -137,5 +160,21 @@ p {
 
 .body {
    display: flex;
+}
+
+.step h3,
+.step img {
+   margin-bottom: 20px;
+}
+
+img {
+   border: solid 9px #c4c4c4;
+}
+
+.pic1,
+.pic2,
+.pic3,
+.pic4 {
+   text-align: center;
 }
 </style>

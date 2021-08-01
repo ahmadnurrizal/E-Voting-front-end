@@ -6,11 +6,13 @@
          <div class="card">
             <Topbar />
             <div class="body">
-               <Sidebar />
+               <div class="side">
+                  <Sidebar />
+               </div>
                <div class="edit">
                   <div class="profile">
                      <img src="../../public/img/profile-default.svg" alt="" />
-                     <button>change profile pic</button>
+                     <button>change profile picture</button>
                   </div>
                   <form action="">
                      <label for="">Profile Name</label><br />
@@ -55,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Roboto&display=swap");
 
 * {
    padding: 0;
@@ -82,9 +84,76 @@ export default {
 .card {
    width: 948px;
    height: 980px;
+   background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+}
+
+.side {
+   border-right: solid 3px #bde0ff;
+   margin-top: 10px;
+   height: 750px;
 }
 
 .body {
    display: flex;
+}
+
+.edit {
+   margin: 30px;
+}
+
+img {
+   width: 100px;
+   margin-right: 20px;
+}
+
+button,
+label {
+   font-family: "Kanit", sans-serif;
+}
+
+.profile {
+   align-items: center;
+   display: flex;
+   margin-bottom: 40px;
+}
+
+.profile button {
+   font-weight: 500;
+   line-height: 32.4px;
+   background-color: #bde0ff;
+   color: #539be0;
+   font-size: 18px;
+   border: none;
+   border-radius: 15px;
+   width: 250px;
+   height: 40px;
+}
+
+form label {
+   font-weight: 500;
+   font-size: 24px;
+   color: #eaf5ff;
+   margin-bottom: 10px;
+}
+
+form input {
+   width: 529px;
+   height: 35px;
+   border: #858484;
+   border-style: solid;
+   border-radius: 5px;
+   border-width: 1.5px;
+   margin-bottom: 20px;
+}
+
+.submision button {
+   margin-top: 10px;
+   background-color: #ff7070;
+   border: none;
+   border-radius: 25px;
+   width: 200px;
+   height: 50px;
+   color: #ffffff;
+   font-size: 20px;
 }
 </style>
