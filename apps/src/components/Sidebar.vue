@@ -1,9 +1,15 @@
 <template>
    <div class="sidebar">
       <ul>
-         <li><router-link to="/Settings">Edit Profile</router-link></li>
-         <li><router-link to="/Settings/Password">Change Password</router-link></li>
-         <li><router-link to="/Settings/DeleteAccount">Delete Account</router-link></li>
+         <li>
+            <router-link to="/Settings" style="text-decoration: none"><p>Edit Profile</p></router-link>
+         </li>
+         <li>
+            <router-link to="/Settings/Password" style="text-decoration: none"><p>Change Password</p></router-link>
+         </li>
+         <li>
+            <router-link to="/Settings/DeleteAccount" style="text-decoration: none"><p>Delete Account</p></router-link>
+         </li>
       </ul>
    </div>
 </template>
@@ -15,6 +21,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
+
 * {
    padding: 0;
    margin: 0;
@@ -23,9 +31,16 @@ export default {
 
 .sidebar {
    width: 339px;
+   padding: 0 30px;
 }
 
 .sidebar ul {
    list-style: none;
+}
+
+p {
+   font-family: "Kanit", sans-serif;
+   font-size: 24px;
+   color: #eaf5ff;
 }
 </style>
