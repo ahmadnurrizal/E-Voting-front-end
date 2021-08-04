@@ -24,7 +24,7 @@
          <div class="dropdown">
             <ul>
                <li><router-link to="/Settings">Edit Profile</router-link></li>
-               <li><a href="">Dashboard</a></li>
+               <li><router-link to="/Dashboard">Dashboard</router-link></li>
                <li class="logout">
                   <a id="out" href="/" @click="logout">Log Out</a>
                </li>
