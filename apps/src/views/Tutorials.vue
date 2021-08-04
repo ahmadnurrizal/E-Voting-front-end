@@ -114,6 +114,7 @@ export default {
    width: 948px;
    height: 2381px;
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+   margin: 100px auto;
 }
 
 .content {

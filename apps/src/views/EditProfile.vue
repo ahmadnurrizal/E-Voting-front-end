@@ -4,7 +4,14 @@
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
          <div class="card">
-            <Topbar />
+            <div class="head">
+               <div class="profile-pic">
+                  <img src="../../public/img/profile-default.svg" alt="" />
+               </div>
+               <h1 v-if="profileName">
+                  <span style="color: #539BE0">{{ profileName }}</span> / Edit Profile
+               </h1>
+            </div>
             <div class="body">
                <div class="side">
                   <Sidebar />
@@ -16,13 +23,13 @@
                   </div>
                   <form action="">
                      <label for="">Profile Name</label><br />
-                     <input type="text" /><br />
+                     <input type="text" v-model="profileName" :placeholder="profileName" /><br />
                      <label for="">Username</label><br />
                      <input type="text" /><br />
                      <label for="">Email</label><br />
-                     <input type="text" /><br />
+                     <input type="text" v-model="email" :placeholder="email" /><br />
                      <label for="">Location</label><br />
-                     <input type="text" /><br />
+                     <input type="text" v-model="location" :placeholder="location" /><br />
                      <label for="">Status</label><br />
                      <input type="text" /><br />
 
@@ -42,16 +49,32 @@
 import NavLog from "@/components/NavLog.vue";
 import Footer from "../components/Footer.vue";
 
-import Topbar from "../components/TopBar.vue";
 import Sidebar from "../components/Sidebar.vue";
+import axios from "axios";
 
 export default {
    name: "settings",
    components: {
       NavLog,
       Footer,
-      Topbar,
       Sidebar,
+   },
+   data() {
+      return {
+         profileName: null,
+         email: null,
+         location: null,
+      };
+   },
+   async created() {
+      const response = await axios.get("api/v1/user", {
+         headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         },
+      });
+      this.profileName = response.data.data.name;
+      this.email = response.data.data.email;
+      this.location = response.data.data.address;
    },
 };
 </script>
@@ -81,10 +104,30 @@ export default {
    background-color: #eaf5ff;
 }
 
+.head {
+   display: flex;
+   padding: 60px 0;
+   margin: auto 30px;
+   align-items: center;
+   border-bottom: solid 3px #bde0ff;
+}
+
+.head img {
+   width: 100px;
+}
+
+.head h1 {
+   font-family: "Kanit", sans-serif;
+   font-size: 30px;
+   margin-left: 30px;
+   color: #eaf5ff;
+}
+
 .card {
    width: 948px;
    height: 980px;
    background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+   margin: 100px auto;
 }
 
 .side {
@@ -101,7 +144,7 @@ export default {
    margin: 30px;
 }
 
-img {
+.profile img {
    width: 100px;
    margin-right: 20px;
 }
