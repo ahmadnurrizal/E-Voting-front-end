@@ -12,6 +12,7 @@ import Tutorials from "../views/Tutorials.vue";
 import FAQs from "../views/FAQs.vue";
 import Contact from "../views/Contact.vue";
 import About from "../views/AboutUs.vue";
+import Dashboard from "../views/Dashboard.vue";
 
 const routes = [
    {
@@ -78,6 +79,11 @@ const routes = [
       path: "/Contact",
       name: "Contact",
       component: Contact,
+   },
+   {
+      path: "/Dashboard",
+      name: "dashboard",
+      component: Dashboard,
    },
 ];
 
