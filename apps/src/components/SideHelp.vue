@@ -6,7 +6,7 @@
                to="/Help"
                style="text-decoration: none;
 "
-               ><p>Help Center</p></router-link
+               >Help Center</router-link
             >
          </li>
          <li>
@@ -14,7 +14,7 @@
                to="/Help/Tutorials"
                style="text-decoration: none;
 "
-               ><p>Tutorials</p></router-link
+               >Tutorials</router-link
             >
          </li>
          <li>
@@ -22,7 +22,7 @@
                to="/Help/FAQs"
                style="text-decoration: none;
 "
-               ><p>FAQs</p></router-link
+               >FAQs</router-link
             >
          </li>
       </ul>
@@ -53,15 +53,16 @@ export default {
    list-style: none;
 }
 
-p {
+a {
+   text-decoration: none;
    font-family: "Kanit", sans-serif;
    font-size: 24px;
    border: none;
    background-color: none;
-   color: #eaf5ff;
+   color: #bde0ff;
 }
 
-/* p:hover {
-   color: rgb(75, 68, 68);
-} */
+.router-link-active {
+   color: #eaf5ff;
+}
 </style>

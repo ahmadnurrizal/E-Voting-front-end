@@ -23,8 +23,8 @@
          </div>
          <div class="dropdown">
             <ul>
-               <li><router-link to="/Settings">Edit Profile</router-link></li>
-               <li><router-link to="/Dashboard">Dashboard</router-link></li>
+               <li><a href="/Settings">Edit Profile</a></li>
+               <li><a href="/Dashboard">Dashboard</a></li>
                <li class="logout">
                   <a id="out" href="/" @click="logout">Log Out</a>
                </li>

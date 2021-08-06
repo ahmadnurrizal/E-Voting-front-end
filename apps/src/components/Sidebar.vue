@@ -2,13 +2,13 @@
    <div class="sidebar">
       <ul>
          <li>
-            <router-link to="/Settings" style="text-decoration: none"><p>Edit Profile</p></router-link>
+            <router-link to="/Settings">Edit Profile</router-link>
          </li>
          <li>
-            <router-link to="/Settings/Password" style="text-decoration: none"><p>Change Password</p></router-link>
+            <router-link to="/Settings/Password" style="text-decoration: none">Change Password</router-link>
          </li>
          <li>
-            <router-link to="/Settings/DeleteAccount" style="text-decoration: none"><p>Delete Account</p></router-link>
+            <router-link to="/Settings/DeleteAccount" style="text-decoration: none">Delete Account</router-link>
          </li>
       </ul>
    </div>
@@ -38,9 +38,14 @@ export default {
    list-style: none;
 }
 
-p {
+a {
+   text-decoration: none;
    font-family: "Kanit", sans-serif;
    font-size: 24px;
+   color: #bde0ff;
+}
+
+.router-link-active {
    color: #eaf5ff;
 }
 </style>
