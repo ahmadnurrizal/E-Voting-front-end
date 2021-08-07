@@ -23,16 +23,19 @@
                         <img src="../../public/img/profile-default.svg" alt="" />
                         <div class="status">
                            <h2 v-if="getdata">{{ getdata.data.name }}</h2>
-                           <p>status user</p>
+                           <p>{{ userdata.status }}</p>
                         </div>
                      </div>
                   </div>
-                  <h3>Password</h3>
-                  <input type="text" placeholder="Type your password to delete your account..." />
+                  <form @submit.prevent="delAcc">
+                     <h3>Password</h3>
+                     <input type="text" placeholder="Type your password to delete your account..." v-model="password" />
 
-                  <div class="submission">
-                     <button>Delete Account</button>
-                  </div>
+                     <div class="submission">
+                        <!-- <button>Delete Account</button> -->
+                        <input type="submit" value="Delete Account" />
+                     </div>
+                  </form>
                </div>
             </div>
          </div>
@@ -59,15 +62,60 @@ export default {
    data() {
       return {
          getdata: null,
+         userdata: "",
+         password: "",
       };
    },
    async created() {
+      const user = await axios.get("api/v1/user", {
+         headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         },
+      });
+      this.userdata = user.data.data;
       const response = await axios.get("api/v1/user", {
          headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
          },
       });
       this.getdata = response.data;
+   },
+   methods: {
+      delAcc() {
+         // const response = await axios.delete("api/v1/users", {
+         //    headers: {
+         //       Authorization: "Bearer " + localStorage.getItem("token"),
+         //    },
+         //    name: this.nama,
+         // });
+         // console.log(response);
+
+         // const header = {
+         //    Authorization: "Bearer " + localStorage.getItem("token"),
+         // };
+
+         const data = {
+            password: this.password,
+         };
+
+         axios
+            .delete("api/v1/users", {
+               headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+               },
+               data,
+            })
+            .then((res) => {
+               alert("your account has been deleted");
+               console.log("deleted", res);
+               localStorage.removeItem("token");
+
+               this.$router.push("/");
+            })
+            .catch((err) => {
+               console.log("error", err);
+            });
+      },
    },
 };
 </script>
@@ -137,7 +185,7 @@ export default {
    padding: 6px 0 0 30px;
 }
 
-input {
+input[type="text"] {
    font-family: "Roboto", sans-serif;
    font-weight: 400;
    font-size: 16px;
@@ -163,6 +211,13 @@ h3 {
    color: #539be0;
 }
 
+.status p {
+   font-family: "Roboto", sans-serif;
+   font-size: 18px;
+   font-weight: 400;
+   color: #eaf5ff;
+}
+
 .information {
    display: flex;
    margin-bottom: 20px;
@@ -174,7 +229,8 @@ h3 {
    margin-right: 30px;
 }
 
-.submission button {
+.submission input {
+   cursor: pointer;
    font-family: "Kanit", sans-serif;
    font-size: 20px;
    font-weight: 500;
@@ -184,5 +240,9 @@ h3 {
    width: 200px;
    height: 50px;
    color: #ffffff;
+}
+
+.submission input:hover {
+   background-color: #dd5555;
 }
 </style>

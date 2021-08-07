@@ -9,7 +9,7 @@
                   <img src="../../public/img/profile-default.svg" alt="" />
                </div>
                <h1 v-if="profileName">
-                  <span style="color: #539BE0">{{ profileName }}</span> / Edit Profile
+                  <span style="color: #539BE0">{{ nama }}</span> / Edit Profile
                </h1>
             </div>
             <div class="body">
@@ -19,22 +19,22 @@
                <div class="edit">
                   <div class="profile">
                      <img src="../../public/img/profile-default.svg" alt="" />
-                     <button>change profile picture</button>
+                     <input type="submit" value="Change profile picture" />
                   </div>
-                  <form action="">
+                  <form @submit.prevent="handleUpdate">
                      <label for="">Profile Name</label><br />
                      <input type="text" v-model="profileName" :placeholder="profileName" /><br />
                      <label for="">Username</label><br />
-                     <input type="text" /><br />
+                     <input type="text" v-model="username" :placeholder="username" /><br />
                      <label for="">Email</label><br />
                      <input type="text" v-model="email" :placeholder="email" /><br />
                      <label for="">Location</label><br />
                      <input type="text" v-model="location" :placeholder="location" /><br />
                      <label for="">Status</label><br />
-                     <input type="text" /><br />
+                     <input type="text" v-model="status" :placeholder="status" /><br />
 
-                     <div class="submision">
-                        <button>save profile</button>
+                     <div class="submission">
+                        <input type="submit" value="save profile" />
                      </div>
                   </form>
                </div>
@@ -61,9 +61,12 @@ export default {
    },
    data() {
       return {
+         nama: "",
          profileName: null,
+         username: null,
          email: null,
          location: null,
+         status: null,
       };
    },
    async created() {
@@ -72,9 +75,40 @@ export default {
             Authorization: "Bearer " + localStorage.getItem("token"),
          },
       });
+      this.nama = response.data.data.name;
       this.profileName = response.data.data.name;
+      this.username = response.data.data.username;
       this.email = response.data.data.email;
       this.location = response.data.data.address;
+      this.status = response.data.data.status;
+   },
+   methods: {
+      handleUpdate() {
+         // let token = localStorage.getItem("token");
+         // console.log(token);
+         const header = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         };
+
+         const data = {
+            name: this.profileName,
+            username: this.username,
+            email: this.email,
+            address: this.location,
+            status: this.status,
+         };
+
+         axios
+            .post("api/v1/users", data, {
+               headers: header,
+            })
+            .then((response) => {
+               console.log("response recive", response);
+            })
+            .catch((error) => {
+               console.log("error", error);
+            });
+      },
    },
 };
 </script>
@@ -149,8 +183,9 @@ export default {
    margin-right: 20px;
 }
 
-button,
-label {
+.submission input,
+label,
+.profile input {
    font-family: "Kanit", sans-serif;
 }
 
@@ -160,7 +195,8 @@ label {
    margin-bottom: 40px;
 }
 
-.profile button {
+.profile input {
+   cursor: pointer;
    font-weight: 500;
    line-height: 32.4px;
    background-color: #bde0ff;
@@ -170,6 +206,10 @@ label {
    border-radius: 15px;
    width: 250px;
    height: 40px;
+}
+
+.profile input:hover {
+   background-color: #aad7ff;
 }
 
 form label {
@@ -189,7 +229,8 @@ form input {
    margin-bottom: 20px;
 }
 
-.submision button {
+.submission input {
+   cursor: pointer;
    margin-top: 10px;
    background-color: #ff7070;
    border: none;
@@ -198,5 +239,9 @@ form input {
    height: 50px;
    color: #ffffff;
    font-size: 20px;
+}
+
+.submission input:hover {
+   background-color: #dd5555;
 }
 </style>

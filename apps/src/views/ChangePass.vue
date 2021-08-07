@@ -17,16 +17,17 @@
                   <Sidebar />
                </div>
                <div class="contentPass">
-                  <form action="">
+                  <form @submit.prevent="handleChange">
                      <label for="">Current Password</label><br />
-                     <input type="text" placeholder="Type your current password..." /><br />
+                     <input type="text" placeholder="Type your current password..." v-model="currentPass" /><br />
                      <label for="">New Password</label><br />
-                     <input type="text" placeholder="Type a new password..." /><br />
+                     <input type="text" placeholder="Type a new password..." v-model="newPass" /><br />
                      <label for="">Confirm New Password</label><br />
-                     <input type="text" placeholder="Confirm your new password..." /><br />
+                     <input type="text" placeholder="Confirm your new password..." v-model="confirmPass" /><br />
 
                      <div class="submission">
-                        <button>Change Password</button>
+                        <!-- <button>Change Password</button> -->
+                        <input type="submit" value="change password" />
                      </div>
                   </form>
                </div>
@@ -54,6 +55,9 @@ export default {
    data() {
       return {
          profileName: null,
+         currentPass: "",
+         newPass: "",
+         confirmPass: "",
       };
    },
    async created() {
@@ -63,6 +67,32 @@ export default {
          },
       });
       this.profileName = response.data.data.name;
+   },
+   methods: {
+      handleChange() {
+         const header = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         };
+
+         const data = {
+            current_password: this.currentPass,
+            new_password: this.newPass,
+            confirm_new_password: this.confirmPass,
+         };
+
+         axios
+            .put("api/v1/users/change-password", data, {
+               headers: header,
+            })
+            .then((res) => {
+               console.log(res);
+            })
+            .catch((err) => {
+               console.log(err);
+            });
+
+         this.$router.push("/Settings");
+      },
    },
 };
 </script>
@@ -151,11 +181,7 @@ form input {
    padding: 12px 10px;
 }
 
-.submission {
-   margin-top: 10px;
-}
-
-.submission button {
+.submission input {
    font-family: "Kanit", sans-serif;
    font-size: 20px;
    font-weight: 500;
@@ -165,5 +191,6 @@ form input {
    height: 50px;
    border: none;
    border-radius: 25px;
+   padding: 10px;
 }
 </style>
