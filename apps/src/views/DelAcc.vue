@@ -106,7 +106,7 @@ export default {
                data,
             })
             .then((res) => {
-               alert("your account has been deleted");
+               alert("your Account has been deleted");
                console.log("deleted", res);
                localStorage.removeItem("token");
 
