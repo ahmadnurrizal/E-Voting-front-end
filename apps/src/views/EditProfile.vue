@@ -105,7 +105,7 @@ export default {
             })
             .then((response) => {
                console.log("response recive", response);
-               alert("Successfully edited");
+               alert("Profile successfully edited");
             })
             .catch((error) => {
                console.log("error", error);
