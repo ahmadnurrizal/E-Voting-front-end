@@ -85,10 +85,11 @@ export default {
                headers: header,
             })
             .then((res) => {
-               console.log(res);
+               alert("your password has been changed");
+               console.log("password changed", res);
             })
             .catch((err) => {
-               console.log(err);
+               console.log("error", err);
             });
 
          this.$router.push("/Settings");

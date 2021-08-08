@@ -17,11 +17,12 @@
                   <Sidebar />
                </div>
                <div class="edit">
-                  <div class="profile">
-                     <img src="../../public/img/profile-default.svg" alt="" />
-                     <input type="submit" value="Change profile picture" />
-                  </div>
                   <form @submit.prevent="handleUpdate">
+                     <div class="profile">
+                        <img src="../../public/img/profile-default.svg" alt="" />
+                        <button>Choose profile picture</button>
+                        <input type="file" />
+                     </div>
                      <label for="">Profile Name</label><br />
                      <input type="text" v-model="profileName" :placeholder="profileName" /><br />
                      <label for="">Username</label><br />
@@ -104,6 +105,7 @@ export default {
             })
             .then((response) => {
                console.log("response recive", response);
+               alert("Your profile has been successfully edited");
             })
             .catch((error) => {
                console.log("error", error);
@@ -185,17 +187,18 @@ export default {
 
 .submission input,
 label,
-.profile input {
+.profile button {
    font-family: "Kanit", sans-serif;
 }
 
 .profile {
+   position: relative;
    align-items: center;
    display: flex;
    margin-bottom: 40px;
 }
 
-.profile input {
+.profile button {
    cursor: pointer;
    font-weight: 500;
    line-height: 32.4px;
@@ -208,8 +211,17 @@ label,
    height: 40px;
 }
 
-.profile input:hover {
+.profile button:hover {
    background-color: #aad7ff;
+}
+
+input[type="file"] {
+   right: 150px;
+   top: 37px;
+   opacity: 0;
+   width: 250px;
+   position: absolute;
+   border: none;
 }
 
 form label {
