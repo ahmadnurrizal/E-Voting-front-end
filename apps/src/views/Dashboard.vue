@@ -53,16 +53,29 @@ export default {
          },
       });
       this.userdata = user.data.data;
-      const response = await axios.get("api/v1/user-poll", {
+      // const response = await axios.get("api/v1/user-poll", {
+      //    headers: {
+      //       Authorization: "Bearer " + localStorage.getItem("token"),
+      //    },
+      // });
+      // this.polls = response.data.message;
+      // if (this.polls.length == 0) {
+      //    this.empty = true;
+      // }
+
+      axios.get('api/v1/user-poll', {
          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-         },
-      });
-      this.polls = response.data.message;
-      if (this.polls.length == 0) {
-         this.empty = true;
-      }
-      // console.log(response.data);
+            Authorization: "Bearer " + localStorage.getItem('token')
+         }
+      }).then(res => {
+         console.log('success',res);
+         this.polls = res.data.message
+      }).catch(err => {
+         if(err){
+            this.empty = true
+         }
+      })
+      // console.log(response);
    },
 };
 </script>

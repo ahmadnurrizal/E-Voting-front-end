@@ -105,11 +105,16 @@ export default {
             })
             .then((response) => {
                console.log("response recive", response);
+               
+               // this.$router.push("/Settings")
                alert("Profile successfully edited");
+               location.reload()
+
             })
             .catch((error) => {
                console.log("error", error);
             });
+            
       },
    },
 };
