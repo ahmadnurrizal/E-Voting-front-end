@@ -12,7 +12,7 @@
             </div>
             <div class="list-poll">
                <ul v-if="!empty">
-                  <li class="polls" v-for="item in polls.slice(0, 10)" :key="item">
+                  <li class="polls" v-for="item in polls" :key="item">
                      {{ item.title }}
                      {{ item.deadline }}
                      {{ item.status }}
@@ -63,18 +63,21 @@ export default {
       //    this.empty = true;
       // }
 
-      axios.get('api/v1/user-poll', {
-         headers: {
-            Authorization: "Bearer " + localStorage.getItem('token')
-         }
-      }).then(res => {
-         console.log('success',res);
-         this.polls = res.data.message
-      }).catch(err => {
-         if(err){
-            this.empty = true
-         }
-      })
+      axios
+         .get("api/v1/user-poll", {
+            headers: {
+               Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+         })
+         .then((res) => {
+            console.log("success", res);
+            this.polls = res.data.message;
+         })
+         .catch((err) => {
+            if (err) {
+               this.empty = true;
+            }
+         });
       // console.log(response);
    },
 };
