@@ -31,7 +31,7 @@
               <li v-for="item in arrInput" :key="item">
                 <div>
                   <label for="answer">Answer Option</label><br />
-                  <input type="text" @focus="addEvent" :id="item" v-model="" />
+                  <input type="text" @focus="addEvent" :id="item"  />
                   <div class="option-parent">
                     <button>Add photo</button>
                     <input type="file" accept=".jpg, .png, .jpeg" />
