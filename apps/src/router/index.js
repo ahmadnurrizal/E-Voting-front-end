@@ -87,10 +87,10 @@ const routes = [
       component: Dashboard,
    },
    {
-      path: "/:user/Poll/:id",
+      path: "/Poll/:id",
       name: "Poll",
-      component: Poll
-   }
+      component: Poll,
+   },
 ];
 
 const router = createRouter({
