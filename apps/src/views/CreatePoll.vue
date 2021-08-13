@@ -150,7 +150,6 @@ export default {
          };
 
          let filteredOptions = this.option.filter((option) => option.option != "");
-         console.log(filteredOptions);
          axios
             .post(
                "api/v1/polls",
@@ -168,7 +167,7 @@ export default {
             .then((res) => {
                console.log(res);
 
-               this.$router.push(this.userData.name + "/Poll/" + this.userData.id);
+               this.$router.push("/Poll/" + this.userData.id);
             })
             .catch((err) => {
                console.log(err);

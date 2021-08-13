@@ -72,6 +72,9 @@ export default {
          .then((res) => {
             console.log("success", res);
             this.polls = res.data.message;
+            if (this.polls == "poll not found") {
+               this.empty = true;
+            }
          })
          .catch((err) => {
             if (err) {
