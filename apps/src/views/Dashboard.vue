@@ -29,100 +29,91 @@
 </template>
 
 <script>
-import NavLog from "@/components/NavLog.vue";
-import Footer from "../components/Footer.vue";
+   import NavLog from "@/components/NavLog.vue";
+   import Footer from "../components/Footer.vue";
 
-import axios from "axios";
-export default {
-   name: "dashboard",
-   components: {
-      NavLog,
-      Footer,
-   },
-   data() {
-      return {
-         polls: [],
-         empty: false,
-         userdata: "",
-      };
-   },
-   async created() {
-      const user = await axios.get("api/v1/user", {
-         headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-         },
-      });
-      this.userdata = user.data.data;
-      // const response = await axios.get("api/v1/user-poll", {
-      //    headers: {
-      //       Authorization: "Bearer " + localStorage.getItem("token"),
-      //    },
-      // });
-      // this.polls = response.data.message;
-      // if (this.polls.length == 0) {
-      //    this.empty = true;
-      // }
-
-      axios
-         .get("api/v1/user-poll", {
+   import axios from "axios";
+   export default {
+      name: "dashboard",
+      components: {
+         NavLog,
+         Footer,
+      },
+      data() {
+         return {
+            polls: [],
+            empty: false,
+            userdata: "",
+         };
+      },
+      async created() {
+         const user = await axios.get("api/v1/user", {
             headers: {
                Authorization: "Bearer " + localStorage.getItem("token"),
             },
-         })
-         .then((res) => {
-            console.log("success", res);
-            this.polls = res.data.message;
-            if (this.polls == "poll not found") {
-               this.empty = true;
-            }
-         })
-         .catch((err) => {
-            if (err) {
-               this.empty = true;
-            }
          });
-      // console.log(response);
-   },
-};
+         this.userdata = user.data.data;
+
+         axios
+            .get("api/v1/user-poll", {
+               headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+               },
+            })
+            .then((res) => {
+               console.log("success", res);
+               this.polls = res.data.message;
+               if (this.polls == "poll not found") {
+                  this.empty = true;
+               }
+            })
+            .catch((err) => {
+               if (err) {
+                  this.empty = true;
+               }
+            });
+         // console.log(response);
+      },
+   };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
+   @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
 
-* {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-}
+   * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+   }
 
-.wave-top {
-   padding-top: 60px;
-}
+   .wave-top {
+      padding-top: 60px;
+   }
 
-.vec {
-   padding-top: 200px;
-   padding-bottom: 170px;
-   background-image: url("../../public/img/vector/signup-wave.svg");
-   background-size: cover;
-   background-repeat: no-repeat;
-}
+   .vec {
+      padding-top: 200px;
+      padding-bottom: 170px;
+      background-image: url("../../public/img/vector/signup-wave.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+   }
 
-.wrapper {
-   background-color: #eaf5ff;
-}
+   .wrapper {
+      background-color: #eaf5ff;
+   }
 
-.card {
-   width: 948px;
-   height: 939px;
-   background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
-   margin: 100px auto;
-}
+   .card {
+      width: 948px;
+      height: 939px;
+      background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+      margin: 100px auto;
+   }
 
-h1 {
-   text-align: center;
-}
+   h1 {
+      text-align: center;
+   }
 
-.profile {
-   text-align: center;
-}
+   .profile {
+      text-align: center;
+   }
 </style>
