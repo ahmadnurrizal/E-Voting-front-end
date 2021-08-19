@@ -76,10 +76,6 @@ p {
    line-height: 180%;
 }
 
-.row-desc-3 button:hover {
-   color: #1d1515;
-}
-
 .btn-1 {
    cursor: pointer;
    width: 200px;
