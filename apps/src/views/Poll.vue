@@ -7,8 +7,10 @@
       <!-- main content -->
       <!-- <h1>masukk{{ pollId }}</h1> -->
       <div class="main">
-         <div class="card">
-            <div class="head">
+         <div class="card-header">
+            <Headerpoll />
+
+            <!-- <div class="head">
                <h1>{{ title }}</h1>
                <p>
                   Created by
@@ -33,44 +35,49 @@
             <div class="desc">
                <h2>"{{ description }}"</h2>
                <img src="" alt="" />
-            </div>
+            </div> -->
             <form>
                <h2>Choose one answer :</h2>
                <ul>
-                  <li v-for="(item, index) in options" :key="item">
+                  <li
+                     id="listOptions"
+                     v-for="(item, index) in options"
+                     :key="item"
+                  >
                      <div class="choices">
-                        <img src="" alt="" />
+                        <img :src="options[index].image_path" alt="" /><br />
                         <label style="word-wrap: break-word"
                            ><input
-                              type="checkbox"
-                              class="checkbox-circle"
+                              type="radio"
+                              :id="options[index].id"
+                              name="item"
+                              v-model="checked"
+                              :value="options[index].id"
                            /><span>{{ options[index].option }}</span></label
                         >
                      </div>
                   </li>
                </ul>
                <div class="submission">
-                  <input type="submit" value="vote" />
+                  <input
+                     type="submit"
+                     value="vote"
+                     @click.prevent="handleVote"
+                  />
                   <div class="sub-link">
-                     <button class="type1">Result</button>
-                     <button>Share</button>
+                     <router-link
+                        :to="{ name: 'Result', params: { id: idMatched } }"
+                     >
+                        <button class="type1">Result</button></router-link
+                     >
+                     <router-link to=""
+                        ><button class="type2">Share</button></router-link
+                     >
                   </div>
                </div>
             </form>
          </div>
-         <div class="card-2">
-            <h1>Share Poll</h1>
-            <div class="link-address">
-               <input type="text" placeholder="link yang mau dishare" />
-               <button>Copy Link</button>
-            </div>
-            <div class="socmed">
-               <a href="">instagram</a>
-               <a href="">telegram</a>
-               <a href="">twitter</a>
-               <a href="">facebpok</a>
-            </div>
-         </div>
+         <Sharepoll />
       </div>
       <Footer />
    </div>
@@ -81,26 +88,48 @@
    import Footer from "../components/Footer.vue";
 
    import axios from "axios";
+   import Headerpoll from "../components/Headerpoll.vue";
+   import Sharepoll from "../components/Sharepoll.vue";
    export default {
       components: {
          Navlog,
          Footer,
+         Headerpoll,
+         Sharepoll,
       },
       data() {
          return {
             pollId: this.$route.params.id,
             userdata: "",
             idMatched: null,
+            resultURL: "",
 
             title: "",
             created_at: "",
             description: "",
             options: [{ options: "", image_path: "" }],
+            checked: "",
          };
       },
       methods: {
          toggleClick() {
             document.getElementById("dropDown").classList.toggle("show");
+         },
+
+         handleVote() {
+            const data = {
+               poll_option_id: this.checked,
+            };
+
+            axios
+               .post(`api/v1/polls/${this.idMatched}/vote`, data, {
+                  headers: {
+                     Authorization: "Bearer " + localStorage.getItem("token"),
+                  },
+               })
+               .then((res) => {
+                  console.log(res);
+               });
          },
       },
       async created() {
@@ -115,8 +144,10 @@
             headers: header,
          });
          let lengthPoll = response.data.message.length;
+         // matching id
          for (let i = 0; i < lengthPoll; i++) {
             if (this.pollId == response.data.message[i].id) {
+               this.idMatched = response.data.message[i].id;
                let lastPoll = response.data.message[i];
                (this.title = lastPoll.title),
                   (this.created_at = lastPoll.created_at),
@@ -128,13 +159,14 @@
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
             headers: header,
          });
-         // console.log(Poll.data.data[1].option);
-         for (let i = 0; i < Poll.data.data.length; i++) {
-            this.options[i].option = Poll.data.data[i].option;
-            if (i < Poll.data.data.length - 1) {
-               this.options.push({ option: "", image_path: "" });
-            }
-         }
+         console.log(Poll.data);
+         this.options = Poll.data.data;
+         // for (let i = 0; i < Poll.data.data.length; i++) {
+         //    this.options[i].option = Poll.data.data[i].option;
+         //    if (i < Poll.data.data.length - 1) {
+         //       this.options.push({ option: "", image_path: "" });
+         //    }
+         // }
       },
    };
 </script>
@@ -168,7 +200,7 @@
       display: inline;
    }
 
-   .card {
+   .card-header {
       width: 948px;
       min-height: 650px;
       border: none;
@@ -179,17 +211,7 @@
       padding: 30px 30px 60px;
    }
 
-   .card-2 {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
-      background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
-      width: 948px;
-      min-height: 290px;
-      margin: auto auto 100px;
-   }
-
-   .head h1,
+   /* .head h1,
    .desc h2 {
       font-family: "Kanit", sans-serif;
       text-align: center;
@@ -284,19 +306,14 @@
       font-size: 24px;
       color: #eaf5ff;
       margin-bottom: 52px;
-   }
+   } */
 
    form h2,
-   form label,
-   .head p {
+   form label {
       font-family: "Roboto", sans-serif;
       font-weight: 400;
       color: #eaf5ff;
       font-size: 18px;
-   }
-
-   .head p {
-      text-align: center;
    }
 
    form ul li {
@@ -304,9 +321,23 @@
       cursor: pointer;
    }
 
+   .choices {
+      display: block;
+   }
+
    .choices span {
       margin-left: 10px;
       cursor: pointer;
+   }
+
+   .choices label input {
+      margin-bottom: 10px;
+   }
+
+   .choices img {
+      object-fit: cover;
+      width: 400px;
+      height: 400;
    }
 
    .checkbox-circle {
@@ -343,19 +374,36 @@
       font-size: 20px;
    }
 
-   .sub-link button {
+   .type1,
+   .type2 {
+      padding-left: 21px;
       border: none;
       border-radius: 25px;
       width: 200px;
       height: 50px;
-      color: #eaf5ff;
       font-family: "Kanit", sans-serif;
       font-weight: 500;
       font-size: 20px;
       color: #1e6599;
+      background-color: #eaf5ff;
+      cursor: pointer;
    }
 
-   .sub-link .type1 {
+   .type1 {
+      background-image: url("../../public/img/polling-result-icon.svg");
+      background-repeat: no-repeat;
+      background-position: 40px;
       margin-right: 30px;
+   }
+
+   .type1:hover,
+   .type2:hover {
+      background-color: #dbe8f5;
+   }
+
+   .type2 {
+      background-image: url("../../public/img/polling-share-icon.svg");
+      background-repeat: no-repeat;
+      background-position: 40px;
    }
 </style>
