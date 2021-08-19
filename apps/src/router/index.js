@@ -14,6 +14,7 @@ import Contact from "../views/Contact.vue";
 import About from "../views/AboutUs.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Poll from "../views/Poll.vue";
+import Result from "../views/Result.vue"
 
 const routes = [
    {
@@ -91,6 +92,11 @@ const routes = [
       name: "Poll",
       component: Poll,
    },
+   {
+      path: "/Poll/:id/result",
+      name: "Result",
+      component: Result
+   }
 ];
 
 const router = createRouter({
