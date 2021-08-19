@@ -39,7 +39,12 @@
                            />
                            <div class="option-parent">
                               <button>Add photo</button>
-                              <input type="file" accept=".jpg, .png, .jpeg" />
+                              <input
+                                 type="file"
+                                 accept=".jpg, .png, .jpeg"
+                                 :ref="'files' + index"
+                                 @change="handleUpload(index)"
+                              />
                               <span></span>
                            </div>
                         </div>
@@ -194,6 +199,16 @@
                deadline.style.display = "none";
             }
          },
+         handleUpload(index) {
+            let uploadedFiles = this.$refs["files" + index].files;
+
+            this.option[index].image_path = uploadedFiles[0];
+            console.log(this.option);
+            // for (let i = 0; i < uploadedFiles.length; i++) {
+            //    this.files.push(uploadedFiles[i]);
+            // }
+            // console.log(this.files);
+         },
          showPoster() {
             const cek2 = document.getElementById("cek2");
             const poster = document.getElementById("poster");
@@ -204,7 +219,8 @@
                poster.style.display = "none";
             }
          },
-         handlePoll() {
+
+         async handlePoll() {
             // const option = document.getElementsByClassName("baru").value;
             const header = {
                Authorization: "Bearer " + localStorage.getItem("token"),
@@ -212,8 +228,29 @@
             };
 
             let filteredOptions = this.option.filter(
-               (option) => option.option != ""
+               (option) => option.option != "" || option.image_path != ""
             );
+
+            const uploader = filteredOptions.map((option, index) => {
+               let data = new FormData();
+               data.append(
+                  "image",
+                  filteredOptions[index].image_path,
+                  new Date().toString()
+               );
+               return axios.post("api/v1/upload-image", data, {
+                  headers: header,
+               });
+               // .then((res_upload) => {
+               //    console.log(res_upload);
+               // });
+            });
+            const allResponseUpload = await Promise.all(uploader);
+            allResponseUpload.forEach((res, index) => {
+               filteredOptions[index].image_path = res.data.imageURL;
+            });
+            console.log(filteredOptions);
+
             axios
                .post(
                   "api/v1/polls",
