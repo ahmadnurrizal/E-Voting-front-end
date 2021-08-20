@@ -9,33 +9,6 @@
       <div class="main">
          <div class="card-header">
             <Headerpoll />
-
-            <!-- <div class="head">
-               <h1>{{ title }}</h1>
-               <p>
-                  Created by
-                  <span style="color: #539BE0">
-                     {{ userdata.name }}
-                  </span>
-                  at {{ created_at }}
-               </p>
-               <div class="toggle">
-                  <img
-                     src="../../public/img/polling-toggle.svg"
-                     @click="toggleClick"
-                     alt=""
-                  />
-                  <div class="dropDown" id="dropDown">
-                     <a class="edit" href=""> <span>Edit Poll</span> </a>
-                     <a class="reset" href=""> <span>Reset Poll</span> </a>
-                     <a class="delete" href=""> <span>Delete Poll</span> </a>
-                  </div>
-               </div>
-            </div>
-            <div class="desc">
-               <h2>"{{ description }}"</h2>
-               <img src="" alt="" />
-            </div> -->
             <form>
                <h2>Choose one answer :</h2>
                <ul>
@@ -49,10 +22,10 @@
                         <label style="word-wrap: break-word"
                            ><input
                               type="radio"
-                              :id="options[index].id"
+                              :id="index"
                               name="item"
                               v-model="checked"
-                              :value="options[index].id"
+                              :value="index + 1"
                            /><span>{{ options[index].option }}</span></label
                         >
                      </div>
@@ -102,12 +75,11 @@
             pollId: this.$route.params.id,
             userdata: "",
             idMatched: null,
-            resultURL: "",
 
             title: "",
             created_at: "",
             description: "",
-            options: [{ options: "", image_path: "" }],
+            options: [{ option: "", image_path: "" }],
             checked: "",
          };
       },
@@ -122,13 +94,17 @@
             };
 
             axios
-               .post(`api/v1/polls/${this.idMatched}/vote`, data, {
+               .post(`api/v1/polls/${this.pollId}/vote`, data, {
                   headers: {
                      Authorization: "Bearer " + localStorage.getItem("token"),
                   },
                })
                .then((res) => {
                   console.log(res);
+                  // if( res.data.message == "Sorry, you have alredy voted this poll"){
+
+                  // }
+                  this.$router.push(`/Poll/${this.pollId}/voted`);
                });
          },
       },
@@ -136,37 +112,30 @@
          const header = {
             Authorization: "Bearer " + localStorage.getItem("token"),
          };
-         const user = await axios.get("api/v1/user", {
-            headers: header,
-         });
-         this.userdata = user.data.data;
-         const response = await axios.get("api/v1/user-poll", {
-            headers: header,
-         });
-         let lengthPoll = response.data.message.length;
-         // matching id
-         for (let i = 0; i < lengthPoll; i++) {
-            if (this.pollId == response.data.message[i].id) {
-               this.idMatched = response.data.message[i].id;
-               let lastPoll = response.data.message[i];
-               (this.title = lastPoll.title),
-                  (this.created_at = lastPoll.created_at),
-                  (this.description = lastPoll.description);
-            }
-         }
+         // const user = await axios.get("api/v1/user", {
+         //    headers: header,
+         // });
+         // this.userdata = user.data.data;
+         // const response = await axios.get("api/v1/user-poll", {
+         //    headers: header,
+         // });
+         // let lengthPoll = response.data.message.length;
+         // // matching id
+         // for (let i = 0; i < lengthPoll; i++) {
+         //    if (this.pollId == response.data.message[i].id) {
+         //       this.idMatched = response.data.message[i].id;
+         //       let lastPoll = response.data.message[i];
+         //       (this.title = lastPoll.title),
+         //          (this.created_at = lastPoll.created_at),
+         //          (this.description = lastPoll.description);
+         //    }
+         // }
 
          // get poll option
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
             headers: header,
          });
-         console.log(Poll.data);
          this.options = Poll.data.data;
-         // for (let i = 0; i < Poll.data.data.length; i++) {
-         //    this.options[i].option = Poll.data.data[i].option;
-         //    if (i < Poll.data.data.length - 1) {
-         //       this.options.push({ option: "", image_path: "" });
-         //    }
-         // }
       },
    };
 </script>
@@ -372,6 +341,11 @@
       font-family: "Kanit", sans-serif;
       font-weight: 500;
       font-size: 20px;
+      cursor: pointer;
+   }
+
+   .submission input:hover {
+      background-color: #f55454;
    }
 
    .type1,
