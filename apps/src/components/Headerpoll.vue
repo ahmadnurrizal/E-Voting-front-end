@@ -36,6 +36,7 @@
          return {
             pollId: this.$route.params.id,
             userdata: "",
+            idMatched: null,
 
             title: "",
             created_at: "",
@@ -51,24 +52,29 @@
          const header = {
             Authorization: "Bearer " + localStorage.getItem("token"),
          };
-         const user = await axios.get("api/v1/user", {
+         const getUser = await axios.get("api/v1/polls", {
             headers: header,
          });
-         this.userdata = user.data.data;
-         const response = await axios.get("api/v1/user-poll", {
-            headers: header,
-         });
-         let lengthPoll = response.data.message.length;
+
          // matching id
-         for (let i = 0; i < lengthPoll; i++) {
-            if (this.pollId == response.data.message[i].id) {
-               this.idMatched = response.data.message[i].id;
-               let lastPoll = response.data.message[i];
-               (this.title = lastPoll.title),
-                  (this.created_at = lastPoll.created_at),
-                  (this.description = lastPoll.description);
+         for (let index = 0; index < getUser.data.data.length; index++) {
+            if (getUser.data.data[index].id == this.pollId) {
+               this.idMatched = getUser.data.data[index].user_id;
             }
          }
+
+         const user = await axios.get(`api/v1/users/${this.idMatched}`, {
+            headers: header,
+         });
+         // console.log(user);
+         this.userdata = user.data.data;
+
+         const response = await axios.get(`api/v1/polls/${this.pollId}`, {
+            headers: header,
+         });
+         this.title = response.data.data.title;
+         this.created_at = response.data.data.created_at;
+         this.description = response.data.data.description;
       },
    };
 </script>
