@@ -15,6 +15,7 @@ import About from "../views/AboutUs.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Poll from "../views/Poll.vue";
 import Result from "../views/Result.vue"
+import Aftervote from "../views/AfterVote.vue"
 
 const routes = [
    {
@@ -96,6 +97,11 @@ const routes = [
       path: "/Poll/:id/result",
       name: "Result",
       component: Result
+   },
+   {
+      path: "/Poll/:id/voted",
+      name: "Aftervote",
+      component: Aftervote
    }
 ];
 
