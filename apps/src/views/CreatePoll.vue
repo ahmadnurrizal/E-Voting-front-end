@@ -38,14 +38,35 @@
                               v-model="option[index].option"
                            />
                            <div class="option-parent">
-                              <button>Add photo</button>
+                              <div class="file-decoration">
+                                 <div class="file-wrap">
+                                    <span class="fileName">{{
+                                       option[index].file_name
+                                    }}</span>
+                                 </div>
+
+                                 <span
+                                    :id="'remove' + index"
+                                    class="remove"
+                                    @click="removePhoto(index)"
+                                 >
+                                    Remove
+                                 </span>
+                              </div>
+                              <button
+                                 class="addButton"
+                                 :id="'addButton' + index"
+                              >
+                                 Add photo
+                              </button>
                               <input
                                  type="file"
-                                 accept=".jpg, .png, .jpeg"
                                  :ref="'files' + index"
                                  @change="handleUpload(index)"
+                                 accept=".jpg, .png, .jpeg"
+                                 :id="'id' + index"
+                                 class="addPhoto"
                               />
-                              <span></span>
                            </div>
                         </div>
                      </li>
@@ -53,13 +74,23 @@
                   <div class="settings">
                      <h2>Settings</h2>
                      <label style="word-wrap: break-word"
-                        ><input class="checkbox" type="checkbox" /><span
-                           >Only via direct link</span
-                        ></label
+                        ><input
+                           class="checkbox"
+                           type="checkbox"
+                           disabled
+                        /><span
+                           >Only via direct link
+                           <span style="color: orange">(soon)</span>
+                        </span></label
                      ><br />
                      <label style="word-wrap: break-word"
-                        ><input class="checkbox" type="checkbox" /><span
-                           >Only multiple choices</span
+                        ><input
+                           class="checkbox"
+                           type="checkbox"
+                           disabled
+                        /><span
+                           >Only multiple choices
+                           <span style="color: orange">(soon)</span></span
                         ></label
                      ><br />
                      <label style="word-wrap: break-word"
@@ -85,14 +116,36 @@
                            @click="showPoster"
                         /><span>Add a poster</span></label
                      ><br />
-                     <input
-                        id="inputPoster"
-                        type="file"
-                        accept=".jpg, .png, .jpeg"
-                     />
-                     <button id="poster" style="display: none">
-                        Add Poster
-                     </button>
+                     <div class="posterWrap" id="posterWrap">
+                        <input
+                           id="inputPoster"
+                           type="file"
+                           accept=".jpg, .png, .jpeg"
+                           ref="poster"
+                           @change="handlePoster"
+                           class="tambahPosterInput"
+                        />
+                        <button
+                           id="poster"
+                           class="tambahPosterButton"
+                           style="display: none"
+                        >
+                           Add Poster
+                        </button>
+                     </div>
+
+                     <div class="wrap-afterPost">
+                        <span
+                           id="removePoster"
+                           class="removePoster"
+                           @click="removePoster"
+                           style="font-family: Kanit, sans-serif; font-size: 13px;text-align: center;"
+                           >Remove
+                        </span>
+                        <span class="posterName" disabled>{{
+                           poster[0].poster_name
+                        }}</span>
+                     </div>
                      <br />
                   </div>
                   <div class="submission">
@@ -140,10 +193,12 @@
             deadline: "",
             status: "opened",
             option: [
-               { option: "", image_path: "" },
-               { option: "", image_path: "" },
-               { option: "", image_path: "" },
+               { option: "", image_path: "", file_name: "" },
+               { option: "", image_path: "", file_name: "" },
+               { option: "", image_path: "", file_name: "" },
             ],
+            overload: false,
+            poster: [{ url: "", poster_name: "" }],
          };
       },
       async created() {
@@ -154,41 +209,16 @@
             headers: header,
          });
          this.userData = response.data.data;
-         // console.log(response);
-
-         // let id_user = response.data.data.id;
-         // const response_poll = await axios.get("api/v1/user-poll", {
-         //    headers: header,
-         // });
-
-         // const id_poll = response_poll.data.message[27].id;
-         // console.log(id_poll);
       },
       methods: {
          addEvent(e) {
-            // let lastIndex = this.arrInput[this.arrInput.length - 1];
-            //  console.log(this.option);
-            this.option.push({ option: "", image_path: "" });
+            this.option.push({ option: "", image_path: "", file_name: "" });
             let currId = e.target.id;
             if (currId == this.lastIndex.toString()) {
                this.arrInput.push(this.lastIndex + 1);
                this.lastIndex = this.lastIndex + 1;
             }
          },
-         // sizeRestrict() {
-         //    let input = document.getElementById("posinput");
-         //    let span = document.getElementById("msg");
-
-         //    let files = input.files;
-         //    if (files.length > 0) {
-         //       if (files[0].size > 10 * 1024) {
-         //          span.innerText = "File size exceeds 10kb";
-
-         //          return;
-         //       }
-         //    }
-         //    span.innerText = "done";
-         // },
          showDeadline() {
             const cek = document.getElementById("cek");
             const deadline = document.getElementById("deadline");
@@ -198,16 +228,6 @@
             } else {
                deadline.style.display = "none";
             }
-         },
-         handleUpload(index) {
-            let uploadedFiles = this.$refs["files" + index].files;
-
-            this.option[index].image_path = uploadedFiles[0];
-            console.log(this.option);
-            // for (let i = 0; i < uploadedFiles.length; i++) {
-            //    this.files.push(uploadedFiles[i]);
-            // }
-            // console.log(this.files);
          },
          showPoster() {
             const cek2 = document.getElementById("cek2");
@@ -219,6 +239,79 @@
                poster.style.display = "none";
             }
          },
+         removePoster() {
+            const inputPoster = document.getElementById("inputPoster");
+            const button = document.getElementById("posterWrap");
+            const remove = document.getElementById("removePoster");
+
+            inputPoster.value = "";
+            this.poster[0].url = "";
+            this.poster[0].poster_name = "";
+            if (inputPoster.value == "") {
+               button.className = "posterWrap";
+               remove.className = "removePoster";
+            }
+         },
+         handlePoster() {
+            const inputPoster = document.getElementById("inputPoster");
+            const button = document.getElementById("posterWrap");
+            const remove = document.getElementById("removePoster");
+
+            let file = inputPoster.files;
+            if (file.length > 0) {
+               this.poster[0].poster_name = file[0].name;
+               if (file[0].size > 1000 * 1024) {
+                  this.poster[0].poster_name = "";
+                  alert("file exceeds the minimum size (min: 1 Mb)");
+
+                  return;
+               } else {
+                  // inputPoster.className = "tambahPosterInput-active";
+                  button.className = "posterWrap-active";
+                  remove.className = "removePoster-active";
+               }
+            }
+            let uploadedPoster = this.$refs.poster.files;
+            this.poster[0].url = uploadedPoster;
+         },
+         handleUpload(index) {
+            const inputFile = document.getElementById("id" + index);
+            const button = document.getElementById("addButton" + index);
+            const remove = document.getElementById("remove" + index);
+
+            let file = inputFile.files;
+            if (file.length > 0) {
+               this.option[index].file_name = file[0].name;
+
+               if (file[0].size > 1000 * 1024) {
+                  this.option[index].file_name = "";
+                  alert("file exceeds the minimum size (min: 1 Mb)");
+
+                  return;
+               } else {
+                  button.className = "addButton-active";
+                  inputFile.className = "addPhoto-active";
+                  remove.className = "remove-active";
+               }
+            }
+
+            let uploadedFiles = this.$refs["files" + index].files;
+
+            this.option[index].image_path = uploadedFiles[0];
+         },
+         removePhoto(index) {
+            const inputFile = document.getElementById("id" + index);
+            const button = document.getElementById("addButton" + index);
+            const remove = document.getElementById("remove" + index);
+
+            inputFile.value = "";
+            this.option[index].file_name = "";
+            if (inputFile.value == "") {
+               inputFile.className = "addPhoto";
+               button.className = "addButton";
+               remove.className = "remove";
+            }
+         },
 
          async handlePoll() {
             // const option = document.getElementsByClassName("baru").value;
@@ -226,6 +319,17 @@
                Authorization: "Bearer " + localStorage.getItem("token"),
                "Content-type": "application/json",
             };
+            // let poster = this.poster[0].url;
+            // const resUploadPoster = await axios.post(
+            //    "api/v1/upload-image",
+            //    poster,
+            //    {
+            //       headers: header,
+            //    }
+            // );
+            // console.log(resUploadPoster);
+
+            // this.poster[0].url = resUploadPoster.data.imageURL;
 
             let filteredOptions = this.option.filter(
                (option) => option.option != "" || option.image_path != ""
@@ -249,7 +353,6 @@
             allResponseUpload.forEach((res, index) => {
                filteredOptions[index].image_path = res.data.imageURL;
             });
-            console.log(filteredOptions);
 
             axios
                .post(
@@ -260,13 +363,13 @@
                      deadline: this.deadline,
                      status: this.status,
                      poll_options: filteredOptions,
+                     image_path: this.poster[0].url,
                   },
                   {
                      headers: header,
                   }
                )
                .then((res) => {
-                  console.log(res);
                   let poll_id = res.data.poll.id;
                   this.$router.push("/Poll/" + poll_id);
                })
@@ -410,9 +513,51 @@
       top: 5px;
    }
 
-   /* upload message */
-   #msg {
-      color: red;
+   .file-decoration {
+      margin-top: 5px;
+      width: 340px;
+      display: flex;
+   }
+
+   .file-wrap {
+      width: 50%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      height: 20px;
+   }
+
+   .addButton-active,
+   .addPhoto-active {
+      display: none;
+   }
+
+   .remove {
+      opacity: 0;
+   }
+
+   .remove-active {
+      font-family: "Kanit", sans-serif;
+      font-size: 12px;
+      color: #eaf5ff;
+      cursor: pointer;
+      margin-left: 2px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff7070;
+      width: 60px;
+      height: 20px;
+      text-align: center;
+   }
+
+   .remove-active:hover {
+      background-color: #f55454;
+   }
+
+   .fileName {
+      font-family: "Roboto", sans-serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #050e16;
    }
 
    #poster {
@@ -431,6 +576,10 @@
       height: 20px;
    }
 
+   #poster-active {
+      display: block;
+   }
+
    #inputPoster {
       position: absolute;
       opacity: 0;
@@ -439,12 +588,45 @@
       height: 20px;
    }
 
-   .settings {
-   }
-
    .settings input {
       margin-right: 8px;
       cursor: pointer;
+   }
+
+   /* Add poster style */
+   .removePoster {
+      opacity: 0;
+   }
+
+   .posterWrap-active {
+      display: none;
+   }
+
+   .wrap-afterPost {
+      display: flex;
+   }
+
+   .posterName {
+      width: 50%;
+      color: #050e16;
+      font-style: italic;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      height: 21px;
+   }
+
+   .removePoster-active {
+      color: #eaf5ff;
+      background-color: #ff7070;
+      width: 60px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+   }
+
+   .removePoster-active:hover {
+      background-color: #f55454;
    }
 
    .submission {
@@ -453,7 +635,7 @@
       position: absolute;
    }
 
-   .submission input[type="submit"] {
+   .submission input {
       cursor: pointer;
       font-family: "Kanit", sans-serif;
       color: white;
@@ -463,5 +645,9 @@
       height: 40px;
       border: none;
       border-radius: 20px;
+   }
+
+   .submission input:hover {
+      background-color: #f55454;
    }
 </style>

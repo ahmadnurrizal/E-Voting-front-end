@@ -34,7 +34,7 @@
                </li>
             </ul>
             <div class="submission">
-               <button class="refresh">Refresh Poll</button>
+               <button @click="reloadPage" class="refresh">Refresh Poll</button>
                <div class="sub-link">
                   <router-link :to="{ name: 'Poll', params: { id: pollId } }">
                      <button class="type1">Back to poll</button>
@@ -76,6 +76,11 @@
             options: [{ option: "", image_path: "" }],
             percentage: [],
          };
+      },
+      methods: {
+         reloadPage() {
+            location.reload();
+         },
       },
       async created() {
          const header = {

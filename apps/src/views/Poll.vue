@@ -39,7 +39,7 @@
                   />
                   <div class="sub-link">
                      <router-link
-                        :to="{ name: 'Result', params: { id: idMatched } }"
+                        :to="{ name: 'Result', params: { id: pollId } }"
                      >
                         <button class="type1">Result</button></router-link
                      >
