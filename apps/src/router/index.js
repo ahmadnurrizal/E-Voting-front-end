@@ -14,8 +14,10 @@ import Contact from "../views/Contact.vue";
 import About from "../views/AboutUs.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Poll from "../views/Poll.vue";
-import Result from "../views/Result.vue"
-import Aftervote from "../views/AfterVote.vue"
+import Result from "../views/Result.vue";
+import Aftervote from "../views/AfterVote.vue";
+import ForgotPass from "../views/ForgotPass.vue";
+import ResetPass from "../views/ResetPass.vue";
 
 const routes = [
    {
@@ -96,13 +98,23 @@ const routes = [
    {
       path: "/Poll/:id/result",
       name: "Result",
-      component: Result
+      component: Result,
    },
    {
       path: "/Poll/:id/voted",
       name: "Aftervote",
-      component: Aftervote
-   }
+      component: Aftervote,
+   },
+   {
+      path: "/forgot-password",
+      name: "ForgotPass",
+      component: ForgotPass,
+   },
+   {
+      path: "/api/v1/reset-password/:token",
+      name: "ResetPass",
+      component: ResetPass,
+   },
 ];
 
 const router = createRouter({
