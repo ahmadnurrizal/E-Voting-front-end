@@ -1,7 +1,9 @@
 <template>
    <nav>
       <div class="brand">
-         <router-link to="/"><img src="../../public/img/logo-brand.svg" alt="FingerVote"/></router-link>
+         <router-link to="/"
+            ><img src="../../public/img/logo-brand.svg" alt="FingerVote"
+         /></router-link>
       </div>
       <section>
          <ul>
@@ -14,7 +16,18 @@
       </section>
       <div class="nav-reg" @click="dropdownToggle">
          <div class="profilepic">
-            <img src="../../public/img/profile-default.svg" alt="" />
+            <img
+               class="default-profile"
+               src="../../public/img/profile-default.svg"
+               v-if="nullImage == true"
+               alt="not found"
+            />
+            <img
+               class="profile-set"
+               :src="userPic[0].url"
+               v-else
+               alt="not found"
+            />
             <div class="arrow">
                <span class="bar1"></span>
                <span class="bar2"></span>
@@ -41,48 +54,47 @@
 </template>
 
 <script>
-// const navbar = document.querySelector("nav");
-// window.onscroll = function() {
-//    if (window.pageYOffset > 0) {
-//       navbar.classList.add("scrolled");
-//    } else {
-//       navbar.classList.remove("scrolled");
-//    }
-// };
+   import axios from "axios";
+   export default {
+      name: "NavLog",
+      data() {
+         return {
+            userPic: [{ url: "" }],
 
-export default {
-   name: "NavLog",
-   data() {
-      return {};
-   },
-
-   methods: {
-      logout() {
-         localStorage.removeItem("token");
+            nullImage: false,
+         };
       },
-      menu() {
-         const nav = document.querySelector("section ul");
-         nav.classList.toggle("slide");
-      },
-      dropdownToggle() {
-         const toggleMenu = document.querySelector(".dropdown");
-         const bar1 = document.querySelector(".bar1");
-         const bar2 = document.querySelector(".bar2");
+      async created() {
+         const response = await axios.get("api/v1/user", {
+            headers: {
+               Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+         });
+         this.userPic[0].url = response.data.data.profil_path;
 
-         toggleMenu.classList.toggle("active");
-         bar1.classList.toggle("change");
-         bar2.classList.toggle("change");
+         if (response.data.data.profil_path == null) {
+            this.nullImage = true;
+         }
       },
+      methods: {
+         logout() {
+            localStorage.removeItem("token");
+         },
+         menu() {
+            const nav = document.querySelector("section ul");
+            nav.classList.toggle("slide");
+         },
+         dropdownToggle() {
+            const toggleMenu = document.querySelector(".dropdown");
+            const bar1 = document.querySelector(".bar1");
+            const bar2 = document.querySelector(".bar2");
 
-      // ignoreClick(event) {
-      //    var hide = document.getElementById("toggleMenu");
-      //    var clickInside = hide.contains(event.target);
-      //    if (!clickInside) {
-      //       hide.classList.toggle("slide");
-      //    }
-      // },
-   },
-};
+            toggleMenu.classList.toggle("active");
+            bar1.classList.toggle("change");
+            bar2.classList.toggle("change");
+         },
+      },
+   };
 </script>
 
 <style scoped src="../../public/styles/navlog.css"></style>

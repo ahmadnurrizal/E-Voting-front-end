@@ -22,7 +22,7 @@
       </div>
       <div class="desc">
          <h2>"{{ description }}"</h2>
-         <img src="" alt="" />
+         <img :src="poster" alt="" />
       </div>
    </div>
 </template>
@@ -41,6 +41,7 @@
             title: "",
             created_at: "",
             description: "",
+            poster: "",
          };
       },
       methods: {
@@ -66,15 +67,17 @@
          const user = await axios.get(`api/v1/users/${this.idMatched}`, {
             headers: header,
          });
-         // console.log(user);
+
          this.userdata = user.data.data;
 
          const response = await axios.get(`api/v1/polls/${this.pollId}`, {
             headers: header,
          });
+
          this.title = response.data.data.title;
          this.created_at = response.data.data.created_at;
          this.description = response.data.data.description;
+         this.poster = response.data.data.image_path;
       },
    };
 </script>
@@ -178,6 +181,7 @@
 
    .desc {
       margin: 44px auto 120px;
+      text-align: center;
    }
 
    .desc h2 {
@@ -185,5 +189,11 @@
       font-size: 24px;
       color: #eaf5ff;
       margin-bottom: 52px;
+   }
+
+   .desc img {
+      width: 700px;
+      height: 350px;
+      object-fit: cover;
    }
 </style>
