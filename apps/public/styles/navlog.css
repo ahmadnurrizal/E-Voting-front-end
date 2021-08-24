@@ -71,7 +71,11 @@ section ul li {
    gap: 10px;
 }
 
-.profilepic img {
+.default-profile,
+.profile-set {
+   border-radius: 30px;
+   width: 48px;
+   height: 50px;
    object-fit: cover;
 }
 
