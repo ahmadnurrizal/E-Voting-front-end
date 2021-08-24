@@ -271,7 +271,7 @@
                   remove.className = "removePoster-active";
                }
             }
-            let uploadedPoster = this.$refs.poster.files;
+            let uploadedPoster = this.$refs.poster.files[0];
             this.poster[0].url = uploadedPoster;
          },
          handleUpload(index) {
@@ -319,17 +319,18 @@
                Authorization: "Bearer " + localStorage.getItem("token"),
                "Content-type": "application/json",
             };
-            // let poster = this.poster[0].url;
-            // const resUploadPoster = await axios.post(
-            //    "api/v1/upload-image",
-            //    poster,
-            //    {
-            //       headers: header,
-            //    }
-            // );
-            // console.log(resUploadPoster);
+            let poster = this.poster[0].url;
+            let data = new FormData();
+            data.append("image", poster, new Date().toString());
+            const resUploadPoster = await axios.post(
+               "api/v1/upload-image",
+               data,
+               {
+                  headers: header,
+               }
+            );
 
-            // this.poster[0].url = resUploadPoster.data.imageURL;
+            this.poster[0].url = resUploadPoster.data.imageURL;
 
             let filteredOptions = this.option.filter(
                (option) => option.option != "" || option.image_path != ""

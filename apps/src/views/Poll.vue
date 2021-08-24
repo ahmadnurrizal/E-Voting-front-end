@@ -100,7 +100,6 @@
                   },
                })
                .then((res) => {
-                  console.log(res);
                   // if( res.data.message == "Sorry, you have alredy voted this poll"){
 
                   // }
