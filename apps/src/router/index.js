@@ -18,6 +18,7 @@ import Result from "../views/Result.vue";
 import Aftervote from "../views/AfterVote.vue";
 import ForgotPass from "../views/ForgotPass.vue";
 import ResetPass from "../views/ResetPass.vue";
+import Discover from "../views/Discover.vue";
 
 const routes = [
    {
@@ -114,6 +115,11 @@ const routes = [
       path: "/api/v1/reset-password/:token",
       name: "ResetPass",
       component: ResetPass,
+   },
+   {
+      path: "/Discover",
+      name: "Discover",
+      component: Discover,
    },
 ];
 
