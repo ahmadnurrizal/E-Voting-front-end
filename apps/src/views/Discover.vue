@@ -36,13 +36,16 @@
             isLogin: false,
          };
       },
-      created() {
+      async created() {
          let token = localStorage.getItem("token");
          if (!token) {
             this.isLogin = false;
          } else {
             this.isLogin = true;
          }
+
+         const res_trendingPoll = await axios.get("api/v1/polls/trending");
+         console.log(res_trendingPoll);
       },
    };
 </script>
