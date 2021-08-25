@@ -9,9 +9,9 @@
          <ul>
             <li><router-link to="/CreatePoll">Create Poll</router-link></li>
             <li><router-link to="/About">About Us</router-link></li>
-            <li><a href="#">Discover</a></li>
+            <li><router-link to="/Discover">Discover</router-link></li>
             <li><router-link to="/Contact">Contact</router-link></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><router-link to="/Dashboard">Dashboard</router-link></li>
          </ul>
       </section>
       <div class="nav-reg" @click="dropdownToggle">
@@ -32,7 +32,6 @@
                <span class="bar1"></span>
                <span class="bar2"></span>
             </div>
-            <!-- <img id="downicon" src="../../public/img/arrow-down.png" class="play" @click="dropdownToggle" /> -->
          </div>
          <div class="dropdown">
             <ul>

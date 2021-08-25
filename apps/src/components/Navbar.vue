@@ -1,13 +1,15 @@
 <template>
    <nav>
       <div class="brand">
-         <router-link to="/"><img src="../../public/img/logo-brand.svg" alt="FingerVote"/></router-link>
+         <router-link to="/"
+            ><img src="../../public/img/logo-brand.svg" alt="FingerVote"
+         /></router-link>
       </div>
       <section>
          <ul>
             <li><router-link to="/Auth">Create Poll</router-link></li>
             <li><router-link to="/About">About Us</router-link></li>
-            <li><a href="#">Discover</a></li>
+            <li><router-link to="/Discover">Discover</router-link></li>
             <li><router-link to="/Contact">Contact</router-link></li>
          </ul>
       </section>
@@ -29,30 +31,30 @@
 </template>
 
 <script>
-// const navbar = document.querySelector("nav");
-// window.onscroll = function() {
-//    if (window.pageYOffset > 0) {
-//       navbar.classList.add("scrolled");
-//    } else {
-//       navbar.classList.remove("scrolled");
-//    }
-// };
-export default {
-   name: "Navbar",
-   methods: {
-      menu() {
-         const nav = document.querySelector("section ul");
-         nav.classList.toggle("slide");
+   // const navbar = document.querySelector("nav");
+   // window.onscroll = function() {
+   //    if (window.pageYOffset > 0) {
+   //       navbar.classList.add("scrolled");
+   //    } else {
+   //       navbar.classList.remove("scrolled");
+   //    }
+   // };
+   export default {
+      name: "Navbar",
+      methods: {
+         menu() {
+            const nav = document.querySelector("section ul");
+            nav.classList.toggle("slide");
+         },
+         // ignoreClick(event) {
+         //    var hide = document.getElementById("toggleMenu");
+         //    var clickInside = hide.contains(event.target);
+         //    if (!clickInside) {
+         //       hide.classList.toggle("slide");
+         //    }
+         // },
       },
-      // ignoreClick(event) {
-      //    var hide = document.getElementById("toggleMenu");
-      //    var clickInside = hide.contains(event.target);
-      //    if (!clickInside) {
-      //       hide.classList.toggle("slide");
-      //    }
-      // },
-   },
-};
+   };
 </script>
 
 <style scoped src="../../public/styles/navbar.css"></style>
