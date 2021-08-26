@@ -22,7 +22,7 @@
       </div>
       <div class="desc">
          <h2>"{{ description }}"</h2>
-         <img :src="poster" alt="" />
+         <img :src="poster" alt="" id="imgPoster" class="posterField" />
       </div>
    </div>
 </template>
@@ -78,6 +78,11 @@
          this.created_at = response.data.data.created_at;
          this.description = response.data.data.description;
          this.poster = response.data.data.image_path;
+
+         if (this.poster == null) {
+            const tagPoster = document.getElementById("imgPoster");
+            tagPoster.className = "posterField-active";
+         }
       },
    };
 </script>
@@ -191,9 +196,13 @@
       margin-bottom: 52px;
    }
 
-   .desc img {
+   .posterField {
       width: 700px;
       height: 350px;
       object-fit: cover;
+   }
+
+   .posterField-active {
+      display: none;
    }
 </style>
