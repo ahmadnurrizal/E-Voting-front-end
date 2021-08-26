@@ -209,6 +209,8 @@
             headers: header,
          });
          this.userData = response.data.data;
+         console.log(this.poster);
+         console.log(this.option);
       },
       methods: {
          addEvent(e) {
@@ -273,6 +275,7 @@
             }
             let uploadedPoster = this.$refs.poster.files[0];
             this.poster[0].url = uploadedPoster;
+            console.log(this.poster);
          },
          handleUpload(index) {
             const inputFile = document.getElementById("id" + index);
@@ -319,41 +322,52 @@
                Authorization: "Bearer " + localStorage.getItem("token"),
                "Content-type": "application/json",
             };
-            let poster = this.poster[0].url;
-            let data = new FormData();
-            data.append("image", poster, new Date().toString());
-            const resUploadPoster = await axios.post(
-               "api/v1/upload-image",
-               data,
-               {
-                  headers: header,
-               }
-            );
 
-            this.poster[0].url = resUploadPoster.data.imageURL;
+            if (this.poster[0].url != "") {
+               let data = new FormData();
+               data.append("image", this.poster[0].url, new Date().toString());
+               const resUploadPoster = await axios.post(
+                  "api/v1/upload-image",
+                  data,
+                  {
+                     headers: header,
+                  }
+               );
+
+               this.poster[0].url = resUploadPoster.data.imageURL;
+            }
+            // let filteredPoster = this.poster.filter(
+            //    (poster) => poster.url != ""
+            // );
+
+            // for(let i=0; i<thi.option.length; i++){
+
+            // }
 
             let filteredOptions = this.option.filter(
                (option) => option.option != "" || option.image_path != ""
             );
 
-            const uploader = filteredOptions.map((option, index) => {
-               let data = new FormData();
-               data.append(
-                  "image",
-                  filteredOptions[index].image_path,
-                  new Date().toString()
-               );
-               return axios.post("api/v1/upload-image", data, {
-                  headers: header,
+            if (this.option.image_path != null) {
+               const uploader = filteredOptions.map((option, index) => {
+                  let data = new FormData();
+                  data.append(
+                     "image",
+                     filteredOptions[index].image_path,
+                     new Date().toString()
+                  );
+                  return axios.post("api/v1/upload-image", data, {
+                     headers: header,
+                  });
+                  // .then((res_upload) => {
+                  //    console.log(res_upload);
+                  // });
                });
-               // .then((res_upload) => {
-               //    console.log(res_upload);
-               // });
-            });
-            const allResponseUpload = await Promise.all(uploader);
-            allResponseUpload.forEach((res, index) => {
-               filteredOptions[index].image_path = res.data.imageURL;
-            });
+               const allResponseUpload = await Promise.all(uploader);
+               allResponseUpload.forEach((res, index) => {
+                  filteredOptions[index].image_path = res.data.imageURL;
+               });
+            }
 
             axios
                .post(
@@ -604,11 +618,11 @@
    }
 
    .wrap-afterPost {
+      position: absolute;
       display: flex;
    }
 
    .posterName {
-      width: 50%;
       color: #050e16;
       font-style: italic;
       overflow-y: hidden;
