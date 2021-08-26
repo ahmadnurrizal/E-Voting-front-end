@@ -36,6 +36,7 @@
                               @focus="addEvent"
                               :id="item"
                               v-model="option[index].option"
+                              required
                            />
                            <div class="option-parent">
                               <div class="file-decoration">
@@ -209,8 +210,6 @@
             headers: header,
          });
          this.userData = response.data.data;
-         console.log(this.poster);
-         console.log(this.option);
       },
       methods: {
          addEvent(e) {
@@ -271,11 +270,10 @@
                   // inputPoster.className = "tambahPosterInput-active";
                   button.className = "posterWrap-active";
                   remove.className = "removePoster-active";
+                  let uploadedPoster = this.$refs.poster.files[0];
+                  this.poster[0].url = uploadedPoster;
                }
             }
-            let uploadedPoster = this.$refs.poster.files[0];
-            this.poster[0].url = uploadedPoster;
-            console.log(this.poster);
          },
          handleUpload(index) {
             const inputFile = document.getElementById("id" + index);
@@ -295,12 +293,10 @@
                   button.className = "addButton-active";
                   inputFile.className = "addPhoto-active";
                   remove.className = "remove-active";
+                  let uploadedFiles = this.$refs["files" + index].files;
+                  this.option[index].image_path = uploadedFiles[0];
                }
             }
-
-            let uploadedFiles = this.$refs["files" + index].files;
-
-            this.option[index].image_path = uploadedFiles[0];
          },
          removePhoto(index) {
             const inputFile = document.getElementById("id" + index);
@@ -333,23 +329,15 @@
                      headers: header,
                   }
                );
-
                this.poster[0].url = resUploadPoster.data.imageURL;
             }
-            // let filteredPoster = this.poster.filter(
-            //    (poster) => poster.url != ""
-            // );
-
-            // for(let i=0; i<thi.option.length; i++){
-
-            // }
 
             let filteredOptions = this.option.filter(
                (option) => option.option != "" || option.image_path != ""
             );
 
-            if (this.option.image_path != null) {
-               const uploader = filteredOptions.map((option, index) => {
+            const uploader = filteredOptions.map((option, index) => {
+               if (filteredOptions[index].image_path !== "") {
                   let data = new FormData();
                   data.append(
                      "image",
@@ -359,15 +347,16 @@
                   return axios.post("api/v1/upload-image", data, {
                      headers: header,
                   });
-                  // .then((res_upload) => {
-                  //    console.log(res_upload);
-                  // });
-               });
-               const allResponseUpload = await Promise.all(uploader);
-               allResponseUpload.forEach((res, index) => {
+               } else {
+                  return null;
+               }
+            });
+            const allResponseUpload = await Promise.all(uploader);
+            allResponseUpload.forEach((res, index) => {
+               if (res) {
                   filteredOptions[index].image_path = res.data.imageURL;
-               });
-            }
+               }
+            });
 
             axios
                .post(
