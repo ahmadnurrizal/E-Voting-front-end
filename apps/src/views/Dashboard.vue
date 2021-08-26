@@ -32,7 +32,7 @@
                </tr>
                <tr class="row" v-for="item in polls.slice(0, 10)" :key="item">
                   <td>{{ item.title }}</td>
-                  <td>cepe</td>
+                  <td>{{ item.number_voter }}</td>
                   <td>{{ item.deadline }}</td>
                   <td>{{ item.status }}</td>
                   <td>settings</td>
@@ -52,16 +52,16 @@
                <!-- <ul v-else>
                      <h3>tidak ada poll</h3>
                   </ul> -->
-               <div class="pagination">
-                  <a href="">&laquo;</a>
-                  <a class="active" href="">1</a>
-                  <a href="">2</a>
-                  <a href="">&raquo;</a>
-               </div>
             </table>
 
-            <div class="empty-poll" v-else>
+            <div class="empty-poll" v-if="empty">
                <h1>You have never create a poll</h1>
+            </div>
+            <div class="pagination" v-if="!empty">
+               <a href="">&laquo;</a>
+               <a class="active" href="">1</a>
+               <a href="">2</a>
+               <a href="">&raquo;</a>
             </div>
          </div>
       </div>
@@ -116,7 +116,6 @@
                   this.empty = true;
                }
             });
-         // console.log(response);
       },
    };
 </script>
@@ -193,7 +192,7 @@
 
    table {
       width: 882px;
-      height: 500px;
+
       margin: auto;
       border: solid #eaf5ff;
    }
@@ -208,6 +207,7 @@
       color: #eaf5ff;
       background-color: #1e6599;
       text-align: center;
+      height: 50px;
    }
 
    .row {

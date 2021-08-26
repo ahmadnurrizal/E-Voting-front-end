@@ -10,8 +10,40 @@
                <h3>You can find lots of pre-made polls</h3>
                <input type="text" placeholder="search.." />
             </div>
-            <div class="trending-poll"></div>
-            <div class="new-poll"></div>
+            <h2>Trending Polls</h2>
+            <div class="trending-poll">
+               <div
+                  v-for="(item, index) in trendings"
+                  :key="item"
+                  class="trending-card"
+               >
+                  <img src="../../public/img/discover-icon.svg" alt="" />
+                  <div class="info">
+                     <p class="title">{{ trendings[index].title }}</p>
+                     <br />
+                     <p class="createdOn">
+                        created on {{ trendings[index].created_at }}
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <h2>Newest Polls</h2>
+            <div class="trending-poll">
+               <div
+                  v-for="(item, index) in newest"
+                  :key="item"
+                  class="trending-card"
+               >
+                  <img src="../../public/img/discover-icon.svg" alt="" />
+                  <div class="info">
+                     <p class="title">{{ newest[index].title }}</p>
+                     <br />
+                     <p class="createdOn">
+                        created on {{ newest[index].created_at }}
+                     </p>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
       <Footer />
@@ -34,6 +66,8 @@
       data() {
          return {
             isLogin: false,
+            trendings: [],
+            newest: [],
          };
       },
       async created() {
@@ -45,7 +79,10 @@
          }
 
          const res_trendingPoll = await axios.get("api/v1/polls/trending");
-         console.log(res_trendingPoll);
+         this.trendings = res_trendingPoll.data.message;
+
+         const res_newPoll = await axios.get("api/v1/polls/newest");
+         this.newest = res_newPoll.data.message;
       },
    };
 </script>
@@ -81,5 +118,31 @@
       background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
       margin: 100px auto;
       padding: 30px 30px 60px;
+   }
+
+   .trending-poll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+   }
+
+   .trending-card {
+      display: flex;
+      background-color: #eaf5ff;
+      border: solid #539be0;
+   }
+
+   .title {
+      color: #539be0;
+   }
+
+   .createdOn {
+      color: #616161;
+   }
+
+   .title,
+   .createdOn {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
    }
 </style>
