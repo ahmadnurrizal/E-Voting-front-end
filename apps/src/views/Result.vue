@@ -106,7 +106,6 @@
             this.percentage[index] = sum;
          }
 
-         // console.log(this.percentage);
          // get poll option
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
             headers: header,
@@ -243,8 +242,8 @@
    }
 
    .percent {
-      width: 15%;
-      margin-left: 15px;
+      width: 20%;
+      margin-left: 10px;
    }
 
    .level {

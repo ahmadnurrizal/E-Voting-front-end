@@ -49,6 +49,14 @@
                   </div>
                </div>
             </form>
+            <!-- <div class="done-vote" v-else>
+               <h1>You have already voted this poll, Go check the result!</h1>
+               <router-link :to="{ name: 'Result', params: { id: pollId } }"
+                  ><button class="resultMounted">
+                     View Result
+                  </button></router-link
+               >
+            </div> -->
          </div>
          <Sharepoll />
       </div>
@@ -81,6 +89,7 @@
             description: "",
             options: [{ option: "", image_path: "" }],
             checked: "",
+            status: false,
          };
       },
       methods: {
@@ -100,9 +109,12 @@
                   },
                })
                .then((res) => {
-                  // if( res.data.message == "Sorry, you have alredy voted this poll"){
-
-                  // }
+                  if (
+                     res.data.message ==
+                     "Sorry, you have alredy voted this poll"
+                  ) {
+                     this.status = true;
+                  }
                   this.$router.push(`/Poll/${this.pollId}/voted`);
                });
          },
@@ -111,24 +123,6 @@
          const header = {
             Authorization: "Bearer " + localStorage.getItem("token"),
          };
-         // const user = await axios.get("api/v1/user", {
-         //    headers: header,
-         // });
-         // this.userdata = user.data.data;
-         // const response = await axios.get("api/v1/user-poll", {
-         //    headers: header,
-         // });
-         // let lengthPoll = response.data.message.length;
-         // // matching id
-         // for (let i = 0; i < lengthPoll; i++) {
-         //    if (this.pollId == response.data.message[i].id) {
-         //       this.idMatched = response.data.message[i].id;
-         //       let lastPoll = response.data.message[i];
-         //       (this.title = lastPoll.title),
-         //          (this.created_at = lastPoll.created_at),
-         //          (this.description = lastPoll.description);
-         //    }
-         // }
 
          // get poll option
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
@@ -179,103 +173,6 @@
       padding: 30px 30px 60px;
    }
 
-   /* .head h1,
-   .desc h2 {
-      font-family: "Kanit", sans-serif;
-      text-align: center;
-   }
-
-   .head h1 {
-      font-weight: 600;
-      font-size: 48px;
-      color: #eaf5ff;
-   }
-
-   .head {
-      position: relative;
-   }
-
-   .toggle {
-      display: inline-block;
-   }
-
-   .toggle img {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      cursor: pointer;
-   }
-
-   .dropDown {
-      display: none;
-      position: absolute;
-      background-color: #bde0ff;
-      border: none;
-      border-radius: 3px;
-      width: 119px;
-      height: 125px;
-      top: 50px;
-      right: 12px;
-      padding: 8px 5px;
-      visibility: hidden;
-      opacity: 0;
-   }
-
-   .dropDown a {
-      display: block;
-      text-decoration: none;
-      font-family: "Kanit", sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      color: #1e6599;
-   }
-
-   .dropDown a:hover:not(.delete) {
-      color: #fbfcfd;
-   }
-
-   .dropDown span {
-      margin-left: 20px;
-   }
-
-   .edit {
-      background-image: url("../../public/img/polling-edit-icon.svg");
-      background-repeat: no-repeat;
-      background-position: left;
-   }
-   .reset {
-      background-image: url("../../public/img/polling-reset-icon.svg");
-      background-repeat: no-repeat;
-      background-position: left;
-      margin: 11px auto;
-   }
-   .delete {
-      background-image: url("../../public/img/polling-delete-icon.svg");
-      background-repeat: no-repeat;
-      background-position: left;
-   }
-
-   .delete:hover {
-      color: red;
-   }
-
-   .show {
-      display: block;
-      visibility: visible;
-      opacity: 1;
-   }
-
-   .desc {
-      margin: 44px auto 120px;
-   }
-
-   .desc h2 {
-      font-weight: 500;
-      font-size: 24px;
-      color: #eaf5ff;
-      margin-bottom: 52px;
-   } */
-
    form h2,
    form label {
       font-family: "Roboto", sans-serif;
@@ -287,6 +184,18 @@
    form ul li {
       list-style: none;
       cursor: pointer;
+   }
+
+   .done-vote {
+      text-align: center;
+   }
+
+   .done-vote h1 {
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      font-size: 30px;
+      color: #eaf5ff;
+      margin-bottom: 30px;
    }
 
    .choices {
@@ -378,5 +287,22 @@
       background-image: url("../../public/img/polling-share-icon.svg");
       background-repeat: no-repeat;
       background-position: 40px;
+   }
+
+   .resultMounted {
+      border: none;
+      border-radius: 25px;
+      width: 400px;
+      height: 50px;
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      color: #eaf5ff;
+      background-color: #56b68f;
+      cursor: pointer;
+   }
+
+   .resultMounted:hover {
+      background-color: #44a07b;
    }
 </style>
