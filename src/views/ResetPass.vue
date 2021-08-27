@@ -10,6 +10,7 @@
                <form @submit.prevent="handleReset">
                   <label for="email">Your Email</label><br />
                   <input
+                     id="email-icon"
                      type="email"
                      name="email"
                      placeholder="Enter your email"
@@ -18,19 +19,30 @@
                   /><br />
                   <label for="newPass">Choose New Password</label><br />
                   <input
+                     id="pass-icon"
                      type="password"
                      name="newPass"
-                     placeholder="Enter password"
+                     placeholder="Enter new password"
                      v-model="newPass"
+                     class="pass-field"
                      required
+                  /><img
+                     @click="showPass"
+                     src="../../public/img/signup-seen-icon.svg"
+                     class="seen"
                   /><br />
                   <label for="confirmPass">Confirm</label><br />
                   <input
+                     id="confirm-icon"
                      type="password"
                      name="confirmPass"
-                     placeholder="Cofirm password"
+                     placeholder="Cofirm new password"
                      v-model="confirmPass"
                      required
+                  /><img
+                     @click="showConfirm"
+                     src="../../public/img/signup-seen-icon.svg"
+                     class="seen2"
                   />
                   <br />
                   <div class="submission">
@@ -64,16 +76,34 @@
       },
       methods: {
          async handleReset() {
-            const response_reset = await axios.post("api/v1/reset-password", {
-               token: this.$route.query.token,
-               email: this.email,
-               password: this.newPass,
-               password_confirmation: this.confirmPass,
-            });
+            const response_reset = await axios
+               .post("api/v1/reset-password", {
+                  token: this.$route.query.token,
+                  email: this.email,
+                  password: this.newPass,
+                  password_confirmation: this.confirmPass,
+               })
+               .catch((err) => alert(err.response.data.message));
             if (response_reset.data.message === "Password reset successfully") {
                alert("Your password has been changed, please login again");
 
-               this.$route.push("/SignIn");
+               this.$router.push("/SignIn");
+            }
+         },
+         showPass() {
+            var pswrd = document.getElementById("pass-icon");
+            if (pswrd.type === "password") {
+               pswrd.type = "text";
+            } else {
+               pswrd.type = "password";
+            }
+         },
+         showConfirm() {
+            var pswrd = document.getElementById("confirm-icon");
+            if (pswrd.type === "password") {
+               pswrd.type = "text";
+            } else {
+               pswrd.type = "password";
             }
          },
       },
@@ -117,5 +147,80 @@
       box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
       background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
       margin: auto;
+      padding: 30px 20px 20px;
+   }
+
+   h1,
+   label {
+      font-family: "Kanit", sans-serif;
+      color: #eaf5ff;
+   }
+
+   h1 {
+      text-align: center;
+   }
+
+   label {
+      font-size: 16px;
+      font-weight: 500;
+   }
+
+   #email-icon,
+   #pass-icon,
+   #confirm-icon {
+      width: 530px;
+      height: 30px;
+      padding: 0 33px;
+   }
+
+   .submission {
+      margin-top: 30px;
+   }
+
+   .submission input {
+      width: 530px;
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+      background-color: #56b68f;
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      color: #eaf5ff;
+      font-size: 16px;
+      cursor: pointer;
+   }
+
+   .submission input:hover {
+      background-color: #44a07b;
+   }
+
+   #email-icon {
+      background: white url(../../public/img/signup-email-icon.svg) left
+         no-repeat;
+      background-position: 11px;
+   }
+
+   #pass-icon {
+      background: white url(../../public/img/signup-pass-icon.svg) left
+         no-repeat;
+      background-position: 11px;
+   }
+
+   #confirm-icon {
+      background: white url(../../public/img/signup-pass-icon.svg) left
+         no-repeat;
+      background-position: 11px;
+   }
+
+   .seen {
+      position: absolute;
+      right: 35px;
+      top: 163px;
+   }
+
+   .seen2 {
+      position: absolute;
+      right: 35px;
+      top: 217px;
    }
 </style>

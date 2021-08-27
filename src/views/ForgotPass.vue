@@ -4,7 +4,7 @@
       <div class="vector"><div class="bg"></div></div>
 
       <div class="main">
-         <div class="card">
+         <div class="card-forgot">
             <div class="title">
                <h1>Forgot Password</h1>
                <p>
@@ -23,15 +23,15 @@
                      required
                   />
                   <br />
+                  <div class="afterSubmit">
+                     <h1 v-if="success">{{ status }}</h1>
+                  </div>
                   <div class="submission">
                      <input type="submit" value="Reset Password" />
                      <p>
                         Did you remember your password? Try to
                         <router-link to="/SignIn">Login</router-link>
                      </p>
-                  </div>
-                  <div class="afterSubmit">
-                     <h1 v-if="success">{{ status }}</h1>
                   </div>
                </form>
             </div>
@@ -108,10 +108,10 @@
       margin-bottom: 100px;
    }
 
-   .card {
+   .card-forgot {
       position: relative;
       width: 576px;
-      height: 385px;
+      min-height: 385px;
       border: none;
       border-radius: 10px;
       box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
@@ -140,10 +140,19 @@
       color: #1e6599;
    }
 
+   a {
+      text-decoration: none;
+      color: #eaf5ff;
+   }
+
+   .input-field {
+      margin-top: 30px;
+   }
+
    input[type="text"] {
       width: 530px;
       height: 30px;
-      margin-bottom: 30px;
+      margin-bottom: 50px;
    }
 
    input[type="submit"] {
@@ -152,13 +161,21 @@
       font-size: 16px;
       color: #eaf5ff;
       width: 530px;
-      height: 30px;
+      height: 40px;
       background-color: #56b68f;
       border: none;
       border-radius: 5px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+      cursor: pointer;
    }
    input[type="submit"]:hover {
       background-color: #44a07b;
+   }
+
+   .afterSubmit h1 {
+      font-size: 24px;
+      font-weight: 500;
+      color: #eb1f4b;
+      text-align: center;
    }
 </style>
