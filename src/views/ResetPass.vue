@@ -7,12 +7,21 @@
          <div class="card">
             <h1>Create New Password</h1>
             <div class="change-pass">
-               <form>
+               <form @submit.prevent="handleReset">
+                  <label for="email">Your Email</label><br />
+                  <input
+                     type="email"
+                     name="email"
+                     placeholder="Enter your email"
+                     v-model="email"
+                     required
+                  /><br />
                   <label for="newPass">Choose New Password</label><br />
                   <input
                      type="text"
                      name="newPass"
                      placeholder="Enter password"
+                     v-model="newPass"
                      required
                   /><br />
                   <label for="confirmPass">Confirm</label><br />
@@ -20,6 +29,7 @@
                      type="text"
                      name="confirmPass"
                      placeholder="Cofirm password"
+                     v-model="confirmPass"
                      required
                   />
                   <br />
@@ -46,7 +56,22 @@
          Footer,
       },
       data() {
-         return {};
+         return {
+            email: "",
+            newPass: "",
+            confirmPass: "",
+         };
+      },
+      methods: {
+         async handleReset() {
+            const response_reset = await axios.post("api/v1/reset-password", {
+               token: this.$route.query.token,
+               email: this.email,
+               password: this.newPass,
+               password_confirmation: this.confirmPass,
+            });
+            console.log(response_reset);
+         },
       },
    };
 </script>
