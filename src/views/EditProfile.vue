@@ -208,7 +208,7 @@
                })
                .then((response) => {
                   alert("Profile successfully edited");
-                  location.reload();
+                  this.$router.push("/Settings");
                })
                .catch((error) => {
                   console.log("error", error);

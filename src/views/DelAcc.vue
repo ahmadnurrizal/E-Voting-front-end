@@ -113,7 +113,6 @@
                })
                .then((res) => {
                   alert("your Account has been deleted");
-                  console.log("deleted", res);
                   localStorage.removeItem("token");
 
                   this.$router.push("/");
