@@ -94,15 +94,15 @@ p {
    cursor: pointer;
    width: 200px;
    height: 50px;
-   background-color: #c4c4c4;
-   color: #ffffff;
+   background-color: #eaf5ff;
+   color: #1e6599;
    border: none;
    border-radius: 25px;
    margin-left: 20px;
 }
 
 .btn-2:hover {
-   background-color: #a09696;
+   background-color: #dae9f7;
 }
 
 .column-pic {
