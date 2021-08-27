@@ -18,7 +18,7 @@
                   /><br />
                   <label for="newPass">Choose New Password</label><br />
                   <input
-                     type="text"
+                     type="password"
                      name="newPass"
                      placeholder="Enter password"
                      v-model="newPass"
@@ -26,7 +26,7 @@
                   /><br />
                   <label for="confirmPass">Confirm</label><br />
                   <input
-                     type="text"
+                     type="password"
                      name="confirmPass"
                      placeholder="Cofirm password"
                      v-model="confirmPass"
@@ -70,7 +70,11 @@
                password: this.newPass,
                password_confirmation: this.confirmPass,
             });
-            console.log(response_reset);
+            if (response_reset.data.message === "Password reset successfully") {
+               alert("Your password has been changed, please login again");
+
+               this.$route.push("/SignIn");
+            }
          },
       },
    };
