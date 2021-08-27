@@ -41,6 +41,7 @@ button:hover {
 
 .router-link-active {
    color: #1e6599;
+   font-weight: 500;
 }
 
 .brand {
