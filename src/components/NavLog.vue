@@ -52,9 +52,7 @@
                   <router-link to="/Dashboard">Dashboard</router-link>
                </li>
                <li class="logout">
-                  <router-link id="out" to="/" @click="logout"
-                     >Log Out</router-link
-                  >
+                  <a id="out" to="/" @click="logout">Log Out</a>
                </li>
             </ul>
          </div>
