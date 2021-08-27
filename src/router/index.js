@@ -112,7 +112,7 @@ const routes = [
       component: ForgotPass,
    },
    {
-      path: "finger-vote-2021.herokuapp.com/api/v1/reset-password/:token",
+      path: "/api/v1/reset-password/:token",
       name: "ResetPass",
       component: ResetPass,
    },
