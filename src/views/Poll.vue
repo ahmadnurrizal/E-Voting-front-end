@@ -9,7 +9,7 @@
       <div class="main">
          <div class="card-header">
             <Headerpoll />
-            <form>
+            <form v-if="!status">
                <h2>Choose one answer :</h2>
                <ul>
                   <li
@@ -49,14 +49,14 @@
                   </div>
                </div>
             </form>
-            <!-- <div class="done-vote" v-else>
+            <div class="done-vote" v-else>
                <h1>You have already voted this poll, Go check the result!</h1>
                <router-link :to="{ name: 'Result', params: { id: pollId } }"
                   ><button class="resultMounted">
                      View Result
                   </button></router-link
                >
-            </div> -->
+            </div>
          </div>
          <Sharepoll />
       </div>
@@ -109,12 +109,6 @@
                   },
                })
                .then((res) => {
-                  if (
-                     res.data.message ==
-                     "Sorry, you have alredy voted this poll"
-                  ) {
-                     this.status = true;
-                  }
                   this.$router.push(`/Poll/${this.pollId}/voted`);
                });
          },
@@ -123,6 +117,16 @@
          const header = {
             Authorization: "Bearer " + localStorage.getItem("token"),
          };
+
+         //check alredy vote/not
+         const resVoted = await axios.get(`api/v1/polls/${this.pollId}`, {
+            headers: header,
+         });
+         if (resVoted.data.voted === false) {
+            this.status = false;
+         } else {
+            this.status = true;
+         }
 
          // get poll option
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
