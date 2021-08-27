@@ -65,7 +65,6 @@
             const response = await axios.post("api/v1/forgot-password", {
                email: this.email,
             });
-            console.log(response);
             this.status = response.data.status;
 
             if (
