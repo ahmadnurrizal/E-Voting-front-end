@@ -146,26 +146,35 @@
       },
       methods: {
          async submitData() {
-            const response = await axios.post("api/v1/register", {
+            // const response = await axios
+            //    .post("api/v1/register", {
+            //       name: this.name,
+            //       email: this.email,
+            //       password: this.password,
+            //       password_confirmation: this.password_confirmation,
+            //       date_of_birth: this.date_of_birth,
+            //       gender: this.gender,
+            //    })
+            //    .catch((err) => alert(err));
+
+            const data = {
                name: this.name,
                email: this.email,
                password: this.password,
                password_confirmation: this.password_confirmation,
                date_of_birth: this.date_of_birth,
                gender: this.gender,
-            });
+            };
 
-            // axios.post(url, {
-
-            // })
-            // .then(response => {
-
-            // })
-            // .catch(err => {
-
-            // })
-
-            this.$router.push("/SignIn");
+            axios
+               .post("api/v1/register", data)
+               .then((response) => {
+                  alert("successfully created an account, please login");
+                  this.$router.push("/SignIn");
+               })
+               .catch((err) => {
+                  alert(err.response.data.errors.email);
+               });
          },
          showPw() {
             var pswrd = document.getElementById("pw-field");
