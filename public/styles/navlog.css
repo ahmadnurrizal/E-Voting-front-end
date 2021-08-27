@@ -32,10 +32,14 @@ button {
    cursor: pointer;
 }
 
-li:hover,
+/* li:hover,
 a:hover,
 button:hover {
    color: #1d1515;
+} */
+
+.router-link-active {
+   color: #1e6599;
 }
 
 .brand {
