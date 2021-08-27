@@ -36,7 +36,6 @@
                               @focus="addEvent"
                               :id="item"
                               v-model="option[index].option"
-                              required
                            />
                            <div class="option-parent">
                               <div class="file-decoration">
