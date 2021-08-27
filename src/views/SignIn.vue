@@ -35,7 +35,11 @@
                      src="../../public/img/signup-seen-icon.svg"
                      class="unseen"
                   /><br />
-                  <p><a href="">Forgot your password?</a></p>
+                  <p>
+                     <router-link to="/forgot-password"
+                        >Forgot your password?</router-link
+                     >
+                  </p>
                   <div class="submission">
                      <input type="submit" value="Log In" />
                      <p>
