@@ -7,11 +7,21 @@
       </div>
       <section>
          <ul>
-            <li><router-link to="/CreatePoll">Create Poll</router-link></li>
-            <li><router-link to="/About">About Us</router-link></li>
-            <li><router-link to="/Discover">Discover</router-link></li>
-            <li><router-link to="/Contact">Contact</router-link></li>
-            <li><router-link to="/Dashboard">Dashboard</router-link></li>
+            <li>
+               <router-link to="/CreatePoll">Create Poll</router-link>
+            </li>
+            <li>
+               <router-link to="/About">About Us</router-link>
+            </li>
+            <li>
+               <router-link to="/Discover">Discover</router-link>
+            </li>
+            <li>
+               <router-link to="/Contact">Contact</router-link>
+            </li>
+            <li>
+               <router-link to="/Dashboard">Dashboard</router-link>
+            </li>
          </ul>
       </section>
       <div class="nav-reg" @click="dropdownToggle">
@@ -35,10 +45,16 @@
          </div>
          <div class="dropdown">
             <ul>
-               <li><a href="/Settings">Edit Profile</a></li>
-               <li><a href="/Dashboard">Dashboard</a></li>
+               <li>
+                  <router-link to="/Settings">Edit Profile</router-link>
+               </li>
+               <li>
+                  <router-link to="/Dashboard">Dashboard</router-link>
+               </li>
                <li class="logout">
-                  <a id="out" href="/" @click="logout">Log Out</a>
+                  <router-link id="out" to="/" @click="logout"
+                     >Log Out</router-link
+                  >
                </li>
             </ul>
          </div>
