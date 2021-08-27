@@ -7,7 +7,9 @@
          <div class="row-title"><h2>fingerVote Poll</h2></div>
          <div class="row-p">
             <p>
-               fingerVote poll is a feature we made for you, our poll is easy to create and use. just a few minutes to create a poll and just one click to vote.
+               fingerVote poll is a feature we made for you, our poll is easy to
+               create and use. just a few minutes to create a poll and just one
+               click to vote.
             </p>
          </div>
          <div class="row-list">
@@ -27,19 +29,23 @@
       </div>
       <div class="abt-links">
          <li>
-            <router-link to="/Auth"> <button class="btn-1">Create Poll</button> </router-link>
+            <router-link to="/SignIn">
+               <button class="btn-1">Create Poll</button>
+            </router-link>
          </li>
          <li>
-            <router-link to="/Help/Tutorials"> <button class="btn-2">View Example</button></router-link>
+            <router-link to="/Help/Tutorials">
+               <button class="btn-2">View Example</button></router-link
+            >
          </li>
       </div>
    </div>
 </template>
 
 <script>
-export default {
-   name: "notAbt",
-};
+   export default {
+      name: "notAbt",
+   };
 </script>
 
 <style scoped src="../../public/styles/notlogAbt.css"></style>
