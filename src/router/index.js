@@ -112,7 +112,7 @@ const routes = [
       component: ForgotPass,
    },
    {
-      path: "/api/v1/reset-password",
+      path: "/api/v1/reset-password/:token",
       name: "ResetPass",
       component: ResetPass,
    },
