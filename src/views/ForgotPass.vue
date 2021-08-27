@@ -117,19 +117,48 @@
       box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
       background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
       margin: auto;
+      padding: 20px;
    }
 
    .title {
       text-align: center;
    }
 
-   h1 {
+   h1,
+   label {
       font-family: "Kanit", sans-serif;
       color: #eaf5ff;
    }
 
+   label {
+      font-size: 24px;
+      font-weight: 500;
+   }
+
    p {
       font-family: "Roboto", sans-serif;
+      color: #1e6599;
+   }
+
+   input[type="text"] {
+      width: 530px;
+      height: 30px;
+      margin-bottom: 30px;
+   }
+
+   input[type="submit"] {
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
       color: #eaf5ff;
+      width: 530px;
+      height: 30px;
+      background-color: #56b68f;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 40px;
+   }
+   input[type="submit"]:hover {
+      background-color: #44a07b;
    }
 </style>
