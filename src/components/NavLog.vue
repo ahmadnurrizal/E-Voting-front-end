@@ -24,7 +24,7 @@
             </li>
          </ul>
       </section>
-      <div class="nav-reg" @click="dropdownToggle">
+      <div class="nav-reg">
          <div class="profilepic">
             <img
                class="default-profile"
@@ -98,15 +98,6 @@
          menu() {
             const nav = document.querySelector("section ul");
             nav.classList.toggle("slide");
-         },
-         dropdownToggle() {
-            const toggleMenu = document.querySelector(".dropdown");
-            const bar1 = document.querySelector(".bar1");
-            const bar2 = document.querySelector(".bar2");
-
-            toggleMenu.classList.toggle("active");
-            bar1.classList.toggle("change");
-            bar2.classList.toggle("change");
          },
       },
    };

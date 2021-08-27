@@ -67,12 +67,10 @@ section ul li {
    cursor: pointer;
 }
 
-.nav-reg .profilepic {
+.profilepic {
    position: relative;
    display: flex;
    align-items: center;
-}
-.profilepic {
    gap: 10px;
 }
 
@@ -111,7 +109,7 @@ section ul li {
    transform: rotate(45deg);
 }
 
-.dropdown.active {
+.nav-reg:hover .dropdown {
    transform: translateY(10%);
    visibility: visible;
    opacity: 1;
@@ -144,12 +142,12 @@ section ul li {
    transform: rotate(-40deg);
 }
 
-.arrow .bar1.change {
+.nav-reg:hover .bar1 {
    transform-origin: top right;
    transform: rotate(-37deg);
 }
 
-.arrow .bar2.change {
+.nav-reg:hover .bar2 {
    transform-origin: top left;
    transform: rotate(37deg);
 }
