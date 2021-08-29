@@ -11,6 +11,9 @@
                <h1>Welcome Back!</h1>
                <p>Please log in to your account</p>
             </div>
+            <div class="handle-error" v-if="error">
+               <p>incorrect username/password</p>
+            </div>
             <div class="content">
                <form @submit.prevent="submitData">
                   <label for="email">Email</label><br />
@@ -80,17 +83,26 @@
          return {
             email: "",
             password: "",
+
+            error: false,
          };
       },
       methods: {
          async submitData() {
-            const response = await axios.post("api/v1/login", {
-               email: this.email,
-               password: this.password,
-            });
-            localStorage.setItem("token", response.data.token);
-
-            this.$router.push("/");
+            const response = await axios
+               .post("api/v1/login", {
+                  email: this.email,
+                  password: this.password,
+               })
+               .then((res) => {
+                  localStorage.setItem("token", res.data.token);
+                  this.$router.push("/");
+               })
+               .catch((err) => {
+                  if (err.message === "Request failed with status code 401") {
+                     this.error = true;
+                  }
+               });
          },
          showPw() {
             var pswrd = document.getElementById("pw-field");
@@ -258,6 +270,13 @@
       border-radius: 20px;
    }
    /* endof section */
+
+   /* error handle */
+   .handle-error p {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      color: red;
+   }
 
    /* responsive for mobile */
    @media (max-width: 586px) {
