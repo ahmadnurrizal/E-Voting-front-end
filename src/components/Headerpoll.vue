@@ -7,16 +7,22 @@
             <span style="color: #539BE0">{{ userdata.name }}</span> at
             {{ created_at }}
          </p>
-         <div class="toggle">
+         <div class="toggle" v-if="credentialUser">
             <img
                src="../../public/img/polling-toggle.svg"
                @click="toggleClick"
                alt=""
             />
             <div class="dropDown" id="dropDown">
-               <a class="edit" href=""> <span>Edit Poll</span> </a>
-               <a class="reset" href=""> <span>Reset Poll</span> </a>
-               <a class="delete" href=""> <span>Delete Poll</span> </a>
+               <button class="edit" @click="showEdit">
+                  <span>Edit Poll</span>
+               </button>
+               <button class="reset" @click="showReset">
+                  <span>Reset Poll</span>
+               </button>
+               <button class="delete" @click="showDelete">
+                  <span>Delete Poll</span>
+               </button>
             </div>
          </div>
       </div>
@@ -24,6 +30,11 @@
          <h2>"{{ description }}"</h2>
          <img :src="poster" alt="" id="imgPoster" class="posterField" />
       </div>
+      <!-- <div class="modalEdit" id="edit-modal">
+         <p>do you want to edit this poll?</p>
+         <button>Yes</button>
+         <button>No</button>
+      </div> -->
    </div>
 </template>
 
@@ -41,12 +52,72 @@
             title: "",
             created_at: "",
             description: "",
+            deadline: "",
+            statusOpen: "",
+
             poster: "",
+            credentialUser: false,
          };
       },
       methods: {
          toggleClick() {
             document.getElementById("dropDown").classList.toggle("show");
+         },
+         showEdit() {
+            // const edit = document.getElementById('modalEdit')
+
+            const edit = confirm("do you want to edit this poll?");
+            if (edit === true) {
+               this.$router.push(`/edit/${this.pollId}`);
+            }
+         },
+         showReset() {
+            const reset = confirm("do you want to reset this poll?");
+            if (reset === true) {
+               axios
+                  .delete(`api/v1/polls/${this.pollId}/reset`, {
+                     headers: {
+                        Authorization:
+                           "Bearer " + localStorage.getItem("token"),
+                     },
+                  })
+                  .then(
+                     (res) => alert(res.data.message),
+                     this.$router.push(`/Poll/${this.pollId}`)
+                  )
+                  .catch((err) => console.log(err));
+            }
+         },
+         showDelete() {
+            const modalDelete = confirm("do you want to delete this poll?");
+            // const header = {
+            //    Authorization: "Bearer " + localStorage.getItem('token')
+            // }
+            if (modalDelete === true) {
+               const dataDelete = {
+                  title: this.title,
+                  description: this.description,
+                  deadline: this.deadline,
+                  status: this.statusOpen,
+                  user_id: this.idMatched,
+               };
+               axios
+                  .delete(
+                     `api/v1/polls/${this.pollId}`,
+                     {
+                        headers: {
+                           Authorization:
+                              "Bearer " + localStorage.getItem("token"),
+                        },
+                     },
+                     dataDelete
+                  )
+                  .then(
+                     (res) => alert("Your polling has been deleted"),
+                     this.$router.push("/CreatePoll")
+                  )
+                  .catch((err) => alert(err.response));
+            }
          },
       },
       async created() {
@@ -64,9 +135,27 @@
             }
          }
 
-         const user = await axios.get(`api/v1/users/${this.idMatched}`, {
+         const credRes = await axios.get("api/v1/user", {
             headers: header,
          });
+
+         if (this.idMatched === credRes.data.data.id) {
+            this.credentialUser = true;
+         }
+
+         const user = await axios
+            .get(`api/v1/users/${this.idMatched}`, {
+               headers: header,
+            })
+            .catch((err) => {
+               if (
+                  err.response.data.exception ===
+                  "Illuminate\\Database\\QueryException"
+               ) {
+                  alert("poll has been deleted");
+                  this.$router.push("/CreatePoll");
+               }
+            });
 
          this.userdata = user.data.data;
 
@@ -77,6 +166,9 @@
          this.title = response.data.data.title;
          this.created_at = response.data.data.created_at;
          this.description = response.data.data.description;
+         this.deadline = response.data.data.deadline;
+         this.statusOpen = response.data.data.status;
+
          this.poster = response.data.data.image_path;
 
          if (this.poster == null) {
@@ -140,16 +232,18 @@
       opacity: 0;
    }
 
-   .dropDown a {
+   .dropDown button {
       display: block;
-      text-decoration: none;
+      border: none;
+      background-color: #bde0ff;
       font-family: "Kanit", sans-serif;
       font-weight: 400;
       font-size: 16px;
       color: #1e6599;
+      margin-bottom: 11px;
    }
 
-   .dropDown a:hover:not(.delete) {
+   .dropDown button:hover:not(.delete) {
       color: #fbfcfd;
    }
 
@@ -166,7 +260,6 @@
       background-image: url("../../public/img/polling-reset-icon.svg");
       background-repeat: no-repeat;
       background-position: left;
-      margin: 11px auto;
    }
    .delete {
       background-image: url("../../public/img/polling-delete-icon.svg");
@@ -205,4 +298,15 @@
    .posterField-active {
       display: none;
    }
+
+   /* modal edit */
+   /* .modalEdit{
+      display: none;
+   }
+
+   .modalEdit-active {
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: #eaf5ff;
+   } */
 </style>
