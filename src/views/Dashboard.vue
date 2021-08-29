@@ -30,28 +30,36 @@
                   <th>Status</th>
                   <th>Settings</th>
                </tr>
-               <tr class="row" v-for="item in polls.slice(0, 10)" :key="item">
-                  <td>{{ item.title }}</td>
+               <tr
+                  class="row"
+                  v-for="(item, index) in polls.slice(0, 10)"
+                  :key="item"
+               >
+                  <td class="poll-title" @click="openPoll(item)">
+                     {{ item.title }}
+                  </td>
                   <td>{{ item.number_voter }}</td>
                   <td>{{ item.deadline }}</td>
                   <td>{{ item.status }}</td>
-                  <td>settings</td>
-               </tr>
-               <!-- <ul v-if="!empty">
-                     <div class="table-data" v-for="item in polls" :key="item">
-                        <tr class="polls">
-                           <td>{{ item.title }}</td>
-                           <td>cepe</td>
-                           <td>{{ item.deadline }}</td>
-                           <td>{{ item.status }}</td>
-                           <td>settings</td>
-                        </tr>
+                  <td class="col-setting">
+                     <img
+                        src="../../public/img/dashboar-setting-icon.svg"
+                        alt=""
+                        @click="toggleClick(index)"
+                     />
+                     <div class="dropDown-toggle" :id="'dropDown' + index">
+                        <button class="edit-poll">
+                           <span>Edit Poll</span>
+                        </button>
+                        <button class="reset-poll">
+                           <span> Reset Poll </span>
+                        </button>
+                        <button class="delete-poll">
+                           <span> Delete Poll </span>
+                        </button>
                      </div>
-                  </ul> -->
-
-               <!-- <ul v-else>
-                     <h3>tidak ada poll</h3>
-                  </ul> -->
+                  </td>
+               </tr>
             </table>
 
             <div class="empty-poll" v-if="empty">
@@ -87,6 +95,17 @@
             userdata: "",
             nullImage: false,
          };
+      },
+      methods: {
+         toggleClick(index) {
+            const coba = document
+               .getElementById("dropDown" + index)
+               .classList.toggle("show");
+         },
+         openPoll(item) {
+            const id_poll = item.id;
+            this.$router.push(`/Poll/${id_poll}`);
+         },
       },
       async created() {
          const user = await axios.get("api/v1/user", {
@@ -190,6 +209,76 @@
       color: #eaf5ff;
    }
 
+   .col-setting {
+      position: relative;
+   }
+
+   .col-setting img {
+      cursor: pointer;
+   }
+
+   /* dropdown css */
+   .dropDown-toggle {
+      display: none;
+      position: relative;
+   }
+   .dropDown-toggle button {
+      cursor: pointer;
+      display: block;
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #1e6599;
+      border: none;
+      background-color: #bde0ff;
+      margin-bottom: 11px;
+   }
+
+   .dropDown-toggle button:hover:not(.delete-poll) {
+      color: #fbfcfd;
+   }
+
+   .dropDown-toggle span {
+      margin-left: 20px;
+   }
+
+   .show {
+      border-radius: 5px;
+      display: block;
+      visibility: visible;
+      background-color: #bde0ff;
+      right: 65px;
+      width: 119px;
+      height: 115px;
+      position: absolute;
+      opacity: 1;
+      z-index: 999;
+      padding: 3px;
+   }
+
+   .edit-poll {
+      background-image: url("../../public/img/polling-edit-icon.svg");
+      background-repeat: no-repeat;
+      background-position: left;
+   }
+
+   .reset-poll {
+      background-image: url("../../public/img/polling-reset-icon.svg");
+      background-repeat: no-repeat;
+      background-position: left;
+   }
+
+   .delete-poll {
+      background-image: url("../../public/img/polling-delete-icon.svg");
+      background-repeat: no-repeat;
+      background-position: left;
+   }
+
+   .delete-poll:hover {
+      color: red;
+   }
+   /* end dropdown */
+
    table {
       width: 882px;
 
@@ -210,10 +299,19 @@
       height: 50px;
    }
 
-   .row {
+   td {
       font-family: "Roboto", sans-serif;
       font-size: 16px;
       color: #eaf5ff;
+   }
+
+   .poll-title {
+      cursor: pointer;
+   }
+
+   .poll-title:hover {
+      color: #1e6599;
+      font-weight: 600;
    }
 
    .pagination {
