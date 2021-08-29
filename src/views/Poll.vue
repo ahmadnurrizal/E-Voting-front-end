@@ -132,6 +132,7 @@
          const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
             headers: header,
          });
+
          this.options = Poll.data.data;
       },
    };

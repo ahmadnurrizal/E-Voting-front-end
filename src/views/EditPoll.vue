@@ -114,10 +114,7 @@
                      headers: header,
                   }
                )
-               .then(
-                  (res) => console.log(res),
-                  this.$router.push(`/Poll/${this.pollId}`)
-               )
+               .then((res) => this.$router.push(`/Poll/${this.pollId}`))
                .catch((err) => console.log(err));
          },
       },
