@@ -39,7 +39,7 @@ button:hover {
    color: #1d1515;
 } */
 
-.router-link-active {
+.router-link-active:not(.SignIn-link) {
    color: #1e6599;
    font-weight: 500;
 }

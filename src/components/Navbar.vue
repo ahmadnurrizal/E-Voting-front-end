@@ -7,7 +7,11 @@
       </div>
       <section>
          <ul>
-            <li><router-link to="/SignIn">Create Poll</router-link></li>
+            <li>
+               <router-link class="SignIn-link" to="/SignIn"
+                  >Create Poll</router-link
+               >
+            </li>
             <li><router-link to="/About">About Us</router-link></li>
             <li><router-link to="/Discover">Discover</router-link></li>
             <li><router-link to="/Contact">Contact</router-link></li>
