@@ -19,6 +19,7 @@ import Aftervote from "../views/AfterVote.vue";
 import ForgotPass from "../views/ForgotPass.vue";
 import ResetPass from "../views/ResetPass.vue";
 import Discover from "../views/Discover.vue";
+import EditPoll from "../views/EditPoll.vue";
 
 const routes = [
    {
@@ -120,6 +121,11 @@ const routes = [
       path: "/Discover",
       name: "Discover",
       component: Discover,
+   },
+   {
+      path: "/edit/:id",
+      name: "EditPoll",
+      component: EditPoll,
    },
 ];
 
