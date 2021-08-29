@@ -4,7 +4,7 @@
       <Navbar v-else />
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
-         <div class="card">
+         <div class="card" v-if="isLogin">
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
@@ -55,6 +55,57 @@
                </div>
             </div>
          </div>
+         <div class="card" v-if="!isLogin">
+            <div class="top">
+               <h1>Discover Polls</h1>
+               <h3>You can find lots of pre-made polls</h3>
+               <form class="search-field">
+                  <input type="text" placeholder="Search..." />
+                  <div class="search-box">
+                     <img
+                        src="../../public/img/discover-search-icon.svg"
+                        alt=""
+                     />
+                  </div>
+               </form>
+            </div>
+            <h2>Trending Polls</h2>
+            <div class="wrapper-poll" id="wrapper1">
+               <div
+                  v-for="(item, index) in trendings"
+                  :key="item"
+                  class="trending-card"
+                  @click="openSignIn"
+               >
+                  <img src="../../public/img/discover-icon.svg" alt="" />
+                  <div class="info">
+                     <p class="title">{{ trendings[index].title }}</p>
+                     <br />
+                     <p class="createdOn">
+                        created on {{ trendings[index].created_at }}
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <h2>Newest Polls</h2>
+            <div class="wrapper-poll">
+               <div
+                  v-for="(item, index) in newest"
+                  :key="item"
+                  class="trending-card"
+                  @click="openSignIn"
+               >
+                  <img src="../../public/img/discover-icon.svg" alt="" />
+                  <div class="info">
+                     <p class="title">{{ newest[index].title }}</p>
+                     <br />
+                     <p class="createdOn">
+                        created on {{ newest[index].created_at }}
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
       <Footer />
    </div>
@@ -86,6 +137,10 @@
          },
          openNewest(index) {
             this.$router.push(`/Poll/${this.newest[index].id}`);
+         },
+         openSignIn() {
+            alert("please login before");
+            this.$router.push("/SignIn");
          },
       },
       async created() {
