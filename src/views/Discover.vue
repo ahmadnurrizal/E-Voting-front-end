@@ -8,14 +8,23 @@
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
-               <input type="text" placeholder="search.." />
+               <form class="search-field">
+                  <input type="text" placeholder="Search..." />
+                  <div class="search-box">
+                     <img
+                        src="../../public/img/discover-search-icon.svg"
+                        alt=""
+                     />
+                  </div>
+               </form>
             </div>
             <h2>Trending Polls</h2>
-            <div class="trending-poll">
+            <div class="wrapper-poll" id="wrapper1">
                <div
                   v-for="(item, index) in trendings"
                   :key="item"
                   class="trending-card"
+                  @click="openTrending(index)"
                >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
@@ -28,11 +37,12 @@
                </div>
             </div>
             <h2>Newest Polls</h2>
-            <div class="trending-poll">
+            <div class="wrapper-poll">
                <div
                   v-for="(item, index) in newest"
                   :key="item"
                   class="trending-card"
+                  @click="openNewest(index)"
                >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
@@ -69,6 +79,14 @@
             trendings: [],
             newest: [],
          };
+      },
+      methods: {
+         openTrending(index) {
+            this.$router.push(`/Poll/${this.trendings[index].id}`);
+         },
+         openNewest(index) {
+            this.$router.push(`/Poll/${this.newest[index].id}`);
+         },
       },
       async created() {
          let token = localStorage.getItem("token");
@@ -113,23 +131,79 @@
    }
 
    .card {
-      width: 948px;
-      height: 939px;
+      width: 1140px;
+      min-height: 846px;
       background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
       margin: 100px auto;
       padding: 30px 30px 60px;
    }
 
-   .trending-poll {
+   .top h1 {
+      font-family: "Kanit", sans-serif;
+      font-weight: 600;
+      font-size: 48px;
+      color: #eaf5ff;
+      margin-bottom: 20px;
+   }
+
+   .top h3 {
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 24px;
+      color: #eaf5ff;
+      margin-bottom: 30px;
+   }
+
+   .search-field {
+      margin-bottom: 60px;
+      border: solid #539be0;
+      border-radius: 20px;
+      width: 715px;
+      display: flex;
+   }
+
+   .search-field input {
+      outline: none;
+      padding-left: 15px;
+      width: 630px;
+      border: none;
+      border-top-left-radius: 21px;
+      border-bottom-left-radius: 21px;
+   }
+
+   .search-box {
+      width: 85px;
+      background-color: #bde0ff;
+      border-top-right-radius: 21px;
+      border-bottom-right-radius: 21px;
+      padding: 6px 30px;
+   }
+
+   h2 {
+      font-family: "Kanit", sans-serif;
+      font-weight: 600;
+      font-size: 30px;
+      color: #eaf5ff;
+      margin-bottom: 30px;
+   }
+
+   #wrapper1 {
+      margin-bottom: 60px;
+   }
+
+   .wrapper-poll {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
    }
 
    .trending-card {
+      cursor: pointer;
       display: flex;
       background-color: #eaf5ff;
       border: solid #539be0;
+      width: 312px;
+      height: 70px;
    }
 
    .title {
