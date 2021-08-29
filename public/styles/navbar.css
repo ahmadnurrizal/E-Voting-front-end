@@ -97,7 +97,7 @@ section ul li {
    position: absolute;
    width: 40px;
    height: 28px;
-   opacity: 0.8;
+   opacity: 0;
    top: -2px;
    left: -6px;
    z-index: 2;
