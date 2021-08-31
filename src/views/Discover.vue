@@ -4,108 +4,231 @@
       <Navbar v-else />
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
+         <!-- login user -->
          <div class="card" v-if="isLogin">
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
                <form class="search-field">
-                  <input type="text" placeholder="Search..." />
+                  <input
+                     type="text"
+                     placeholder="Search..."
+                     v-model="titleName"
+                  />
                   <div class="search-box">
                      <img
                         src="../../public/img/discover-search-icon.svg"
                         alt=""
+                        @click="searchTitle"
+                        v-if="!searchElement"
                      />
+                     <div
+                        class="silang"
+                        v-if="searchElement"
+                        @click="closeSearch"
+                     >
+                        X
+                     </div>
                   </div>
                </form>
             </div>
-            <h2>Trending Polls</h2>
-            <div class="wrapper-poll" id="wrapper1">
-               <div
-                  v-for="(item, index) in trendings"
-                  :key="item"
-                  class="trending-card"
-                  @click="openTrending(index)"
-               >
-                  <img src="../../public/img/discover-icon.svg" alt="" />
-                  <div class="info">
-                     <p class="title">{{ trendings[index].title }}</p>
-                     <br />
-                     <p class="createdOn">
-                        created on {{ trendings[index].created_at }}
-                     </p>
+            <div class="outlayer" v-if="!searchElement">
+               <h2>Trending Polls</h2>
+               <div class="wrapper-poll" id="wrapper1">
+                  <div
+                     v-for="(item, index) in trendings"
+                     :key="item"
+                     class="trending-card"
+                     @click="openTrending(index)"
+                  >
+                     <img src="../../public/img/discover-icon.svg" alt="" />
+                     <div class="info">
+                        <div class="wrapper-title">
+                           <p class="title">{{ trendings[index].title }}</p>
+                        </div>
+                        <p class="createdOn">
+                           created on
+                           {{
+                              new Date(trendings[index].created_at)
+                                 .toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                 })
+                                 .replace(/ /g, " ")
+                           }}
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <h2>Newest Polls</h2>
+               <div class="wrapper-poll">
+                  <div
+                     v-for="(item, index) in newest"
+                     :key="item"
+                     class="trending-card"
+                     @click="openNewest(index)"
+                  >
+                     <img src="../../public/img/discover-icon.svg" alt="" />
+                     <div class="info">
+                        <div class="wrapper-title">
+                           <p class="title">{{ newest[index].title }}</p>
+                        </div>
+
+                        <p class="createdOn">
+                           created on
+                           {{
+                              new Date(newest[index].created_at)
+                                 .toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                 })
+                                 .replace(/ /g, " ")
+                           }}
+                        </p>
+                     </div>
                   </div>
                </div>
             </div>
-            <h2>Newest Polls</h2>
-            <div class="wrapper-poll">
-               <div
-                  v-for="(item, index) in newest"
-                  :key="item"
-                  class="trending-card"
-                  @click="openNewest(index)"
-               >
+            <div class="wrapper-poll" v-if="searchElement">
+               <div class="trending-card">
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
-                     <p class="title">{{ newest[index].title }}</p>
-                     <br />
+                     <div class="wrapper-title">
+                        <p class="title">{{ searchList[0].title }}</p>
+                     </div>
                      <p class="createdOn">
-                        created on {{ newest[index].created_at }}
+                        created on
+                        {{
+                           new Date(searchList[0].created_at)
+                              .toLocaleDateString("en-GB", {
+                                 day: "numeric",
+                                 month: "short",
+                                 year: "numeric",
+                              })
+                              .replace(/ /g, " ")
+                        }}
                      </p>
                   </div>
                </div>
             </div>
          </div>
+         <!-- end of login user -->
+
+         <!-- not loged user -->
          <div class="card" v-if="!isLogin">
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
                <form class="search-field">
-                  <input type="text" placeholder="Search..." />
+                  <input
+                     type="text"
+                     placeholder="Search..."
+                     v-model="titleName"
+                  />
                   <div class="search-box">
                      <img
                         src="../../public/img/discover-search-icon.svg"
                         alt=""
+                        @click="searchTitle"
+                        v-if="!searchElement"
                      />
+                     <div
+                        class="silang"
+                        v-if="searchElement"
+                        @click="closeSearch"
+                     >
+                        X
+                     </div>
                   </div>
                </form>
             </div>
-            <h2>Trending Polls</h2>
-            <div class="wrapper-poll" id="wrapper1">
-               <div
-                  v-for="(item, index) in trendings"
-                  :key="item"
-                  class="trending-card"
-                  @click="openSignIn"
-               >
-                  <img src="../../public/img/discover-icon.svg" alt="" />
-                  <div class="info">
-                     <p class="title">{{ trendings[index].title }}</p>
-                     <br />
-                     <p class="createdOn">
-                        created on {{ trendings[index].created_at }}
-                     </p>
+
+            <div class="outlayer" v-if="!searchElement">
+               <h2>Trending Polls</h2>
+               <div class="wrapper-poll" id="wrapper1">
+                  <div
+                     v-for="(item, index) in trendings"
+                     :key="item"
+                     class="trending-card"
+                     @click="openSignIn"
+                  >
+                     <img src="../../public/img/discover-icon.svg" alt="" />
+                     <div class="info">
+                        <div class="wrapper-title">
+                           <p class="title">{{ trendings[index].title }}</p>
+                        </div>
+                        <br />
+                        <p class="createdOn">
+                           created on
+                           {{
+                              new Date(trendings[index].created_at)
+                                 .toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                 })
+                                 .replace(/ /g, " ")
+                           }}
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <h2>Newest Polls</h2>
+               <div class="wrapper-poll" v-if="!searchElement">
+                  <div
+                     v-for="(item, index) in newest"
+                     :key="item"
+                     class="trending-card"
+                     @click="openSignIn"
+                  >
+                     <img src="../../public/img/discover-icon.svg" alt="" />
+                     <div class="info">
+                        <div class="wrapper-title">
+                           <p class="title">{{ newest[index].title }}</p>
+                        </div>
+
+                        <p class="createdOn">
+                           created on
+                           {{
+                              new Date(newest[index].created_at)
+                                 .toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                 })
+                                 .replace(/ /g, " ")
+                           }}
+                        </p>
+                     </div>
                   </div>
                </div>
             </div>
-            <h2>Newest Polls</h2>
-            <div class="wrapper-poll">
-               <div
-                  v-for="(item, index) in newest"
-                  :key="item"
-                  class="trending-card"
-                  @click="openSignIn"
-               >
+            <div class="wrapper-poll" v-if="searchElement">
+               <div class="trending-card">
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
-                     <p class="title">{{ newest[index].title }}</p>
-                     <br />
+                     <div class="wrapper-title">
+                        <p class="title">{{ searchList[0].title }}</p>
+                     </div>
                      <p class="createdOn">
-                        created on {{ newest[index].created_at }}
+                        created on
+                        {{
+                           new Date(searchList[0].created_at)
+                              .toLocaleDateString("en-GB", {
+                                 day: "numeric",
+                                 month: "short",
+                                 year: "numeric",
+                              })
+                              .replace(/ /g, " ")
+                        }}
                      </p>
                   </div>
                </div>
             </div>
          </div>
+         <!-- end of not log user -->
       </div>
       <Footer />
    </div>
@@ -129,6 +252,10 @@
             isLogin: false,
             trendings: [],
             newest: [],
+
+            titleName: "",
+            searchList: [],
+            searchElement: false,
          };
       },
       methods: {
@@ -141,6 +268,19 @@
          openSignIn() {
             alert("please login before");
             this.$router.push("/SignIn");
+         },
+         closeSearch() {
+            this.searchElement = false;
+         },
+         async searchTitle() {
+            const resTitlePoll = await axios
+               .get(`api/v1/polls/discover/${this.titleName}`)
+               .catch((err) => alert(err.response.data.message));
+
+            if (resTitlePoll.data.status === "success") {
+               this.searchList = resTitlePoll.data.message;
+               this.searchElement = true;
+            }
          },
       },
       async created() {
@@ -234,6 +374,13 @@
       padding: 6px 30px;
    }
 
+   .silang {
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      color: #3d87cc;
+      font-size: 20px;
+   }
+
    h2 {
       font-family: "Kanit", sans-serif;
       font-weight: 600;
@@ -261,6 +408,12 @@
       height: 70px;
    }
 
+   .wrapper-title {
+      width: 230px;
+      height: 23px;
+      overflow: hidden;
+   }
+
    .title {
       color: #539be0;
    }
@@ -273,5 +426,72 @@
    .createdOn {
       font-family: "Roboto", sans-serif;
       font-size: 18px;
+   }
+
+   /* responsive for mobile */
+   @media (max-width: 586px) {
+      .vec {
+         padding-top: 130px;
+      }
+
+      .main {
+         margin: auto 10px;
+      }
+
+      .card {
+         min-width: 300px;
+         min-height: 1300px;
+         text-align: center;
+         padding: 10px;
+      }
+
+      .wrapper-poll {
+         display: block;
+         margin-top: 40px;
+      }
+
+      .trending-card {
+         margin: auto;
+         min-width: 290px;
+      }
+
+      .top h1 {
+         font-size: 38px;
+      }
+
+      .top h3 {
+         font-size: 24px;
+         margin-bottom: 10px;
+      }
+
+      .search-field {
+         width: 300px;
+         height: 30px;
+         margin: auto;
+      }
+
+      .search-box {
+         padding: 0;
+      }
+   }
+
+   /* responsive for tablet */
+   @media (min-width: 587px) and (max-width: 1156px) {
+      .main {
+         margin: auto 20px;
+      }
+
+      .card {
+         min-height: 1000px;
+      }
+
+      .wrapper-poll {
+         grid-template-columns: repeat(2, 1fr);
+         gap: 10px;
+      }
+
+      .search-field {
+         width: 600px;
+      }
    }
 </style>
