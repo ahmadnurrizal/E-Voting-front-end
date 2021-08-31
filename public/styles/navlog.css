@@ -246,13 +246,10 @@ section ul li {
 
 /* responsive for mobile */
 @media screen and (max-width: 586px) {
-   nav ul li a {
-      color: #3976af;
-      font-size: 14px;
-   }
-
    nav {
       background-image: linear-gradient(rgb(179, 215, 251), rgb(185, 219, 252));
+      position: relative;
+      padding: 0;
    }
 
    .nav-toggle {
@@ -266,53 +263,43 @@ section ul li {
       position: absolute;
       left: 0;
       top: 0;
-      height: 100vh;
-      width: 80%;
+      right: 0;
+      height: 35vh;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
       background-image: linear-gradient(rgb(179, 215, 251), rgb(180, 216, 251));
       z-index: -1;
-      transform: translateX(-100%);
+      transform: translateY(-100%);
       transition: all 1s;
    }
    section ul.slide {
-      transform: translateX(0%);
+      transform: translateY(0%);
    }
 
    .brand {
       order: 2;
-
-      margin: 0 80px;
-   }
-   .brand img {
       top: 5px;
+      right: 33vw;
+      position: absolute;
+   }
+
+   .brand img {
       width: 100px;
    }
 
    .nav-reg {
-      width: 90px;
-      padding-right: 8px;
-      order: 3;
       position: absolute;
+      width: 90px;
+      order: 3;
       right: 0px;
       top: 15px;
-      display: flex;
    }
 
-   .nav-reg .signin {
-      margin-right: 2px;
-   }
-
-   .nav-reg span {
-      font-size: 10px;
-   }
-
-   .nav-reg button {
-      padding: 0;
-      font-size: 10px;
-      width: 50px;
-      height: 20px;
+   .default-profile,
+   .profile-set {
+      width: 38px;
+      height: 40px;
    }
 }
 
@@ -333,14 +320,18 @@ section ul li {
       padding: 0 20px;
    }
 
-   .nav-reg .signin {
-      width: 45px;
+   .nav-reg {
+      position: absolute;
+      width: 90px;
+      order: 3;
+      right: 0;
+      top: 15px;
    }
 
-   .nav-reg button {
-      padding: 0;
-      width: 60px;
-      height: 20px;
+   .default-profile,
+   .profile-set {
+      width: 38px;
+      height: 40px;
    }
 
    .brand img {

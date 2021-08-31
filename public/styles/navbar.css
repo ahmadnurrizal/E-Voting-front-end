@@ -138,10 +138,10 @@ section ul li {
 
 /* responsive for mobile */
 @media screen and (max-width: 586px) {
-   nav ul li a {
-      color: #3976af;
-      font-size: 14px;
-   }
+   /* nav ul li a {
+      color: #616161;
+      font-size: 18px;
+   } */
 
    nav {
       background-image: linear-gradient(rgb(179, 215, 251), rgb(185, 219, 252));
@@ -152,24 +152,26 @@ section ul li {
       top: 20px;
       left: 18px;
       display: flex;
+      z-index: 9999;
    }
 
    section ul {
       position: absolute;
       left: 0;
+      right: 0;
       top: 0;
-      height: 100vh;
-      width: 80%;
+      height: 35vh;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
       background-image: linear-gradient(rgb(179, 215, 251), rgb(180, 216, 251));
-      z-index: -1;
-      transform: translateX(-100%);
+      z-index: 1;
+      transform: translateY(-100%);
       transition: all 1s;
    }
+
    section ul.slide {
-      transform: translateX(0%);
+      transform: translateY(0%);
    }
 
    .brand {
@@ -183,7 +185,7 @@ section ul li {
    }
 
    .nav-reg {
-      width: 90px;
+      width: 95px;
       padding-right: 8px;
       order: 3;
       position: absolute;
