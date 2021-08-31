@@ -7,7 +7,9 @@
          <div class="card">
             <h1>Contact Us</h1>
             <div class="body">
-               <p class="headline">If you want to ask something, you can contact the email below:</p>
+               <p class="headline">
+                  If you want to ask something, you can contact the email below:
+               </p>
                <h3>UI/UX Designer</h3>
                <div class="info">
                   <p>Name : Muhammad Ali Fikri</p>
@@ -34,105 +36,158 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import NavLog from "@/components/NavLog.vue";
-import Footer from "../components/Footer.vue";
+   import Navbar from "@/components/Navbar.vue";
+   import NavLog from "@/components/NavLog.vue";
+   import Footer from "../components/Footer.vue";
 
-export default {
-   name: "Contact",
-   components: {
-      Navbar,
-      NavLog,
-      Footer,
-   },
-   data() {
-      return {
-         isLogin: false,
-      };
-   },
-   created() {
-      let token = localStorage.getItem("token");
-      if (!token) {
-         this.isLogin = false;
-      } else {
-         this.isLogin = true;
-      }
-   },
-};
+   export default {
+      name: "Contact",
+      components: {
+         Navbar,
+         NavLog,
+         Footer,
+      },
+      data() {
+         return {
+            isLogin: false,
+         };
+      },
+      created() {
+         let token = localStorage.getItem("token");
+         if (!token) {
+            this.isLogin = false;
+         } else {
+            this.isLogin = true;
+         }
+      },
+   };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
+   @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Roboto&display=swap");
 
-* {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-}
+   * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+   }
 
-.wave-top {
-   padding-top: 60px;
-}
+   .wave-top {
+      padding-top: 60px;
+   }
 
-.vec {
-   padding-top: 200px;
-   padding-bottom: 170px;
-   background-image: url("../../public/img/vector/signup-wave.svg");
-   background-size: cover;
-   background-repeat: no-repeat;
-}
+   .vec {
+      padding-top: 200px;
+      padding-bottom: 170px;
+      background-image: url("../../public/img/vector/signup-wave.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+   }
 
-.wrapper {
-   background-color: #eaf5ff;
-}
+   .wrapper {
+      background-color: #eaf5ff;
+   }
 
-.card {
-   margin: 100px auto;
-   padding: 30px 40px 65px;
-   width: 948px;
-   height: 623px;
-   background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
-}
+   .card {
+      margin: 100px auto;
+      padding: 30px 40px 65px;
+      width: 948px;
+      height: 623px;
+      background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
+   }
 
-.body {
-   position: relative;
-}
+   .body {
+      position: relative;
+   }
 
-.card h1 {
-   font-size: 48px;
-   margin-bottom: 35px;
-}
+   .card h1 {
+      font-size: 48px;
+      margin-bottom: 35px;
+   }
 
-.headline {
-   margin-bottom: 30px;
-}
+   .headline {
+      margin-bottom: 30px;
+   }
 
-.info {
-   margin-bottom: 30px;
-}
+   .info {
+      margin-bottom: 30px;
+   }
 
-.info p {
-   margin-bottom: 10px;
-}
-p {
-   font-family: "Roboto", sans-serif;
-   color: #eaf5ff;
-   font-size: 18px;
-}
-.card h1 {
-   font-family: "Kanit", sans-serif;
-   color: #eaf5ff;
-}
-h3 {
-   font-size: 24px;
-   margin-bottom: 15px;
-   font-family: "Kanit", sans-serif;
-   color: #eaf5ff;
-}
+   .info p {
+      margin-bottom: 10px;
+   }
+   p {
+      font-family: "Roboto", sans-serif;
+      color: #eaf5ff;
+      font-size: 18px;
+   }
+   .card h1 {
+      font-family: "Kanit", sans-serif;
+      color: #eaf5ff;
+   }
+   h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-family: "Kanit", sans-serif;
+      color: #eaf5ff;
+   }
 
-.pic {
-   position: absolute;
-   right: 0;
-   bottom: -25px;
-}
+   .pic {
+      position: absolute;
+      right: 0;
+      bottom: -25px;
+   }
+
+   /* responsive for mobile */
+   @media (max-width: 586px) {
+      .vec {
+         padding-top: 100px;
+      }
+
+      .card {
+         padding: 15px 20px 10px;
+         margin: 100px 30px;
+         width: 648px;
+         min-height: 323px;
+      }
+
+      .card h1 {
+         font-size: 36px;
+         margin-bottom: 15px;
+      }
+
+      h3 {
+         font-size: 20px;
+         margin-bottom: 7px;
+      }
+
+      .info p {
+         margin-bottom: 5px;
+      }
+
+      p {
+         font-size: 16px;
+      }
+
+      .pic {
+         display: none;
+      }
+   }
+
+   /* responsive for tablet */
+   @media (min-width: 587px) and (max-width: 1156px) {
+      .main {
+         margin: auto 30px;
+      }
+
+      .card {
+         padding: 15px 20px 10px;
+         width: 748px;
+         height: 623px;
+      }
+
+      .pic img {
+         width: 350px;
+      }
+   }
 </style>
