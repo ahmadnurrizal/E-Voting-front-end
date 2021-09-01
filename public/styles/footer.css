@@ -37,8 +37,15 @@ li a {
 }
 
 .footer ul {
-   text-align: center;
+}
+
+a {
+   text-decoration: none;
+}
+
+.footer ul li {
    list-style: none;
+   text-align: left;
 }
 
 .bottom p {

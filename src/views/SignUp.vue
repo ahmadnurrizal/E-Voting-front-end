@@ -42,7 +42,15 @@
                      @click="showPw"
                      src="../../public/img/signup-seen-icon.svg"
                      class="seen"
-                  /><br />
+                     v-if="!seenPass"
+                  />
+                  <img
+                     class="seen"
+                     src="../../public/img/signup-seenpass-icon.svg"
+                     @click="showPw"
+                     v-if="seenPass"
+                  />
+                  <br />
                   <label for="password_confirmation"
                      >Password Confrimation</label
                   ><br />
@@ -57,7 +65,15 @@
                      @click="showPw_c"
                      src="../../public/img/signup-seen-icon.svg"
                      class="seen2"
-                  /><br />
+                     v-if="!seenPass2"
+                  />
+                  <img
+                     class="seen2"
+                     src="../../public/img/signup-seenpass-icon.svg"
+                     @click="showPw_c"
+                     v-if="seenPass2"
+                  />
+                  <br />
                   <label for="dob">Date of Birth</label><br />
                   <input
                      type="date"
@@ -142,21 +158,13 @@
             password_confirmation: "",
             date_of_birth: "",
             gender: "",
+
+            seenPass: false,
+            seenPass2: false,
          };
       },
       methods: {
          async submitData() {
-            // const response = await axios
-            //    .post("api/v1/register", {
-            //       name: this.name,
-            //       email: this.email,
-            //       password: this.password,
-            //       password_confirmation: this.password_confirmation,
-            //       date_of_birth: this.date_of_birth,
-            //       gender: this.gender,
-            //    })
-            //    .catch((err) => alert(err));
-
             const data = {
                name: this.name,
                email: this.email,
@@ -180,16 +188,20 @@
             var pswrd = document.getElementById("pw-field");
             if (pswrd.type === "password") {
                pswrd.type = "text";
+               this.seenPass = true;
             } else {
                pswrd.type = "password";
+               this.seenPass = false;
             }
          },
          showPw_c() {
             var pswrd = document.getElementById("pw_c-field");
             if (pswrd.type === "password") {
                pswrd.type = "text";
+               this.seenPass2 = true;
             } else {
                pswrd.type = "password";
+               this.seenPass2 = false;
             }
          },
       },
@@ -278,7 +290,7 @@
    .seen2 {
       position: absolute;
       right: 10px;
-      top: 316px;
+      top: 320px;
    }
 
    input[type="date"]::-webkit-calendar-picker-indicator {

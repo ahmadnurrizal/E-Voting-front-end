@@ -37,7 +37,15 @@
                      @click="showPw"
                      src="../../public/img/signup-seen-icon.svg"
                      class="unseen"
-                  /><br />
+                     v-if="!seenPass"
+                  />
+                  <img
+                     class="unseen"
+                     src="../../public/img/signup-seenpass-icon.svg"
+                     @click="showPw"
+                     v-if="seenPass"
+                  />
+                  <br />
                   <p>
                      <router-link to="/forgot-password"
                         >Forgot your password?</router-link
@@ -85,6 +93,7 @@
             password: "",
 
             error: false,
+            seenPass: false,
          };
       },
       methods: {
@@ -108,8 +117,10 @@
             var pswrd = document.getElementById("pw-field");
             if (pswrd.type === "password") {
                pswrd.type = "text";
+               this.seenPass = true;
             } else {
                pswrd.type = "password";
+               this.seenPass = false;
             }
          },
       },

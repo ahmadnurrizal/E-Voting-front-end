@@ -153,6 +153,7 @@
       width: 530px;
       height: 30px;
       margin-bottom: 50px;
+      padding-left: 10px;
    }
 
    input[type="submit"] {
@@ -173,8 +174,8 @@
    }
 
    .afterSubmit h1 {
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 400;
       color: #eb1f4b;
       text-align: center;
    }

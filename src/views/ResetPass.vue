@@ -30,7 +30,15 @@
                      @click="showPass"
                      src="../../public/img/signup-seen-icon.svg"
                      class="seen"
-                  /><br />
+                     v-if="!seenPass"
+                  />
+                  <img
+                     class="seen"
+                     src="../../public/img/signup-seenpass-icon.svg"
+                     @click="showPass"
+                     v-if="seenPass"
+                  />
+                  <br />
                   <label for="confirmPass">Confirm</label><br />
                   <input
                      id="confirm-icon"
@@ -43,6 +51,13 @@
                      @click="showConfirm"
                      src="../../public/img/signup-seen-icon.svg"
                      class="seen2"
+                     v-if="!seenPass2"
+                  />
+                  <img
+                     class="seen2"
+                     src="../../public/img/signup-seenpass-icon.svg"
+                     @click="showConfirm"
+                     v-if="seenPass2"
                   />
                   <br />
                   <div class="submission">
@@ -72,6 +87,9 @@
             email: "",
             newPass: "",
             confirmPass: "",
+
+            seenPass: false,
+            seenPass2: false,
          };
       },
       methods: {
@@ -94,16 +112,20 @@
             var pswrd = document.getElementById("pass-icon");
             if (pswrd.type === "password") {
                pswrd.type = "text";
+               this.seenPass = true;
             } else {
                pswrd.type = "password";
+               this.seenPass = false;
             }
          },
          showConfirm() {
             var pswrd = document.getElementById("confirm-icon");
             if (pswrd.type === "password") {
                pswrd.type = "text";
+               this.seenPass2 = true;
             } else {
                pswrd.type = "password";
+               this.seenPass2 = false;
             }
          },
       },
@@ -171,6 +193,8 @@
       width: 530px;
       height: 30px;
       padding: 0 33px;
+      border: none;
+      border-radius: 5px;
    }
 
    .submission {
