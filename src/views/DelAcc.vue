@@ -1,8 +1,8 @@
 <template>
-   <div class="wrapper">
+   <div class="wrapper-delPage">
       <NavLog />
       <div class="wave-top"><div class="vec"></div></div>
-      <div class="main">
+      <div class="main-delPage">
          <div class="card">
             <div class="head">
                <div class="profile-pic">
@@ -50,11 +50,37 @@
                         v-model="password"
                      />
 
-                     <div class="submission">
-                        <!-- <button>Delete Account</button> -->
-                        <input type="submit" value="Delete Account" />
+                     <div class="submission" @click="alertDel">
+                        <!-- <h1>Delete Account</h1> -->
+                        <div class="button-delete" id="showModal">
+                           Delete Account
+                        </div>
+                        <!-- <input type="submit" value="Delete Account" /> -->
                      </div>
                   </form>
+                  <div class="deleteModal-p" v-if="alert">
+                     <div class="deleteModal-ch" ref="showModalDel">
+                        <div class="title-del">
+                           <h1>Delete Account</h1>
+                        </div>
+                        <div class="info-del">
+                           <img
+                              src="../../public/img/delete-warning-icon.svg"
+                              alt=""
+                           />
+                           <p>
+                              Are you sure to delete this account? This cannot
+                              be undone.
+                           </p>
+                        </div>
+                        <div class="yesno-del">
+                           <button id="cancelBtn" @click="closeAlert">
+                              Cancel
+                           </button>
+                           <button id="delBtn" @click="delAcc">Delete</button>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
@@ -83,22 +109,17 @@
             userdata: "",
             password: "",
 
+            alert: false,
             nullImage: false,
          };
       },
-      async created() {
-         const user = await axios.get("api/v1/user", {
-            headers: {
-               Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-         });
-         this.userdata = user.data.data;
-
-         if (user.data.data.profil_path == null) {
-            this.nullImage = true;
-         }
-      },
       methods: {
+         alertDel() {
+            this.alert = true;
+         },
+         closeAlert() {
+            this.alert = false;
+         },
          delAcc() {
             const data = {
                password: this.password,
@@ -112,15 +133,43 @@
                   data,
                })
                .then((res) => {
-                  alert("your Account has been deleted");
-                  localStorage.removeItem("token");
+                  if (res.data.status != "error") {
+                     alert("your Account has been deleted");
+                     localStorage.removeItem("token");
 
-                  this.$router.push("/");
+                     this.$router.push("/");
+                  } else {
+                     alert(res.data.message);
+                  }
                })
-               .catch((err) => {
-                  console.log("error", err);
-               });
+               .catch((err) => alert(err.response.data.message));
          },
+         outsideClick(e) {
+            let parent = document.getElementById("showModal");
+            let el = this.$refs.showModalDel;
+            let target = e.target;
+
+            if (target != parent && !el.contains(target)) {
+               this.alert = false;
+            }
+         },
+      },
+      async created() {
+         const user = await axios.get("api/v1/user", {
+            headers: {
+               Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+         });
+         this.userdata = user.data.data;
+
+         if (user.data.data.profil_path == null) {
+            this.nullImage = true;
+         }
+
+         document.addEventListener("click", this.outsideClick);
+      },
+      unmounted() {
+         document.removeEventListener("click", this.outsideClick);
       },
    };
 </script>
@@ -146,8 +195,9 @@
       background-repeat: no-repeat;
    }
 
-   .wrapper {
+   .wrapper-delPage {
       background-color: #eaf5ff;
+      position: relative;
    }
 
    .card {
@@ -242,7 +292,7 @@
       object-fit: cover;
    }
 
-   .submission input {
+   .button-delete {
       cursor: pointer;
       font-family: "Kanit", sans-serif;
       font-size: 20px;
@@ -250,12 +300,105 @@
       border: none;
       border-radius: 25px;
       background-color: #ff7070;
+      padding: 7px 30px;
       width: 200px;
       height: 50px;
       color: #ffffff;
    }
 
-   .submission input:hover {
+   .button-delete:hover {
       background-color: #dd5555;
+   }
+
+   /* show delete modal */
+
+   .deleteModal-p {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 11;
+   }
+
+   .deleteModal-ch {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 507px;
+      height: 286px;
+      position: fixed;
+      background-color: #eaf5ff;
+      border-radius: 5px;
+   }
+
+   .title-del {
+      padding: 25px;
+      color: #1e6599;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: #bde0ff;
+   }
+
+   .info-del {
+      display: flex;
+      padding: 50px 30px;
+      align-items: center;
+   }
+
+   .info-del p {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: #1e6599;
+      margin: auto 30px;
+   }
+
+   .yesno-del {
+      position: absolute;
+      right: 15px;
+   }
+
+   .yesno-del button {
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: 15px;
+      width: 100px;
+      height: 30px;
+      cursor: pointer;
+   }
+
+   #cancelBtn {
+      background-color: #ffffff;
+      border: solid #1e6599;
+      border-width: 1px;
+      color: #1e6599;
+   }
+
+   #cancelBtn:hover {
+      background-color: #cfcfcf;
+   }
+
+   #cancelBtn:active {
+      transform: translateY(2px);
+   }
+
+   #delBtn {
+      border: none;
+      margin-left: 15px;
+      background-color: #ff7070;
+      color: #ffffff;
+   }
+
+   #delBtn:hover {
+      background-color: #dd5555;
+   }
+
+   #delBtn:active {
+      transform: translateY(2px);
    }
 </style>
