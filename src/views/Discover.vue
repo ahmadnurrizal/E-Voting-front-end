@@ -9,13 +9,14 @@
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
-               <form class="search-field">
+               <form @submit.prevent="searchTitle" class="search-field">
                   <input
                      type="text"
                      placeholder="Search..."
                      v-model="titleName"
                   />
                   <div class="search-box">
+                     <input type="submit" style="opacity: 0; display: none" />
                      <img
                         src="../../public/img/discover-search-icon.svg"
                         alt=""
@@ -121,7 +122,7 @@
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
-               <form class="search-field">
+               <form @submit.prevent="searchTitle" class="search-field">
                   <input
                      type="text"
                      placeholder="Search..."
