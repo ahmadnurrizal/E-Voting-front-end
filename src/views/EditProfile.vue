@@ -331,6 +331,12 @@
       position: absolute;
    }
 
+   input[type="text"] {
+      padding-left: 10px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+   }
+
    form label {
       font-weight: 500;
       font-size: 24px;
