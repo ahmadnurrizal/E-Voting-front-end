@@ -21,6 +21,10 @@ li a {
    font-size: 18px;
 }
 
+li a:hover {
+   color: #b4d6f3;
+}
+
 .footer-wrap {
    padding-top: 190px;
    background-color: #eaf5ff;
@@ -43,6 +47,7 @@ a {
 .footer ul li {
    list-style: none;
    text-align: left;
+   margin-bottom: 5px;
 }
 
 .bottom p {

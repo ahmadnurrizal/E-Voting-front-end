@@ -17,6 +17,11 @@
             <div class="content">
                <form @submit.prevent="submitData">
                   <label for="email">Email</label><br />
+                  <img
+                     id="image-email"
+                     src="../../public/img/signup-email-icon.svg"
+                     alt=""
+                  />
                   <input
                      type="email"
                      name="email"
@@ -160,6 +165,22 @@
       color: #eaf5ff;
       text-align: center;
    }
+
+   .tittle h1 {
+      font-family: "Kanit", sans-serif;
+      font-weight: 600;
+      font-size: 48px;
+   }
+
+   .tittle p {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+   }
+
+   a {
+      text-decoration: none;
+   }
    /* main content */
    .card {
       width: 755px;
@@ -221,6 +242,12 @@
    }
 
    /* icon in placeholder */
+   #image-email {
+      position: absolute;
+      top: 47px;
+      left: 12px;
+   }
+
    #email-field {
       background: white url(../../public/img/signup-email-icon.svg) left
          no-repeat;

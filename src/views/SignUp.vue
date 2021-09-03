@@ -13,6 +13,11 @@
             <div class="content">
                <form @submit.prevent="submitData">
                   <label for="name">Name</label><br />
+                  <img
+                     id="image-name"
+                     src="../../public/img/signup-name-icon.svg"
+                     alt=""
+                  />
                   <input
                      type="text"
                      name="name"
@@ -22,6 +27,11 @@
                      required
                   /><br />
                   <label for="email">Email</label><br />
+                  <img
+                     id="email-name"
+                     src="../../public/img/signup-email-icon.svg"
+                     alt=""
+                  />
                   <input
                      type="email"
                      name="email"
@@ -232,8 +242,13 @@
    .title-card h1 {
       padding-top: 30px;
       padding-bottom: 35px;
+      font-size: 48px;
       text-align: center;
       color: #eaf5ff;
+   }
+
+   a {
+      text-decoration: none;
    }
 
    .main {
@@ -257,6 +272,18 @@
    }
 
    /* icon in placeholder */
+   #image-name {
+      position: absolute;
+      top: 47px;
+      left: 43px;
+   }
+
+   #email-name {
+      position: absolute;
+      top: 138.7px;
+      left: 43px;
+   }
+
    #name-field {
       background: white url(../../public/img/signup-name-icon.svg) left
          no-repeat;
