@@ -335,6 +335,7 @@
       padding-left: 10px;
       font-family: "Roboto", sans-serif;
       font-weight: 400;
+      font-size: 16px;
    }
 
    form label {

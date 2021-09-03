@@ -200,6 +200,7 @@
    form input {
       font-family: "Roboto", sans-serif;
       font-weight: 400;
+      font-size: 16px;
       width: 529px;
       height: 40px;
       border: none;

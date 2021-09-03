@@ -224,6 +224,9 @@
       border-radius: 5px;
       margin-bottom: 15px;
       padding-left: 39px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
    }
 
    form p {
@@ -233,7 +236,7 @@
    form p a {
       font-family: "Roboto", sans-serif;
       font-size: 18px;
-      line-height: 180%;
+      font-weight: 400;
       color: #1e6599;
    }
 
@@ -277,7 +280,8 @@
 
    .submission p {
       font-family: "Roboto";
-      font-weight: 300;
+      font-weight: 400;
+      font-size: 18px;
       padding-top: 30px;
       padding-bottom: 52px;
       text-align: center;
@@ -345,6 +349,10 @@
 
       .tittle h1 {
          font-size: 27px;
+      }
+
+      #image-email {
+         top: 30px;
       }
 
       form {
@@ -432,6 +440,10 @@
       form input {
          width: 300px;
          height: 30px;
+      }
+
+      #image-email {
+         top: 42px;
       }
 
       /* unseen icon */

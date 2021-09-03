@@ -360,6 +360,9 @@
 
    .search-field input {
       outline: none;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
       padding-left: 15px;
       width: 630px;
       border: none;

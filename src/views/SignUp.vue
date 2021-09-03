@@ -28,7 +28,7 @@
                   /><br />
                   <label for="email">Email</label><br />
                   <img
-                     id="email-name"
+                     id="image-email"
                      src="../../public/img/signup-email-icon.svg"
                      alt=""
                   />
@@ -278,7 +278,7 @@
       left: 43px;
    }
 
-   #email-name {
+   #image-email {
       position: absolute;
       top: 138.7px;
       left: 43px;
@@ -363,7 +363,8 @@
 
    .submission p {
       font-family: "Roboto";
-      font-weight: 300;
+      font-weight: 400;
+      font-size: 18px;
       padding-top: 30px;
       padding-bottom: 52px;
       text-align: center;
@@ -411,6 +412,9 @@
       width: 340px;
       height: 40px;
       border-radius: 5px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
    }
 
    li {
@@ -467,6 +471,18 @@
          width: 300px;
          height: 750px;
          padding: 0px 1px 8px;
+      }
+
+      #image-name {
+         top: 36px;
+         left: 42px;
+         z-index: 99;
+      }
+
+      #image-email {
+         top: 113px;
+         left: 42px;
+         z-index: 99;
       }
 
       form label {
@@ -568,6 +584,16 @@
 
       form {
          padding-left: 0;
+      }
+
+      #image-name {
+         top: 34px;
+         left: 12px;
+      }
+
+      #image-email {
+         top: 106px;
+         left: 12px;
       }
 
       /* seen unseen */

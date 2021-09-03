@@ -250,9 +250,15 @@
       height: 40px;
       border-radius: 5px;
       padding-left: 10px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
    }
 
    textarea {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
       width: 340px;
       height: 100px;
       resize: vertical;
@@ -273,8 +279,8 @@
    } */
 
    .submission {
-      right: -360px;
-      top: 450px;
+      margin-top: 40px;
+      right: 0;
       text-align: center;
       position: absolute;
    }

@@ -468,6 +468,9 @@
    }
 
    input:not(.checkbox, .submit) {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
       border: #858484;
       border-style: solid;
       border-width: 1.5px;
@@ -478,6 +481,9 @@
    }
 
    textarea {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
       width: 340px;
       height: 100px;
       resize: vertical;
