@@ -43,8 +43,10 @@
                      >
                         <button class="type1">Result</button></router-link
                      >
-                     <router-link to=""
-                        ><button class="type2">Share</button></router-link
+                     <router-link to="" id="shareID" @click="shareClick"
+                        ><button class="type2">
+                           Share
+                        </button></router-link
                      >
                   </div>
                </div>
@@ -58,7 +60,7 @@
                >
             </div>
          </div>
-         <Sharepoll />
+         <Sharepoll id="scrollHere" />
       </div>
       <Footer />
    </div>
@@ -96,7 +98,14 @@
          toggleClick() {
             document.getElementById("dropDown").classList.toggle("show");
          },
-
+         shareClick() {
+            let scroll = document.getElementById("scrollHere");
+            window.scroll({
+               top: scroll.offsetTop - 100,
+               left: 0,
+               behavior: "smooth",
+            });
+         },
          handleVote() {
             const data = {
                poll_option_id: this.checked,
@@ -114,26 +123,32 @@
          },
       },
       async created() {
-         const header = {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-         };
-
-         //check alredy vote/not
-         const resVoted = await axios.get(`api/v1/polls/${this.pollId}`, {
-            headers: header,
-         });
-         if (resVoted.data.voted === false) {
-            this.status = false;
+         let token = localStorage.getItem("token");
+         if (!token) {
+            alert("please login");
+            this.$router.push("/SignIn");
          } else {
-            this.status = true;
+            const header = {
+               Authorization: "Bearer " + localStorage.getItem("token"),
+            };
+
+            //check alredy vote/not
+            const resVoted = await axios.get(`api/v1/polls/${this.pollId}`, {
+               headers: header,
+            });
+            if (resVoted.data.voted === false) {
+               this.status = false;
+            } else {
+               this.status = true;
+            }
+
+            // get poll option
+            const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
+               headers: header,
+            });
+
+            this.options = Poll.data.data;
          }
-
-         // get poll option
-         const Poll = await axios.get(`api/v1/poll-options/${this.pollId}`, {
-            headers: header,
-         });
-
-         this.options = Poll.data.data;
       },
    };
 </script>

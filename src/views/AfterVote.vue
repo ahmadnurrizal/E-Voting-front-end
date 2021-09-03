@@ -18,13 +18,13 @@
                   <router-link :to="{ name: 'Poll', params: { id: pollId } }">
                      <button class="type1">Back to poll</button>
                   </router-link>
-                  <router-link to=""
+                  <router-link to="" @click="shareClick"
                      ><button class="type2">Share</button></router-link
                   >
                </div>
             </div>
          </div>
-         <Sharepoll />
+         <Sharepoll id="scrollHere" />
       </div>
       <Footer />
    </div>
@@ -49,23 +49,15 @@
             pollId: this.$route.params.id,
          };
       },
-      async created() {
-         // const header = {
-         //    Authorization: "Bearer " + localStorage.getItem("token"),
-         // };
-         // //get from user-poll api
-         // const response = await axios.get("api/v1/user-poll", {
-         //    headers: header,
-         // });
-         // let lengthPoll = response.data.message.length;
-         // console.log(legthPoll);
-         // // matching id
-         // for (let i = 0; i < lengthPoll; i++) {
-         //    if (this.pollId == response.data.message[i].id) {
-         //       this.idMatched = response.data.message[i].id;
-         //    }
-         // }
-         // console.log(this.pollId);
+      methods: {
+         shareClick() {
+            let scroll = document.getElementById("scrollHere");
+            window.scroll({
+               top: scroll.offsetTop - 100,
+               left: 0,
+               behavior: "smooth",
+            });
+         },
       },
    };
 </script>

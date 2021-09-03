@@ -39,13 +39,13 @@
                   <router-link :to="{ name: 'Poll', params: { id: pollId } }">
                      <button class="type1">Back to poll</button>
                   </router-link>
-                  <router-link to=""
+                  <router-link to="" @click="shareClick"
                      ><button class="type2">Share</button></router-link
                   >
                </div>
             </div>
          </div>
-         <Sharepoll />
+         <Sharepoll id="scrollHere" />
       </div>
       <Footer />
    </div>
@@ -80,6 +80,14 @@
       methods: {
          reloadPage() {
             location.reload();
+         },
+         shareClick() {
+            let scroll = document.getElementById("scrollHere");
+            window.scroll({
+               top: scroll.offsetTop - 100,
+               left: 0,
+               behavior: "smooth",
+            });
          },
       },
       async created() {
