@@ -450,12 +450,16 @@
       font-size: 18px;
    }
 
+   .col-pic {
+      position: relative;
+   }
+
    .col-pic img {
       position: absolute;
    }
    .pic2 {
-      margin-top: 400px;
-      margin-left: 90px;
+      top: 400px;
+      left: 90px;
    }
 
    form {
@@ -470,12 +474,14 @@
       width: 340px;
       height: 40px;
       border-radius: 5px;
+      padding-left: 10px;
    }
 
    textarea {
       width: 340px;
       height: 100px;
       resize: vertical;
+      padding: 5px 10px;
    }
 
    ul {
