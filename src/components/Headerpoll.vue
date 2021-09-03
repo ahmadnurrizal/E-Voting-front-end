@@ -5,22 +5,30 @@
          <p>
             Created by
             <span style="color: #539BE0">{{ userdata.name }}</span> at
-            {{ created_at }}
+            {{
+               new Date(created_at)
+                  .toLocaleDateString("en-GB", {
+                     day: "numeric",
+                     month: "short",
+                     year: "numeric",
+                  })
+                  .replace(/ /g, " ")
+            }}
          </p>
          <div class="toggle" v-if="credentialUser">
             <img
                src="../../public/img/polling-toggle.svg"
                @click="toggleClick"
-               alt=""
+               id="imgTag"
             />
             <div class="dropDown" id="dropDown">
                <button class="edit" @click="showEdit">
                   <span>Edit Poll</span>
                </button>
-               <button class="reset" @click="showReset">
+               <button class="reset" @click="modalReset" id="resetID">
                   <span>Reset Poll</span>
                </button>
-               <button class="delete" @click="showDelete">
+               <button class="delete" @click="modalDelete" id="deleteID">
                   <span>Delete Poll</span>
                </button>
             </div>
@@ -30,11 +38,44 @@
          <h2>"{{ description }}"</h2>
          <img :src="poster" alt="" id="imgPoster" class="posterField" />
       </div>
-      <!-- <div class="modalEdit" id="edit-modal">
-         <p>do you want to edit this poll?</p>
-         <button>Yes</button>
-         <button>No</button>
-      </div> -->
+
+      <!-- reset modal -->
+      <div class="modalRes-p" v-if="reset" id="beforeModalRes">
+         <div class="modalRes-c">
+            <div class="title-res">
+               <h1>Reset Poll</h1>
+            </div>
+            <div class="info-res">
+               <img src="../../public/img/delete-warning-icon.svg" alt="" />
+               <p>
+                  Are you sure to reset this poll ? This cannot be undone.
+               </p>
+            </div>
+            <div class="yesno-res">
+               <button id="cancelBtn-res" @click="closeReset">Cancel</button>
+               <button id="resBtn" @click="resetPoll">Reset</button>
+            </div>
+         </div>
+      </div>
+
+      <!-- delete modal -->
+      <div class="modalDel-p" v-if="deleteStat" id="beforeModalDel">
+         <div class="modalDel-c">
+            <div class="title-Del">
+               <h1>Delete Poll</h1>
+            </div>
+            <div class="info-Del">
+               <img src="../../public/img/delete-warning-icon.svg" alt="" />
+               <p>
+                  Are you sure to delete this poll ? This cannot be undone.
+               </p>
+            </div>
+            <div class="yesno-Del">
+               <button id="cancelBtn-Del" @click="closeDelete">Cancel</button>
+               <button id="delBtn-Del" @click="deletePoll">Delete</button>
+            </div>
+         </div>
+      </div>
    </div>
 </template>
 
@@ -57,67 +98,118 @@
 
             poster: "",
             credentialUser: false,
+
+            reset: false,
+            deleteStat: false,
          };
       },
       methods: {
          toggleClick() {
             document.getElementById("dropDown").classList.toggle("show");
-         },
-         showEdit() {
-            // const edit = document.getElementById('modalEdit')
 
-            const edit = confirm("do you want to edit this poll?");
-            if (edit === true) {
-               this.$router.push(`/edit/${this.pollId}`);
-            }
+            let outsideToggle = window.addEventListener("click", (e) => {
+               let element = document.getElementById("imgTag");
+
+               if (e.target !== element) {
+                  let dropDown = document.getElementById("dropDown");
+                  dropDown.className = "dropDown";
+               }
+            });
          },
-         showReset() {
-            const reset = confirm("do you want to reset this poll?");
-            if (reset === true) {
-               axios
-                  .delete(`api/v1/polls/${this.pollId}/reset`, {
+         // outsideClickRes() {
+         //    let targetRes = window.target;
+         //    // let resetTag = document.getElementById("resetID");
+         //    let elReset = document.getElementById("resetTag");
+
+         //    console.log(targetRes);
+         // },
+         // outsideClickDel(e) {
+         //    let targetDel = e.target;
+         //    let elDelete = this.$refs.childModalDel;
+         //    // let deleteTag = document.getElementById("deleteID");
+
+         //    if (targetDel != elDelete && !elDelete.contains(targetDel)) {
+         //       this.deleteStat = false;
+         //    }
+         // },
+         // outClick(e) {
+         //    let target = e.target;
+         //    let dropDown = document.getElementById("dropDown");
+         //    let element = document.getElementById("imgTag");
+
+         //    if (target !== element) {
+         //       dropDown.className = "dropDown";
+         //    }
+         // },
+         showEdit() {
+            this.$router.push(`/edit/${this.pollId}`);
+         },
+         modalReset() {
+            this.reset = true;
+
+            let resetClicked = window.addEventListener("click", (e) => {
+               let beforeReset = document.getElementById("beforeModalRes");
+
+               if (e.target === beforeReset) {
+                  this.reset = false;
+               }
+            });
+         },
+         closeReset() {
+            this.reset = false;
+         },
+         resetPoll() {
+            axios
+               .delete(`api/v1/polls/${this.pollId}/reset`, {
+                  headers: {
+                     Authorization: "Bearer " + localStorage.getItem("token"),
+                  },
+               })
+               .then(
+                  (res) =>
+                     alert(res.data.message + ", please refresh this page"),
+                  (this.reset = false)
+               )
+               .catch((err) => console.log(err));
+         },
+         modalDelete() {
+            this.deleteStat = true;
+
+            let deleteClicked = window.addEventListener("click", (e) => {
+               let beforeDelete = document.getElementById("beforeModalDel");
+
+               if (e.target === beforeDelete) {
+                  this.deleteStat = false;
+               }
+            });
+         },
+         closeDelete() {
+            this.deleteStat = false;
+         },
+         deletePoll() {
+            const dataDelete = {
+               title: this.title,
+               description: this.description,
+               deadline: this.deadline,
+               status: this.statusOpen,
+               user_id: this.idMatched,
+            };
+            axios
+               .delete(
+                  `api/v1/polls/${this.pollId}`,
+                  {
                      headers: {
                         Authorization:
                            "Bearer " + localStorage.getItem("token"),
                      },
-                  })
-                  .then(
-                     (res) => alert(res.data.message),
-                     this.$router.push(`/Poll/${this.pollId}`)
-                  )
-                  .catch((err) => console.log(err));
-            }
-         },
-         showDelete() {
-            const modalDelete = confirm("do you want to delete this poll?");
-            // const header = {
-            //    Authorization: "Bearer " + localStorage.getItem('token')
-            // }
-            if (modalDelete === true) {
-               const dataDelete = {
-                  title: this.title,
-                  description: this.description,
-                  deadline: this.deadline,
-                  status: this.statusOpen,
-                  user_id: this.idMatched,
-               };
-               axios
-                  .delete(
-                     `api/v1/polls/${this.pollId}`,
-                     {
-                        headers: {
-                           Authorization:
-                              "Bearer " + localStorage.getItem("token"),
-                        },
-                     },
-                     dataDelete
-                  )
-                  .then(
-                     (res) => alert("Your polling has been deleted"),
-                     this.$router.push("/CreatePoll")
-                  )
-                  .catch((err) => alert(err.response));
-            }
+                  },
+                  dataDelete
+               )
+               .then(
+                  (res) => alert("Your polling has been deleted"),
+                  this.$router.push("/CreatePoll")
+               )
+               .catch((err) => alert(err.response));
          },
       },
       async created() {
@@ -175,7 +267,14 @@
             const tagPoster = document.getElementById("imgPoster");
             tagPoster.className = "posterField-active";
          }
+
+         // document.addEventListener("click", this.outClick);
+         // document.addEventListener("click", this.outsideClickRes);
       },
+      // unmounted() {
+      //    document.removeEventListener("click", this.outClick);
+      //    // document.removeEventListener("click", this.outsideClickRes);
+      // },
    };
 </script>
 
@@ -309,4 +408,185 @@
       border-radius: 10px;
       background-color: #eaf5ff;
    } */
+
+   /* show reset modal */
+
+   .modalRes-p {
+      position: absolute;
+      width: 100%;
+      min-height: 3118px;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 11;
+   }
+
+   .modalRes-c {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 507px;
+      height: 286px;
+      background-color: #eaf5ff;
+      border-radius: 5px;
+   }
+
+   .title-res {
+      padding: 25px;
+      color: #1e6599;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: #bde0ff;
+   }
+
+   .info-res {
+      display: flex;
+      padding: 50px 30px;
+      align-items: center;
+   }
+
+   .info-res p {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: #1e6599;
+      margin: auto 30px;
+   }
+
+   .yesno-res {
+      position: absolute;
+      right: 15px;
+   }
+
+   .yesno-res button {
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: 15px;
+      width: 100px;
+      height: 30px;
+      cursor: pointer;
+   }
+
+   #cancelBtn-res {
+      background-color: #ffffff;
+      border: solid #1e6599;
+      border-width: 1px;
+      color: #1e6599;
+   }
+
+   #cancelBtn-res:hover {
+      background-color: #cfcfcf;
+   }
+
+   #cancelBtn:active {
+      transform: translateY(2px);
+   }
+
+   #resBtn {
+      border: none;
+      margin-left: 15px;
+      background-color: #ff7070;
+      color: #ffffff;
+   }
+
+   #resBtn:hover {
+      background-color: #dd5555;
+   }
+
+   #delBtn:active {
+      transform: translateY(2px);
+   }
+
+   /* show delete modal */
+   .modalDel-p {
+      position: absolute;
+      width: 100%;
+      min-height: 3118px;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 11;
+   }
+
+   .modalDel-c {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 507px;
+      height: 286px;
+      background-color: #eaf5ff;
+      border-radius: 5px;
+   }
+
+   .title-Del {
+      padding: 25px;
+      color: #1e6599;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: #bde0ff;
+   }
+
+   .info-Del {
+      display: flex;
+      padding: 50px 30px;
+      align-items: center;
+   }
+
+   .info-Del p {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: #1e6599;
+      margin: auto 30px;
+   }
+
+   .yesno-Del {
+      position: absolute;
+      right: 15px;
+   }
+
+   .yesno-Del button {
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: 15px;
+      width: 100px;
+      height: 30px;
+      cursor: pointer;
+   }
+
+   #cancelBtn-Del {
+      background-color: #ffffff;
+      border: solid #1e6599;
+      border-width: 1px;
+      color: #1e6599;
+   }
+
+   #cancelBtn-Del:hover {
+      background-color: #cfcfcf;
+   }
+
+   #cancelBtn-Del:active {
+      transform: translateY(2px);
+   }
+
+   #delBtn-Del {
+      border: none;
+      margin-left: 15px;
+      background-color: #ff7070;
+      color: #ffffff;
+   }
+
+   #delBtn-Del:hover {
+      background-color: #dd5555;
+   }
+
+   #delBtn-Del:active {
+      transform: translateY(2px);
+   }
 </style>
