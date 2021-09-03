@@ -39,13 +39,28 @@
                         </div>
                      </li>
                   </ul>
-                  <div class="add-option" @click="addElement">
-                     <p>tambah</p>
-                  </div>
+
                   <div class="submission">
-                     <input type="submit" value="update poll" />
+                     <button @click="discardUpdate">Discard</button>
+                     <input
+                        type="submit"
+                        value="update poll"
+                        class="submitUpdate"
+                     />
                   </div>
                </form>
+               <div class="edit-colPic">
+                  <img
+                     class="pic1"
+                     src="../../public/img/createpoll-main-pic.svg"
+                     alt=""
+                  />
+                  <!-- <img
+                     class="pic2"
+                     src="../../public/img/aboutpoll-icon2.svg"
+                     alt=""
+                  /> -->
+               </div>
             </div>
          </div>
       </div>
@@ -75,15 +90,18 @@
          };
       },
       methods: {
-         addElement() {
-            this.poll_options.push({ option: "", image_path: "" });
-
-            // console.log(this.poll_options.length);
-            // const tagInput = document.querySelector(
-            //    'input[class="fieldInput"]'
-            // );
-            // tagInput.id = "inputan" + (this.poll_options.length - 2) + 1;
+         discardUpdate() {
+            this.$router.push(`/Poll/${this.pollId}`);
          },
+         // addElement() {
+         //    this.poll_options.push({ option: "", image_path: "" });
+
+         //    // console.log(this.poll_options.length);
+         //    // const tagInput = document.querySelector(
+         //    //    'input[class="fieldInput"]'
+         //    // );
+         //    // tagInput.id = "inputan" + (this.poll_options.length - 2) + 1;
+         // },
          async handleUpdatePoll() {
             const header = {
                Authorization: "Bearer " + localStorage.getItem("token"),
@@ -183,8 +201,8 @@
    }
    .card {
       width: 755px;
-      min-height: 988px;
-      padding-bottom: 40px;
+      min-height: 588px;
+      padding-bottom: 120px;
       height: auto;
       border: none;
       border-radius: 10px;
@@ -193,8 +211,111 @@
       margin: 20px;
    }
 
+   h1,
+   form label,
+   h2 {
+      font-family: "Kanit", sans-serif;
+      color: #eaf5ff;
+   }
+
+   .title h1 {
+      text-align: center;
+      font-size: 48px;
+      margin: 30px auto 35px;
+   }
+
+   label {
+      font-size: 24px;
+   }
+
    .add-option {
       background-color: red;
       cursor: pointer;
+   }
+
+   ul li {
+      list-style: none;
+   }
+
+   form {
+      position: relative;
+      margin: 0 52px 30px 15px;
+   }
+
+   input:not(.submitUpdate) {
+      border: #858484;
+      border-style: solid;
+      border-width: 1.5px;
+      width: 340px;
+      height: 40px;
+      border-radius: 5px;
+      padding-left: 10px;
+   }
+
+   textarea {
+      width: 340px;
+      height: 100px;
+      resize: vertical;
+      padding: 5px 10px;
+   }
+
+   .edit-colPic {
+      position: relative;
+   }
+
+   .edit-colPic img {
+      position: absolute;
+   }
+
+   /* .pic2 {
+      top: 400px;
+      left: 90px;
+   } */
+
+   .submission {
+      right: -360px;
+      top: 450px;
+      text-align: center;
+      position: absolute;
+   }
+
+   .submission input {
+      cursor: pointer;
+      font-family: "Kanit", sans-serif;
+      color: white;
+      font-size: 18px;
+      background-color: #ff7070;
+      min-width: 100px;
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      padding: 0 10px;
+   }
+
+   .submission button {
+      cursor: pointer;
+      font-family: "Kanit", sans-serif;
+      color: #3d87cc;
+      font-size: 18px;
+      background-color: #eaf5ff;
+      border: solid #3d87cc;
+      border-width: 1px;
+      min-width: 100px;
+      height: 40px;
+      border-radius: 10px;
+      margin-right: 20px;
+   }
+
+   .submission input:hover {
+      background-color: #f55454;
+   }
+
+   .submission button:hover {
+      background-color: #cedbe7;
+   }
+
+   .submission input:active,
+   .submission button:active {
+      transform: translateY(2px);
    }
 </style>
