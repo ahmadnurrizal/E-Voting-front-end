@@ -93,16 +93,20 @@
                </div>
             </div>
             <div class="wrapper-poll" v-if="searchElement">
-               <div class="trending-card">
+               <div
+                  class="trending-card"
+                  v-for="(item, index) in searchList"
+                  :key="item"
+               >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
                      <div class="wrapper-title">
-                        <p class="title">{{ searchList[0].title }}</p>
+                        <p class="title">{{ searchList[index].title }}</p>
                      </div>
                      <p class="createdOn">
                         created on
                         {{
-                           new Date(searchList[0].created_at)
+                           new Date(searchList[index].created_at)
                               .toLocaleDateString("en-GB", {
                                  day: "numeric",
                                  month: "short",
@@ -207,16 +211,20 @@
                </div>
             </div>
             <div class="wrapper-poll" v-if="searchElement">
-               <div class="trending-card">
+               <div
+                  class="trending-card"
+                  v-for="(item, index) in searchList"
+                  :key="item"
+               >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
                      <div class="wrapper-title">
-                        <p class="title">{{ searchList[0].title }}</p>
+                        <p class="title">{{ searchList[index].title }}</p>
                      </div>
                      <p class="createdOn">
                         created on
                         {{
-                           new Date(searchList[0].created_at)
+                           new Date(searchList[index].created_at)
                               .toLocaleDateString("en-GB", {
                                  day: "numeric",
                                  month: "short",

@@ -84,7 +84,7 @@
 
             title: "",
             description: "",
-            statusOpen: "opened",
+            statusOpen: "public",
 
             poll_options: [{ option: "", image_path: "" }],
          };

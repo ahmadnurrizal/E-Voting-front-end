@@ -191,7 +191,7 @@
             title: "",
             description: "",
             deadline: "",
-            status: "opened",
+            status: "public",
             option: [
                { option: "", image_path: "", file_name: "" },
                { option: "", image_path: "", file_name: "" },

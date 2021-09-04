@@ -9,7 +9,7 @@
       <div class="main">
          <div class="card-header">
             <Headerpoll />
-            <form v-if="!status">
+            <form v-if="!status && !overdue">
                <h2>Choose one answer :</h2>
                <ul>
                   <li
@@ -51,8 +51,16 @@
                   </div>
                </div>
             </form>
-            <div class="done-vote" v-else>
+            <div class="done-vote" v-if="status">
                <h1>You have already voted this poll, Go check the result!</h1>
+               <router-link :to="{ name: 'Result', params: { id: pollId } }"
+                  ><button class="resultMounted">
+                     View Result
+                  </button></router-link
+               >
+            </div>
+            <div class="overdeadline" v-if="overdue">
+               <h1>This poll is Closed</h1>
                <router-link :to="{ name: 'Result', params: { id: pollId } }"
                   ><button class="resultMounted">
                      View Result
@@ -92,6 +100,8 @@
             options: [{ option: "", image_path: "" }],
             checked: "",
             status: false,
+
+            overdue: false,
          };
       },
       methods: {
@@ -136,10 +146,21 @@
             const resVoted = await axios.get(`api/v1/polls/${this.pollId}`, {
                headers: header,
             });
+
             if (resVoted.data.voted === false) {
                this.status = false;
             } else {
                this.status = true;
+            }
+            // validate poll before deadline
+            const today = new Date();
+
+            const deadline = new Date(resVoted.data.data.deadline);
+
+            if (today.getTime() < deadline.getTime()) {
+               this.overdue = false;
+            } else if (today.getTime() > deadline.getTime()) {
+               this.overdue = true;
             }
 
             // get poll option
@@ -206,11 +227,13 @@
       cursor: pointer;
    }
 
-   .done-vote {
+   .done-vote,
+   .overdeadline {
       text-align: center;
    }
 
-   .done-vote h1 {
+   .done-vote h1,
+   .overdeadline h1 {
       font-family: "Kanit", sans-serif;
       font-weight: 400;
       font-size: 30px;
