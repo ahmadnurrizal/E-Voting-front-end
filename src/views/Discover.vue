@@ -19,7 +19,7 @@
                      <input type="submit" style="opacity: 0; display: none" />
                      <img
                         src="../../public/img/discover-search-icon.svg"
-                        alt=""
+                        class="image-search"
                         @click="searchTitle"
                         v-if="!searchElement"
                      />
