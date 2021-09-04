@@ -43,7 +43,12 @@
                            alt=""
                         />
                         <button disabled id="buttonTag" class="button">
-                           Change profile picture
+                           <span v-if="!onChangeName"
+                              >Change profile picture
+                           </span>
+                           <span v-else>{{
+                              profilePic[0].profilePic_name
+                           }}</span>
                         </button>
                         <input
                            type="file"
@@ -121,6 +126,8 @@
 
             profilePic: [{ url: "", profilePic_name: "" }],
             nullImage: false,
+
+            onChangeName: false,
          };
       },
       async created() {
@@ -156,10 +163,13 @@
                this.profilePic[0].profilePic_name = file[0].name;
                this.profilePic[0].url = file[0];
 
+               this.onChangeName = true;
+
                if (file[0].size > 1000 * 1024) {
                   this.profilePic[0].profilePic_name = "";
                   this.profilePic[0].url = "";
                   alert("file exceeds the minimum size (min: 1 Mb)");
+                  this.onChangeName = false;
 
                   return;
                } else {
@@ -208,7 +218,8 @@
                })
                .then((response) => {
                   alert("Profile successfully edited");
-                  this.$router.push("/Settings");
+                  // this.$router.push("/Settings");
+                  location.reload();
                })
                .catch((error) => {
                   console.log("error", error);
@@ -320,6 +331,7 @@
       border-radius: 15px;
       width: 250px;
       height: 40px;
+      overflow: hidden;
    }
 
    .inputTag {
