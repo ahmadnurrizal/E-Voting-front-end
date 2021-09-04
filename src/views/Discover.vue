@@ -135,7 +135,7 @@
                   <div class="search-box">
                      <img
                         src="../../public/img/discover-search-icon.svg"
-                        alt=""
+                        class="image-search"
                         @click="searchTitle"
                         v-if="!searchElement"
                      />
@@ -386,11 +386,26 @@
       padding: 6px 30px;
    }
 
+   .search-box img,
+   .image-search {
+      cursor: pointer;
+   }
+
+   .image-search:hover {
+      transform: translateY(1px);
+   }
+
    .silang {
+      cursor: pointer;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
       color: #3d87cc;
       font-size: 20px;
+   }
+
+   .silang:hover {
+      font-weight: bold;
+      color: red;
    }
 
    h2 {
