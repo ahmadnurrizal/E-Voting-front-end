@@ -107,47 +107,21 @@
          toggleClick() {
             document.getElementById("dropDown").classList.toggle("show");
 
-            let outsideToggle = window.addEventListener("click", (e) => {
-               let element = document.getElementById("imgTag");
-
+            let element = document.getElementById("imgTag");
+            let dropDown = document.getElementById("dropDown");
+            window.addEventListener("click", (e) => {
                if (e.target !== element) {
-                  let dropDown = document.getElementById("dropDown");
                   dropDown.className = "dropDown";
                }
             });
          },
-         // outsideClickRes() {
-         //    let targetRes = window.target;
-         //    // let resetTag = document.getElementById("resetID");
-         //    let elReset = document.getElementById("resetTag");
-
-         //    console.log(targetRes);
-         // },
-         // outsideClickDel(e) {
-         //    let targetDel = e.target;
-         //    let elDelete = this.$refs.childModalDel;
-         //    // let deleteTag = document.getElementById("deleteID");
-
-         //    if (targetDel != elDelete && !elDelete.contains(targetDel)) {
-         //       this.deleteStat = false;
-         //    }
-         // },
-         // outClick(e) {
-         //    let target = e.target;
-         //    let dropDown = document.getElementById("dropDown");
-         //    let element = document.getElementById("imgTag");
-
-         //    if (target !== element) {
-         //       dropDown.className = "dropDown";
-         //    }
-         // },
          showEdit() {
             this.$router.push(`/edit/${this.pollId}`);
          },
          modalReset() {
             this.reset = true;
 
-            let resetClicked = window.addEventListener("click", (e) => {
+            window.addEventListener("click", (e) => {
                let beforeReset = document.getElementById("beforeModalRes");
 
                if (e.target === beforeReset) {
@@ -175,7 +149,7 @@
          modalDelete() {
             this.deleteStat = true;
 
-            let deleteClicked = window.addEventListener("click", (e) => {
+            window.addEventListener("click", (e) => {
                let beforeDelete = document.getElementById("beforeModalDel");
 
                if (e.target === beforeDelete) {
@@ -268,13 +242,17 @@
             tagPoster.className = "posterField-active";
          }
 
-         // document.addEventListener("click", this.outClick);
-         // document.addEventListener("click", this.outsideClickRes);
+         // validate poll before deadline
+         const today = new Date();
+
+         const deadline = new Date(this.deadline);
+
+         if (today.getTime() < deadline.getTime()) {
+            this.credentialUser = true;
+         } else if (today.getTime() > deadline.getTime()) {
+            this.credentialUser = false;
+         }
       },
-      // unmounted() {
-      //    document.removeEventListener("click", this.outClick);
-      //    // document.removeEventListener("click", this.outsideClickRes);
-      // },
    };
 </script>
 
@@ -412,9 +390,10 @@
    /* show reset modal */
 
    .modalRes-p {
-      position: absolute;
+      position: fixed;
       width: 100%;
-      min-height: 3118px;
+      /* min-height: 2139px; */
+      height: 100%;
       top: 0;
       left: 0;
       background-color: rgba(0, 0, 0, 0.4);
@@ -502,9 +481,10 @@
 
    /* show delete modal */
    .modalDel-p {
-      position: absolute;
+      position: fixed;
       width: 100%;
-      min-height: 3118px;
+      height: 100%;
+      /* min-height: 2139px; */
       top: 0;
       left: 0;
       background-color: rgba(0, 0, 0, 0.4);

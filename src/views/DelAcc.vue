@@ -58,8 +58,8 @@
                         <!-- <input type="submit" value="Delete Account" /> -->
                      </div>
                   </form>
-                  <div class="deleteModal-p" v-if="alert">
-                     <div class="deleteModal-ch" ref="showModalDel">
+                  <div class="deleteModal-p" v-if="alert" ref="showModalDel">
+                     <div class="deleteModal-ch">
                         <div class="title-del">
                            <h1>Delete Account</h1>
                         </div>
@@ -149,7 +149,7 @@
             let el = this.$refs.showModalDel;
             let target = e.target;
 
-            if (target != parent && !el.contains(target)) {
+            if (target !== parent && target === el) {
                this.alert = false;
             }
          },
