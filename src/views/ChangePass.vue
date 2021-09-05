@@ -109,13 +109,14 @@
                   headers: header,
                })
                .then((res) => {
-                  alert("your password has been changed");
-               })
-               .catch((err) => {
-                  console.log("error", err);
+                  console.log(res);
+                  if (res.data.status === "error") {
+                     alert(res.data.message);
+                  } else {
+                     alert("Your password has been changed");
+                     this.$router.push("/Settings");
+                  }
                });
-
-            this.$router.push("/Settings");
          },
       },
    };
