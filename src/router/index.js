@@ -21,6 +21,8 @@ import ResetPass from "../views/ResetPass.vue";
 import Discover from "../views/Discover.vue";
 import EditPoll from "../views/EditPoll.vue";
 
+import pageNotFound from "../views/pageNotFound.vue";
+
 const routes = [
    {
       path: "/",
@@ -29,42 +31,42 @@ const routes = [
    },
    {
       path: "/Auth",
-      name: "Notlog",
+      name: "Uncredential User",
       component: Notlog,
    },
    {
       path: "/CreatePoll",
-      name: "Createpoll",
+      name: "Create poll",
       component: Createpoll,
    },
    {
       path: "/SignIn",
-      name: "SignIn",
+      name: "Sign In",
       component: Signin,
    },
    {
       path: "/SignUp",
-      name: "SignUp",
+      name: "Sign Up",
       component: Signup,
    },
    {
       path: "/Settings",
-      name: "settings",
+      name: "Settings",
       component: settings,
    },
    {
       path: "/Settings/Password",
-      name: "EditPass",
+      name: "Edit Password",
       component: EditPass,
    },
    {
       path: "/Settings/DeleteAccount",
-      name: "DeleteAcc",
+      name: "Delete Account",
       component: Delete,
    },
    {
       path: "/Help",
-      name: "HelpCenter",
+      name: "Help Center",
       component: Help,
    },
    {
@@ -79,7 +81,7 @@ const routes = [
    },
    {
       path: "/About",
-      name: "About-Us",
+      name: "About Us",
       component: About,
    },
    {
@@ -89,7 +91,7 @@ const routes = [
    },
    {
       path: "/Dashboard",
-      name: "dashboard",
+      name: "Dashboard",
       component: Dashboard,
    },
    {
@@ -104,17 +106,17 @@ const routes = [
    },
    {
       path: "/Poll/:id/voted",
-      name: "Aftervote",
+      name: "After vote",
       component: Aftervote,
    },
    {
       path: "/forgot-password",
-      name: "ForgotPass",
+      name: "Forgot Password",
       component: ForgotPass,
    },
    {
       path: "/api/v1/reset-password",
-      name: "ResetPass",
+      name: "Reset Password",
       component: ResetPass,
    },
    {
@@ -124,14 +126,24 @@ const routes = [
    },
    {
       path: "/edit/:id",
-      name: "EditPoll",
+      name: "Edit Poll",
       component: EditPoll,
+   },
+   {
+      path: "/:pathMatch(.*)*",
+      name: "404 NOT FOUND",
+      component: pageNotFound,
    },
 ];
 
 const router = createRouter({
    history: createWebHistory(process.env.BASE_URL),
    routes,
+});
+
+router.beforeEach((to, from, next) => {
+   document.title = `${process.env.VUE_APP_TITLE} - ${to.name}`;
+   next();
 });
 
 export default router;
