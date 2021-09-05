@@ -9,6 +9,7 @@
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
+               <p class="notFound" v-if="notFoundPoll">Poll not found</p>
                <form @submit.prevent="searchTitle" class="search-field">
                   <input
                      type="text"
@@ -127,6 +128,8 @@
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
+               <p class="notFound" v-if="notFoundPoll">Poll not found</p>
+
                <form @submit.prevent="searchTitle" class="search-field">
                   <input
                      type="text"
@@ -267,6 +270,8 @@
             titleName: "",
             searchList: [],
             searchElement: false,
+
+            notFoundPoll: false,
          };
       },
       methods: {
@@ -285,18 +290,19 @@
          },
          closeSearch() {
             this.searchElement = false;
+            this.notFoundPoll = false;
          },
          async searchTitle() {
             const resTitlePoll = await axios
                .get(`api/v1/polls/discover/${this.titleName}`)
-               .catch((err) => alert(err.response.data.message));
-
-            console.log(resTitlePoll);
-
-            if (resTitlePoll.data.status === "success") {
-               this.searchList = resTitlePoll.data.message;
-               this.searchElement = true;
-            }
+               .then((res) => {
+                  if (res.data.status === "success") {
+                     this.searchList = res.data.message;
+                     this.searchElement = true;
+                     this.notFoundPoll = false;
+                  }
+               })
+               .catch((err) => (this.notFoundPoll = true));
          },
       },
       async created() {
@@ -349,6 +355,10 @@
       padding: 30px 30px 60px;
    }
 
+   .top {
+      position: relative;
+   }
+
    .top h1 {
       font-family: "Kanit", sans-serif;
       font-weight: 600;
@@ -363,6 +373,16 @@
       font-size: 24px;
       color: #eaf5ff;
       margin-bottom: 30px;
+   }
+
+   .notFound {
+      position: absolute;
+      left: 30px;
+      top: 205px;
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: red;
    }
 
    .search-field {

@@ -110,7 +110,10 @@
                })
                .then((res) => {
                   if (res.data.status === "error") {
-                     alert(res.data.message);
+                     alert(
+                        res.data.message +
+                           ". or please check your current password"
+                     );
                   } else {
                      alert("Your password has been changed");
                      this.$router.push("/Settings");
