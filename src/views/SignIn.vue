@@ -251,11 +251,11 @@
       left: 12px;
    }
 
-   #email-field {
+   /* #email-field {
       background: white url(../../public/img/signup-email-icon.svg) left
          no-repeat;
       background-position: 11px;
-   }
+   } */
    #pw-field {
       background: white url(../../public/img/signup-pass-icon.svg) left
          no-repeat;
@@ -352,7 +352,7 @@
       }
 
       #image-email {
-         top: 30px;
+         top: 31px;
       }
 
       form {

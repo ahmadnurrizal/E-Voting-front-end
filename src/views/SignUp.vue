@@ -280,11 +280,11 @@
 
    #image-email {
       position: absolute;
-      top: 138.7px;
+      top: 137px;
       left: 43px;
    }
 
-   #name-field {
+   /* #name-field {
       background: white url(../../public/img/signup-name-icon.svg) left
          no-repeat;
       background-position: 11px;
@@ -293,7 +293,7 @@
       background: white url(../../public/img/signup-email-icon.svg) left
          no-repeat;
       background-position: 11px;
-   }
+   } */
    #pw-field {
       background: white url(../../public/img/signup-pass-icon.svg) left
          no-repeat;
