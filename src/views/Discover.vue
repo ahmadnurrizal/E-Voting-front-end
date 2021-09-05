@@ -97,6 +97,7 @@
                   class="trending-card"
                   v-for="(item, index) in searchList"
                   :key="item"
+                  @click="openSearchPoll(index)"
                >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
@@ -215,6 +216,7 @@
                   class="trending-card"
                   v-for="(item, index) in searchList"
                   :key="item"
+                  @click="openSearchPoll(index)"
                >
                   <img src="../../public/img/discover-icon.svg" alt="" />
                   <div class="info">
@@ -274,6 +276,9 @@
          openNewest(index) {
             this.$router.push(`/Poll/${this.newest[index].id}`);
          },
+         openSearchPoll(index) {
+            this.$router.push(`/Poll/${this.searchList[index].id}`);
+         },
          openSignIn() {
             alert("please login before");
             this.$router.push("/SignIn");
@@ -285,6 +290,8 @@
             const resTitlePoll = await axios
                .get(`api/v1/polls/discover/${this.titleName}`)
                .catch((err) => alert(err.response.data.message));
+
+            console.log(resTitlePoll);
 
             if (resTitlePoll.data.status === "success") {
                this.searchList = resTitlePoll.data.message;
