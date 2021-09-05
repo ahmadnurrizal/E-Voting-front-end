@@ -109,7 +109,6 @@
                   headers: header,
                })
                .then((res) => {
-                  console.log(res);
                   if (res.data.status === "error") {
                      alert(res.data.message);
                   } else {
