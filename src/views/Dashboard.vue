@@ -428,13 +428,13 @@
       display: block;
       visibility: visible;
       background-color: #bde0ff;
-      right: 65px;
+      right: 55px;
       width: 119px;
       height: 115px;
       position: absolute;
       opacity: 1;
       z-index: 999;
-      padding: 3px;
+      padding: 8px;
    }
 
    .edit-poll {

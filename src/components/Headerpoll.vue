@@ -301,7 +301,7 @@
       border: none;
       border-radius: 3px;
       width: 119px;
-      height: 125px;
+      height: 115px;
       top: 50px;
       right: 12px;
       padding: 8px 5px;
@@ -352,6 +352,7 @@
       display: block;
       visibility: visible;
       opacity: 1;
+      padding: 8px;
    }
 
    .desc {

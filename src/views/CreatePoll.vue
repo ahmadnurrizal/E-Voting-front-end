@@ -34,6 +34,7 @@
                            <input
                               type="text"
                               @focus="addEvent"
+                              placeholder="type your option here.."
                               :id="item"
                               v-model="option[index].option"
                            />
