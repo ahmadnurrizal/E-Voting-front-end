@@ -5,11 +5,10 @@
       <div class="wave-top"><div class="vec"></div></div>
       <div class="main">
          <!-- login user -->
-         <div class="card" v-if="isLogin">
+         <div class="card-discover" v-if="isLogin">
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
-               <p class="notFound" v-if="notFoundPoll">Poll not found</p>
                <form @submit.prevent="searchTitle" class="search-field">
                   <input
                      type="text"
@@ -34,7 +33,10 @@
                   </div>
                </form>
             </div>
-            <div class="outlayer" v-if="!searchElement">
+            <p class="notFound" v-if="notFoundPoll">
+               Sorry...! Poll you were looking for was not found
+            </p>
+            <div class="outlayer" v-if="mainElement">
                <h2>Trending Polls</h2>
                <div class="wrapper-poll" id="wrapper1">
                   <div
@@ -124,11 +126,10 @@
          <!-- end of login user -->
 
          <!-- not loged user -->
-         <div class="card" v-if="!isLogin">
+         <div class="card-discover" v-if="!isLogin">
             <div class="top">
                <h1>Discover Polls</h1>
                <h3>You can find lots of pre-made polls</h3>
-               <p class="notFound" v-if="notFoundPoll">Poll not found</p>
 
                <form @submit.prevent="searchTitle" class="search-field">
                   <input
@@ -153,8 +154,11 @@
                   </div>
                </form>
             </div>
+            <p class="notFound" v-if="notFoundPoll">
+               Sorry...! Poll you were looking for was not found
+            </p>
 
-            <div class="outlayer" v-if="!searchElement">
+            <div class="outlayer" v-if="mainElement">
                <h2>Trending Polls</h2>
                <div class="wrapper-poll" id="wrapper1">
                   <div
@@ -185,7 +189,7 @@
                   </div>
                </div>
                <h2>Newest Polls</h2>
-               <div class="wrapper-poll" v-if="!searchElement">
+               <div class="wrapper-poll">
                   <div
                      v-for="(item, index) in newest"
                      :key="item"
@@ -270,6 +274,7 @@
             titleName: "",
             searchList: [],
             searchElement: false,
+            mainElement: true,
 
             notFoundPoll: false,
          };
@@ -290,6 +295,7 @@
          },
          closeSearch() {
             this.searchElement = false;
+            this.mainElement = true;
             this.notFoundPoll = false;
          },
          async searchTitle() {
@@ -302,7 +308,11 @@
                      this.notFoundPoll = false;
                   }
                })
-               .catch((err) => (this.notFoundPoll = true));
+               .catch(
+                  (err) => (this.notFoundPoll = true),
+                  (this.mainElement = false),
+                  (this.searchElement = false)
+               );
          },
       },
       async created() {
@@ -347,12 +357,15 @@
       background-color: #eaf5ff;
    }
 
-   .card {
+   .card-discover {
       width: 1140px;
       min-height: 846px;
       background-image: linear-gradient(180deg, #aed8ff 0%, #3d87cc 100%);
       margin: 100px auto;
       padding: 30px 30px 60px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 20px 26px rgba(54, 37, 37, 0.2);
    }
 
    .top {
@@ -376,13 +389,12 @@
    }
 
    .notFound {
-      position: absolute;
       left: 30px;
       top: 205px;
       font-family: "Kanit", sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      color: red;
+      font-weight: 500;
+      font-size: 24px;
+      color: #eaf5ff;
    }
 
    .search-field {
