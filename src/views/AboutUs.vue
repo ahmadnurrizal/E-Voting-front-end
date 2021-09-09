@@ -42,8 +42,8 @@
                      and user-friendly experience. Discipline and well organized
                      person. I’m currently a computer science student and live
                      in Bekasi, West Java, Indonesia. I have an interest in web
-                     development and data science. Trying my best to be a long
-                     life learner and professional.
+                     development and Software engineering. Trying my best to be
+                     a long life learner and professional.
                   </p>
                   <div class="show">
                      <div class="foto">
